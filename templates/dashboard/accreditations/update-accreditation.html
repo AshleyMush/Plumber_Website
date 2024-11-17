@@ -13,7 +13,8 @@
                     <h6 class="m-0 font-weight-bold text-primary">Accreditation Details</h6>
                 </div>
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ url_for('dashboard_bp.update_accreditation', id=accreditation.id) }}">
+                    <form method="POST" enctype="multipart/form-data"
+                        action="{{ url_for('dashboard_bp.update_accreditation', id=accreditation.id) }}">
                         {{ form.hidden_tag() }}
                         <div class="form-group">
                             {{ form.name.label(class="form-label") }}
@@ -29,6 +30,7 @@
                         </div>
                         {{ form.submit(class="btn btn-success mt-2") }}
                     </form>
+
                 </div>
             </div>
         </div>

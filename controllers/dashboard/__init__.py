@@ -9,4 +9,6 @@ dashboard_bp = Blueprint(
 
 )
 
-from . import routes, services_routes, company_profile_routes, home_page_routes  # Import routes after creating the blueprint
+from . import routes, services_routes,\
+    company_profile_routes, home_page_routes,\
+    accreditation_routes

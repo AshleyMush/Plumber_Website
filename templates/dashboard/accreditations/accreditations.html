@@ -26,16 +26,26 @@
 
                             <td>
                                 {% if accreditation.image %}
-                                <img src="{{ url_for('static', filename=accreditation.image.split('static/')[-1]) }}" alt="{{ accreditation.name }}" width="100">
+                                <img src="{{ url_for('static', filename=accreditation.image) }}"
+                                    alt="{{ accreditation.name }}" width="100">
+                                {% else %}
+                                <span>No Image</span>
                                 {% endif %}
                             </td>
+
+
                             <td>{{ accreditation.description }}</td>
                             <td>
-                                <a href="{{ url_for('dashboard_bp.update_accreditation', id=accreditation.id) }}" class="btn btn-secondary btn-sm">Edit</a>
-                                <form action="{{ url_for('dashboard_bp.delete_accreditation', id=accreditation.id) }}" method="POST" style="display:inline;">
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+
+                                <a href="{{ url_for('dashboard_bp.update_accreditation', id=accreditation.id) }}"
+                                    class="btn btn-secondary btn-sm">Edit</a>
+                                <a href="{{ url_for('dashboard_bp.delete_accreditation', id=accreditation.id) }}"
+                                    class="btn btn-danger btn-sm">Delete</a>
+
                             </td>
+
+
+
                         </tr>
                         {% endfor %}
                     </tbody>
