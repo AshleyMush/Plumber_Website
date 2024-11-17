@@ -31,8 +31,6 @@ class UpdatePhoneForm(FlaskForm):
     )
     submit = SubmitField('Save')
 
-
-
 class ChangePasswordForm(FlaskForm):
     current_password = PasswordField('Current Password', validators=[DataRequired(), Length(min=8)])
     new_password = PasswordField('New Password', validators=[DataRequired(), Length(min=8)])
@@ -42,13 +40,36 @@ class ChangePasswordForm(FlaskForm):
     ])
     submit = SubmitField('Change Password')
 
-
-
-
-
-
 class AboutMeForm(FlaskForm):
     about = TextAreaField('About Me', validators=[DataRequired(), Length(max=1000)])
+    submit = SubmitField('Save')
+
+
+# ------ New forms for the portfolio section ------
+
+class PlumberDetailsForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email(message="You seem to be missing @ or .",
+                                                                   check_deliverability=True)])
+    number = StringField(
+        'Number',
+        validators=[
+            DataRequired(message="Phone number is required."),
+            PhoneNumberValidator  # Use the custom validator
+        ]
+    )
+    address = TextAreaField('Address', validators=[DataRequired()])
+    submit = SubmitField('Save')
+
+class ProjectForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    image = StringField('Image URL', validators=[URL(message="Please enter a valid URL for the project image.")])
+    location = StringField('Location', validators=[DataRequired()])
+    submit = SubmitField('Save')
+
+class ReviewForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    review = TextAreaField('Review', validators=[DataRequired()])
     submit = SubmitField('Save')
 
 

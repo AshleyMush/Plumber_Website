@@ -1,0 +1,11 @@
+{% extends '/dashboard/base.html' %}
+{% from 'bootstrap4/form.html' import render_form %}
+
+{% block title %}Add Accreditation{% endblock %}
+
+{% block content %}
+<section class="container">
+    <h1 class="fw-light">Add New Accreditation</h1>
+    {{ render_form(form, novalidate=True) }}
+</section>
+{% endblock %}

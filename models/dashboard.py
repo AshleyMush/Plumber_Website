@@ -23,10 +23,26 @@ class Services(db.Model):
     description: Mapped[str] = mapped_column(String(2000), nullable=True)
 
     def __repr__(self):
-        return f'<Services{self.title}>'
+        return f'<Services {self.name}>'
 
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
+
+
+
+
+
+
+class AboutUsPageContent(db.Model):
+    __tablename__ = 'AboutUsContent'
+    id: Mapped[int] = mapped_column(primary_key=True)
+    headerImage: Mapped[str] = mapped_column(String(2000), nullable=True)
+    description: Mapped[str] = mapped_column(String(2000), nullable=True)
+
+
+
+
 
 
 class CompanyDetails (db.Model):
@@ -46,64 +62,18 @@ class CompanyDetails (db.Model):
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
-
-class HomePage(db.Model):
-    __tablename__ = 'HomePage'
-    id: Mapped[int] = mapped_column(primary_key=True)
-    heading: Mapped[str] = mapped_column(String(2000), nullable=False)
-    subheading: Mapped[str] = mapped_column(String(2000), nullable=True)
-
-    def __repr__(self):
-        return f'<HomePage{self.name}>'
-
-    def to_dict(self):
-        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
-
-class AboutUs(db.Model):
-    __tablename__ = 'AboutUs'
-    id: Mapped[int] = mapped_column(primary_key=True)
-    headerImage: Mapped[str] = mapped_column(String(2000), nullable=True)
-    description: Mapped[str] = mapped_column(String(2000), nullable=True)
-
-
 class Socials (db.Model ):
     __tablename__ = 'Socials'
     id: Mapped[int] = mapped_column(primary_key=True)
-    number: Mapped[str] = mapped_column(String(2000), nullable=False)
     instagram : Mapped[str] = mapped_column(String(2000), nullable=True)
+    whatsapp : Mapped[str] = mapped_column(String(2000), nullable=True)
     youtube : Mapped[str] = mapped_column(String(2000), nullable=True)
     facebook : Mapped[str] = mapped_column(String(2000), nullable=True)
-    email : Mapped[str] = mapped_column(String(2000), nullable=True)
+    threads : Mapped[str] = mapped_column(String(2000), nullable=True)
+    x : Mapped[str] = mapped_column(String(2000), nullable=True)
 
     def __repr__(self):
         return f'<Socials{self.name}>'
-
-    def to_dict(self):
-        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
-
-
-class Accreditation(db.Model):
-    __tablename__ = 'accreditation'
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(2000), nullable=False)
-    image: Mapped[str] = mapped_column(String(2000), nullable=True)
-    description: Mapped[str] = mapped_column(String(2000), nullable=True)
-
-    def __repr__(self):
-        return f'<accreditation{self.name}>'
-
-    def to_dict(self):
-        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
-
-
-class Reviewer (db.Model):
-    __tablename__ = 'Reviewer'
-    id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(2000), nullable=False)
-    review: Mapped[str] = mapped_column(String(2000), nullable=True)
-
-    def __repr__(self):
-        return f'<Reviewer{self.name}>'
 
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}

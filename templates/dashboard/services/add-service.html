@@ -1,14 +1,11 @@
 {% extends '/dashboard/base.html' %}
 {% from 'bootstrap4/form.html' import render_form %}
 
-
 {% block title %}Add Service{% endblock %}
 
 {% block content %}
-
-
-
-
-{{ render_form(add_service_form, novalidate=True)}}
-
+<section class="container">
+    <h1 class="fw-light">Add New Service</h1>
+    {{ render_form(form, novalidate=True) }}
+</section>
 {% endblock %}

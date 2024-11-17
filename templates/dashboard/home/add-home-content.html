@@ -1,0 +1,20 @@
+{% extends '/dashboard/base.html' %}
+{% from 'bootstrap4/form.html' import render_form %}
+
+
+{% block title %}Add Home Content{% endblock %}
+
+{% block content %}
+
+<section class="py-2 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Add Home Page Content</h1>
+        </div>
+    </div>
+</section>
+
+
+{{ render_form(form, novalidate=True)}}
+
+{% endblock %}

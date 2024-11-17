@@ -1,15 +1,12 @@
 # models/__init__.py
 
-# This file is used to import all the models in the application through models.name_of_model
-
-
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
-
-from .portfolio import  Experience, Projects, Skills, Home, Education, Language, Projects
+from .portfolio import Experience, Projects, Skills, Education, Language
 from .user import User
-from .dashboard import Services, CompanyDetails, HomePage
-from .project_showcase import Plumber, Project, Reviewer
+from .dashboard import Services, CompanyDetails, AboutUsPageContent, Socials
+from .project_showcase import Plumber, Job, Reviewer
+from .home_page import Home
+from .accredication import Accreditation

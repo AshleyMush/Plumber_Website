@@ -24,17 +24,17 @@ if not os.path.exists(instance_path):
 # Configure the database URI to point to the instance folder
 app.config['SECRET_KEY'] = os.environ.get("SECRET_APP_KEY", "default_secret_key")
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-    "DATABASE_URI", f"sqlite:///{os.path.join(instance_path, 'Portfolio.db')}"
+    "DATABASE_URI", f"sqlite:///{os.path.join(instance_path, 'PlumberWebsite.db')}"
 )
 
 
-@app.before_first_request
-def apply_migrations():
-    with app.app_context():
-        try:
-            upgrade()  # Run migrations on startup
-        except Exception as e:
-            print(f"Migration error: {e}")
+# @app.before_first_request
+# def apply_migrations():
+#     with app.app_context():
+#         try:
+#             upgrade()  # Run migrations on startup
+#         except Exception as e:
+#             print(f"Migration error: {e}")
 
 
 # Initialize extensions.
@@ -59,7 +59,7 @@ app.register_blueprint(portfolio_bp)
 
 
 # Initialize Flask-Migrate .
-# migrate = Migrate(app, db)
+migrate = Migrate(app, db)
 
 # Error Handler for 404
 @app.errorhandler(404)

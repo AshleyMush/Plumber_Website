@@ -10,21 +10,6 @@ from . import db
 
 
 
-class Home(db.Model):
-    __tablename__ = 'HomePage'
-    id: Mapped[int] = mapped_column(primary_key=True)
-    subheading: Mapped[str] = mapped_column(String(2000), nullable=False)
-    description: Mapped[str] = mapped_column(String(2000), nullable=True)
-    img_url: Mapped[str] = mapped_column(String(2000), nullable=True)
-
-
-
-
-    def __repr__(self):
-        return f'<HomePage{self.name}>'
-
-    def to_dict(self):
-        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
 class Experience(db.Model):
     __tablename__ = 'Experience'

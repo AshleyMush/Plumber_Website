@@ -1,0 +1,93 @@
+{% extends '/dashboard/base.html' %}
+
+{% block title %}Company Profile{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-gray-800">Company Profile</h1>
+
+    <div class="row">
+        <!-- Company Details Form -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Company Details</h6>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('dashboard_bp.update_company') }}">
+                        {{ company_form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ company_form.name.label(class="form-label") }}
+                            {{ company_form.name(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ company_form.logo.label(class="form-label") }}
+                            {{ company_form.logo(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ company_form.address.label(class="form-label") }}
+                            {{ company_form.address(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ company_form.motto.label(class="form-label") }}
+                            {{ company_form.motto(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ company_form.about.label(class="form-label") }}
+                            {{ company_form.about(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ company_form.openingHours.label(class="form-label") }}
+                            {{ company_form.openingHours(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ company_form.weekendHours.label(class="form-label") }}
+                            {{ company_form.weekendHours(class="form-control") }}
+                        </div>
+                        {{ company_form.submit(class="btn btn-success mt-2") }}
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Links Form -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Social Media Links</h6>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('dashboard_bp.update_socials') }}">
+                        {{ socials_form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ socials_form.instagram.label(class="form-label") }}
+                            {{ socials_form.instagram(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ socials_form.whatsapp.label(class="form-label") }}
+                            {{ socials_form.whatsapp(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ socials_form.youtube.label(class="form-label") }}
+                            {{ socials_form.youtube(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ socials_form.facebook.label(class="form-label") }}
+                            {{ socials_form.facebook(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ socials_form.threads.label(class="form-label") }}
+                            {{ socials_form.threads(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ socials_form.x.label(class="form-label") }}
+                            {{ socials_form.x(class="form-control") }}
+                        </div>
+                        {{ socials_form.submit(class="btn btn-success mt-2") }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

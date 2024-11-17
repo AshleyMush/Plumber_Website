@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from flask_ckeditor import CKEditorField
-from wtforms import StringField,DecimalField, SubmitField,SelectField, TextAreaField, PasswordField, BooleanField
+from wtforms import StringField,FileField,DecimalField, SubmitField,SelectField, TextAreaField, PasswordField, BooleanField
 from wtforms.validators import DataRequired,NumberRange, URL, Email, Length, ValidationError, InputRequired, Optional, EqualTo
+from flask_wtf.file import FileAllowed, FileRequired
 import re
 from flask import flash
 from wtforms import SelectMultipleField
@@ -29,11 +30,7 @@ class ContactForm(FlaskForm):
                                                           "id": "contact_submit_btn"})
 
 
-class HomePageContentForm(FlaskForm):
-    subheading  = StringField('Subheading')
-    description = TextAreaField('Homepage Description', validators=[Optional()])
-    img_url = StringField('Feature One Image URL', validators=[URL(message="Please enter a valid URL for the feature one image/video.")])
-    submit = SubmitField('Save Changes')
+
 
 
 
@@ -68,3 +65,43 @@ class SkillsForm(FlaskForm):
 class LanguageForm(FlaskForm):
     name = StringField('Language Name', validators=[DataRequired()])
     submit = SubmitField('Save Changes')
+
+
+
+# --- New Forms for the new models ---
+
+class ServicesForm(FlaskForm):
+    name =StringField('Service Name', validators=[DataRequired()])
+    homeImage = StringField('Home Image URL', validators=[URL(message="Please enter a valid URL for the home image.")])
+    homeDescription = TextAreaField('Home Description', validators=[DataRequired()])
+    description = CKEditorField('Services Page Content', validators=[DataRequired()])
+    submit = SubmitField('Save Changes')
+
+class CompanyDetailsForm(FlaskForm):
+    name = StringField('Company Name', validators=[Optional()])
+    logo = StringField('Logo URL', validators=[URL(message="Please enter a valid URL for the logo.")])
+    address = StringField('Address', validators=[Optional()])
+    motto = StringField('Motto', validators=[Optional()])
+    about = TextAreaField('About', validators=[Optional()])
+    openingHours = StringField('Opening Hours', validators=[Optional()])
+    weekendHours = StringField('Weekend Hours', validators=[Optional()])
+    submit = SubmitField('Save Changes')
+
+
+
+
+class AboutUsForm(FlaskForm):
+    headerImage = StringField('Header Image URL', validators=[URL(message="Please enter a valid URL for the header image.")])
+    description = TextAreaField('Description', validators=[DataRequired()])
+    submit = SubmitField('Save Changes')
+
+class SocialsForm(FlaskForm):
+    instagram = StringField('Instagram URL', validators=[Optional(), URL()])
+    whatsapp = StringField('WhatsApp Number', validators=[Optional()])
+    youtube = StringField('YouTube Channel URL', validators=[Optional(), URL()])
+    facebook = StringField('Facebook URL', validators=[Optional(), URL()])
+    threads = StringField('Threads URL', validators=[Optional(), URL()])
+    x = StringField('X (Twitter) URL', validators=[Optional(), URL()])
+    submit = SubmitField('Save Changes')
+
+
