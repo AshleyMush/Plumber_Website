@@ -15,9 +15,17 @@ class HomePageContentForm(FlaskForm):
     heading = StringField('Heading', validators=[DataRequired()])
     subheading  = StringField('Subheading')
     description = TextAreaField('Call to action description', validators=[Optional()])
-    image_one = StringField('1st Image or video URL', validators=[URL(message="Please enter a valid URL for the feature one image/video.")])
-    image_two = StringField('2nd Image or video URL', validators=[URL(message="Please enter a valid URL for the feature two image/video.")])
-    image_three = StringField('3rd Image or video URL', validators=[URL(message="Please enter a valid URL for the feature three image/video.")])
-    image_four = StringField('4th Image or video URL', validators=[URL(message="Please enter a valid URL for the feature four image/video.")])
+    image_one = FileField('1st Image or Video', validators=[Optional(),
+                                                            FileAllowed(['jpg', 'jpeg', 'png', 'gif', 'mp4'],
+                                                                        'Only image or video files are allowed.')])
+    image_two = FileField('2nd Image or Video', validators=[Optional(),
+                                                            FileAllowed(['jpg', 'jpeg', 'png', 'gif', 'mp4'],
+                                                                        'Only image or video files are allowed.')])
+    image_three = FileField('3rd Image or Video', validators=[Optional(),
+                                                              FileAllowed(['jpg', 'jpeg', 'png', 'gif', 'mp4'],
+                                                                          'Only image or video files are allowed.')])
+    image_four = FileField('4th Image or Video', validators=[Optional(),
+                                                             FileAllowed(['jpg', 'jpeg', 'png', 'gif', 'mp4'],
+                                                                         'Only image or video files are allowed.')])
 
     submit = SubmitField('Save Changes')

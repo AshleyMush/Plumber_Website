@@ -12,10 +12,10 @@
     </div>
 </section>
 
-<form action="{{ url_for('dashboard_bp.update_home_page') }}" method="POST">
+<form action="{{ url_for('dashboard_bp.update_home_page') }}" method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     <div class="container mt-4">
-                <div class="form-group">
+        <div class="form-group">
             <h3>{{ form.heading.label(class="form-label") }}</h3>
             {{ form.heading(class="form-control", value=home.heading) }}
         </div>
@@ -27,26 +27,49 @@
             <h3>{{ form.description.label(class="form-label") }}</h3>
             <textarea class="form-control" rows="3" name="description">{{ home.description }}</textarea>
         </div>
+
+        <!-- Image One -->
         <div class="form-group">
             <h3>{{ form.image_one.label(class="form-label") }}</h3>
-            {{ form.image_one(class="form-control", value=home.image_one) }}
+            {% if home.image_one %}
+                <p>Current: <img src="{{ url_for('static', filename=home.image_one) }}" alt="Image One" style="width: 100px;"></p>
+            {% else %}
+                <p><span>No Image</span></p>
+            {% endif %}
+            {{ form.image_one(class="form-control") }}
         </div>
 
-
-         <div class="form-group">
+        <!-- Image Two -->
+        <div class="form-group">
             <h3>{{ form.image_two.label(class="form-label") }}</h3>
-            {{ form.image_two(class="form-control", value=home.image_two) }}
-
-         </div>
-
-        <div class="form-group">
-            <h3>{{ form.image_three.label(class="form-label) }}</h3>
-            {{ form.image_three(class="form-control", value=home.image_three) }}
+            {% if home.image_two %}
+                <p>Current: <img src="{{ url_for('static', filename=home.image_two) }}" alt="Image Two" style="width: 100px;"></p>
+            {% else %}
+                <p><span>No Image</span></p>
+            {% endif %}
+            {{ form.image_two(class="form-control") }}
         </div>
 
+        <!-- Image Three -->
         <div class="form-group">
-            <h3>{{ form.image_four.label(class="form-label) }}</h3>
-            {{ form.image_four(class="form-control", value=home.image_four) }}
+            <h3>{{ form.image_three.label(class="form-label") }}</h3>
+            {% if home.image_three %}
+                <p>Current: <img src="{{ url_for('static', filename=home.image_three) }}" alt="Image Three" style="width: 100px;"></p>
+            {% else %}
+                <p><span>No Image</span></p>
+            {% endif %}
+            {{ form.image_three(class="form-control") }}
+        </div>
+
+        <!-- Image Four -->
+        <div class="form-group">
+            <h3>{{ form.image_four.label(class="form-label") }}</h3>
+            {% if home.image_four %}
+                <p>Current: <img src="{{ url_for('static', filename=home.image_four) }}" alt="Image Four" style="width: 100px;"></p>
+            {% else %}
+                <p><span>No Image</span></p>
+            {% endif %}
+            {{ form.image_four(class="form-control") }}
         </div>
 
         <div class="form-group">

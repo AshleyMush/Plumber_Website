@@ -10,12 +10,11 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Image</th>
-                            <th>Description</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -27,20 +26,20 @@
                             <td>
                                 {% if accreditation.image %}
                                 <img src="{{ url_for('static', filename=accreditation.image) }}"
-                                    alt="{{ accreditation.name }}" width="100">
+                                    alt="{{ accreditation.name }}" style="width: 50px;">
                                 {% else %}
                                 <span>No Image</span>
                                 {% endif %}
                             </td>
 
 
-                            <td>{{ accreditation.description }}</td>
+                           
                             <td>
 
                                 <a href="{{ url_for('dashboard_bp.update_accreditation', id=accreditation.id) }}"
-                                    class="btn btn-secondary btn-sm">Edit</a>
+                                    class="btn btn-secondary btn-sm mb-2">Edit</a>
                                 <a href="{{ url_for('dashboard_bp.delete_accreditation', id=accreditation.id) }}"
-                                    class="btn btn-danger btn-sm">Delete</a>
+                                    class="btn btn-danger btn-sm mb-2">Delete</a>
 
                             </td>
 
