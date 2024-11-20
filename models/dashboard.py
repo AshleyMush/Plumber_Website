@@ -34,13 +34,6 @@ class Services(db.Model):
 
 
 
-class AboutUsPageContent(db.Model):
-    __tablename__ = 'AboutUsContent'
-    id: Mapped[int] = mapped_column(primary_key=True)
-    headerImage: Mapped[str] = mapped_column(String(2000), nullable=True)
-    description: Mapped[str] = mapped_column(String(2000), nullable=True)
-
-
 
 
 

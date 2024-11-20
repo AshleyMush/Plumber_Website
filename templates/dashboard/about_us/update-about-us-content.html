@@ -1,0 +1,77 @@
+{% extends '/dashboard/base.html' %}
+{% from 'bootstrap4/form.html' import render_form %}
+
+{% block title %}Update About Us Content{% endblock %}
+
+{% block content %}
+<section class="py-2 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Update About Us Content</h1>
+        </div>
+    </div>
+</section>
+
+<form action="{{ url_for('dashboard_bp.update_about_us_page') }}" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="container mt-4">
+        <div class="form-group">
+            <h3>{{ form.heading.label(class="form-label") }}</h3>
+            {{ form.heading(class="form-control", value=about_us.heading) }}
+        </div>
+        <div class="form-group">
+            <h3>{{ form.subheading.label(class="form-label") }}</h3>
+            {{ form.subheading(class="form-control", value=about_us.subheading) }}
+        </div>
+        <div class="form-group">
+            <h3>{{ form.description.label(class="form-label") }}</h3>
+            <textarea class="form-control" rows="3" name="description">{{ about_us.description }}</textarea>
+        </div>
+        <div class="form-group">
+            <h3>{{ form.content_url_one.label(class="form-label") }}</h3>
+            {{ form.content_url_one(class="form-control", value=about_us.content_url_one) }}
+        </div>
+        <div class="form-group">
+            <h3>{{ form.content_url_two.label(class="form-label") }}</h3>
+            {{ form.content_url_two(class="form-control", value=about_us.content_url_two) }}
+        </div>
+        <div class="form-group">
+            <h3>{{ form.image_one.label(class="form-label") }}</h3>
+            {% if about_us.image_one %}
+                <p>Current: <img src="{{ url_for('static', filename=about_us.image_one) }}" alt="Image One" style="width: 100px;"></p>
+
+                {% else %}
+                <p><span>No Image</span></p>
+            {% endif %}
+            {{ form.image_one(class="form-control") }}
+        </div>
+        <div class="form-group">
+            <h3>{{ form.image_two.label(class="form-label") }}</h3>
+            {% if about_us.image_two %}
+                <p>Current: <img src="{{ url_for('static', filename=about_us.image_two) }}" alt="Image Two" style="width: 100px;"></p>
+            {% else %}
+                <p><span>No Image</span></p>
+            {% endif %}
+            {{ form.image_two(class="form-control") }}
+        </div>
+
+        
+         <!-- Content URL One -->
+        <div class="form-group">
+            <h3>{{ form.content_url_one.label(class="form-label") }}</h3>
+            {{ form.content_url_one(class="form-control", value=about_us.content_url_one) }}
+        </div>
+
+        <!-- Content URL Two -->
+        <div class="form-group">
+            <h3>{{ form.content_url_two.label(class="form-label") }}</h3>
+            {{ form.content_url_two(class="form-control", value=about_us.content_url_two) }}
+        </div>
+
+                <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+        
+    </div>
+</form>
+{% endblock %}

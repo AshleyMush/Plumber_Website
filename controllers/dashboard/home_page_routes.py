@@ -13,6 +13,12 @@ if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 
+
+@dashboard_bp.app_context_processor
+def inject_home_content_status():
+    home_exists = Home.query.count() > 0
+    return {'home_exists': home_exists}
+
 @dashboard_bp.route('/add-home-content', methods=['GET', 'POST'])
 @roles_required('Admin')
 @login_required
@@ -42,7 +48,10 @@ def add_home_content():
                 image_one=uploaded_images.get('image_one'),
                 image_two=uploaded_images.get('image_two'),
                 image_three=uploaded_images.get('image_three'),
-                image_four=uploaded_images.get('image_four')
+                image_four=uploaded_images.get('image_four'),
+                content_url_one=form.content_url_one.data,
+                content_url_two=form.content_url_two.data,
+                content_url_three=form.content_url_three.data,
             )
             db.session.add(new_home_content)
             db.session.commit()

@@ -10,6 +10,7 @@ from .portfolio_forms import SocialMediaInfoForm, UpdateEmailForm,\
 
 from .dashboard_forms import ServicesForm, CompanyDetailsForm, SocialsForm
 
-from .dashboard.accredications import AccreditationForm
+from .dashboard.accredications_form import AccreditationForm
 from .dashboard.home_page_form import HomePageContentForm
+from .dashboard.about_us_form import AboutUsForm
 
