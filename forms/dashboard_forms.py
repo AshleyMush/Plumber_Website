@@ -77,31 +77,12 @@ class ServicesForm(FlaskForm):
     description = CKEditorField('Services Page Content', validators=[DataRequired()])
     submit = SubmitField('Save Changes')
 
-class CompanyDetailsForm(FlaskForm):
-    name = StringField('Company Name', validators=[Optional()])
-    logo = StringField('Logo URL', validators=[URL(message="Please enter a valid URL for the logo.")])
-    address = StringField('Address', validators=[Optional()])
-    motto = StringField('Motto', validators=[Optional()])
-    about = TextAreaField('About', validators=[Optional()])
-    openingHours = StringField('Opening Hours', validators=[Optional()])
-    weekendHours = StringField('Weekend Hours', validators=[Optional()])
-    submit = SubmitField('Save Changes')
 
 
 
 
-class AboutUsForm(FlaskForm):
-    headerImage = StringField('Header Image URL', validators=[URL(message="Please enter a valid URL for the header image.")])
-    description = TextAreaField('Description', validators=[DataRequired()])
-    submit = SubmitField('Save Changes')
 
-class SocialsForm(FlaskForm):
-    instagram = StringField('Instagram URL', validators=[Optional(), URL()])
-    whatsapp = StringField('WhatsApp Number', validators=[Optional()])
-    youtube = StringField('YouTube Channel URL', validators=[Optional(), URL()])
-    facebook = StringField('Facebook URL', validators=[Optional(), URL()])
-    threads = StringField('Threads URL', validators=[Optional(), URL()])
-    x = StringField('X (Twitter) URL', validators=[Optional(), URL()])
-    submit = SubmitField('Save Changes')
+
+
 
 
