@@ -9,6 +9,9 @@ from werkzeug.utils import secure_filename
 
 
 
+# Configure Upload Folder
+#TODO: Change the UPLOAD_FOLDER to the persistent storage location 
+
 UPLOAD_FOLDER = 'static/uploads/company_logos/'
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif'}
 
@@ -28,7 +31,8 @@ def company_profile():
     return render_template(
         'dashboard/profile/company-profile.html',
         company_form=company_form,
-        socials_form=socials_form
+        socials_form=socials_form,
+        company_details = company_details
     )
 
 
