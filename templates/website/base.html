@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>{% block title %}Heath Navigator {% endblock %}</title>
+    <title>{% block title %}Business Website{% endblock %}</title>
     {% block style %}
 
     <!-- Favicon-->
@@ -17,7 +17,7 @@
     <!-- Font Awesome icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/static/care template  1 static/css/frontend-styles.css" rel="stylesheet" />
+    <link href="/static/website/css/frontend-styles.css" rel="stylesheet" />
 
     {% endblock %}
 
@@ -29,7 +29,7 @@
 
         {% block navigation %}
         <!-- Navigation-->
-        {% include '/blog/blogNavBar.html' %}
+        {% include 'templates/website/snippets/navbar.html' %}
 
         <!-- End Navigation-->
         {% endblock %}
@@ -59,7 +59,7 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Core theme JS-->
-    <script src="/static/care template  1 static/js/scripts.js"></script>
+    <script src="/static/website/js/scripts.js"></script>
 
     {% endblock %}
 </body>
