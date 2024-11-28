@@ -4,8 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class Plumber(db.Model):
-    __tablename__ = 'plumber'
+class Service_Provider(db.Model):
+    __tablename__ = 'Service_Provider'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(500), nullable=False)
@@ -14,31 +14,31 @@ class Plumber(db.Model):
     password: Mapped[str] = mapped_column(String(1200), nullable=False)
     role: Mapped[str] = mapped_column(String(200), nullable=False)
 
-    # Relationship with Job
-    jobs: Mapped[list["Job"]] = relationship('Job', back_populates='plumber', cascade="all, delete-orphan")
+    # Relationship with Jobs_Done
+    Jobs_Done: Mapped[list["Jobs_Done"]] = relationship('Jobs_Done', back_populates='Service_Provider', cascade="all, delete-orphan")
 
     def __repr__(self):
-        return f'<Plumber {self.name}>'
+        return f'<Service_Provider {self.name}>'
 
-class Job(db.Model):
-    __tablename__ = 'jobs'
+class Jobs_Done(db.Model):
+    __tablename__ = 'Jobs_Done'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(1000), nullable=False)
     image: Mapped[str] = mapped_column(String(2550), nullable=True)
     location: Mapped[str] = mapped_column(String(2550), nullable=False)
 
-    # Foreign Key linking to Plumber
-    plumber_id: Mapped[int] = mapped_column(Integer, ForeignKey('plumber.id'), nullable=False)
+    # Foreign Key linking to Service_Provider
+    Service_Provider_id: Mapped[int] = mapped_column(Integer, ForeignKey('Service_Provider.id'), nullable=False)
 
     # Relationship with Reviewer
     reviews: Mapped[list["Reviewer"]] = relationship('Reviewer', back_populates='job', cascade="all, delete-orphan")
 
-    # Relationship back to Plumber
-    plumber: Mapped["Plumber"] = relationship('Plumber', back_populates='jobs')
+    # Relationship back to Service_Provider
+    Service_Provider: Mapped["Service_Provider"] = relationship('Service_Provider', back_populates='Jobs_Done')
 
     def __repr__(self):
-        return f'<Job {self.name}>'
+        return f'<Jobs_Done {self.name}>'
 
 class Reviewer(db.Model):
     __tablename__ = 'reviews'
@@ -47,11 +47,11 @@ class Reviewer(db.Model):
     name: Mapped[str] = mapped_column(String(2000), nullable=False)
     review: Mapped[str] = mapped_column(Text, nullable=False)
 
-    # Foreign Key linking to Job
-    job_id: Mapped[int] = mapped_column(Integer, ForeignKey('jobs.id'), nullable=False)
+    # Foreign Key linking to Jobs_Done
+    job_id: Mapped[int] = mapped_column(Integer, ForeignKey('Jobs_Done.id'), nullable=False)
 
-    # Relationship back to Job
-    job: Mapped["Job"] = relationship('Job', back_populates='reviews')
+    # Relationship back to Jobs_Done
+    job: Mapped["Jobs_Done"] = relationship('Jobs_Done', back_populates='reviews')
 
     def __repr__(self):
         return f'<Reviewer {self.name}>'
