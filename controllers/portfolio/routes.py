@@ -29,14 +29,15 @@ def contact():
     if form.validate_on_submit():
         name = bleach.clean(form.name.data)
         email = bleach.clean(form.email.data)
+        phone = bleach.clean(form.phone.data)
         message = bleach.clean(form.message.data)
 
         flash('Message sent successfully', 'success')
         # Send the email to the admin
-        send_admin_email(name=name, subject=subject, email=email, message=message)
+        send_admin_email(name=name, phone=phone, email=email,subject =subject, message=message)
 
         # Send the response email to the dashboard
-        send_user_response_email(name=name, email=email, subject=subject)
+        send_user_response_email(name=name, phone=phone, email=email,subject =subject, message=message)
 
 
         return redirect(url_for('portfolio_bp.contact'))

@@ -43,17 +43,17 @@ def send_user_response_email(name, email, subject, service='gmail'):
 
 
 
-def send_admin_email(name, subject, email, message, service='gmail'):
+def send_admin_email(name, phone, subject, email, message, service='gmail'):
     """
     Sends an email to the dashboard with the contact form details.
     """
     current_year = datetime.now().year
-    email_content = render_template('email/admin_email.html', name=name, subject=subject, email=email,current_year=current_year, message=message)
+    email_content = render_template('email/admin_email.html', name=name, phone=phone, email=email, current_year=current_year, message=message)
 
     msg = MIMEText(email_content, 'html')
     msg['From'] = email
     msg['To'] = ADMIN_EMAIL_ADDRESS
-    msg['Subject'] = f"New message from {name}: {subject}"
+    msg['Subject'] = subject
     msg['Reply-To'] = email
 
     smtp_settings = {

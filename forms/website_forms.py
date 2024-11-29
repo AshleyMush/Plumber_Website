@@ -20,6 +20,7 @@ class ContactForm(FlaskForm):
 
     email = StringField(label='Email', validators=[DataRequired(), Email(message="You seem to be missing @ or .",
                                                                          check_deliverability=True)])
+    phone = StringField(label='Phone', validators=[PhoneNumberValidator(message="Please enter a valid phone number")])
 
 
     message = TextAreaField(label='Message', validators=[DataRequired()],
