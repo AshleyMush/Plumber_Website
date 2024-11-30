@@ -3,9 +3,9 @@
     <div class="row align-items-center">
       <!-- Info Section -->
       <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
-        <h3>Don't just take our word for it, see what others have to say.</h3>
+        <h3>Our reviews</h3>
         <p>
-          Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+         Don't just take our word for it, see what our customers have to say about us.
         </p>
       </div>
 
@@ -72,3 +72,29 @@
     </div>
   </div>
 </section>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+  // Ensure Swiper exists
+  if (typeof Swiper !== 'undefined') {
+    // Testimonials Swiper
+    const testimonialsSwiper = new Swiper('.testimonials-swiper', {
+      loop: true, // Infinite loop
+      speed: 4000, // Smooth transition speed
+      autoplay: {
+        delay: 5000, // Autoplay delay
+        disableOnInteraction: false, // Keep autoplay active after interaction
+      },
+      slidesPerView: 1, // Show one slide at a time
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  } else {
+    console.error('Swiper is not defined.');
+  }
+});
+
+</script>

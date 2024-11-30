@@ -1,0 +1,102 @@
+<section id="unique-accreditations" class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4 fw-bold">Our Accreditations</h2>
+        <div class="swiper unique-accreditations-swiper">
+            <div class="swiper-wrapper">
+                <!-- Slide Items -->
+                <div class="swiper-slide">
+                    <div class="card p-3 shadow-sm">
+                        <img src="/static/uploads/accreditations/trust-pilot.png" alt="Accreditation 1" class="img-fluid">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card p-3 shadow-sm">
+                        <img src="/static/uploads/accreditations/Google.png" alt="Accreditation 2" class="img-fluid">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card p-3 shadow-sm">
+                        <img src="/static/uploads/accreditations/cartificate 2.png" alt="Accreditation 3" class="img-fluid">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card p-3 shadow-sm">
+                        <img src="/static/uploads/accreditations/bosch.png" alt="Accreditation 4" class="img-fluid">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card p-3 shadow-sm">
+                        <img src="/static/uploads/accreditations/gas-safe.png"alt="Accreditation 5" class="img-fluid">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card p-3 shadow-sm">
+                        <img src="/static/uploads/accreditations/badge.png" alt="Accreditation 6" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <!-- Swiper Navigation -->
+           <!-- <div class="swiper-button-prev unique-accreditations-prev"></div>
+            <div class="swiper-button-next unique-accreditations-next"></div>-->
+        </div>
+    </div>
+</section>
+<style>
+    /* Unique Swiper Container */
+    .unique-accreditations-swiper {
+        padding: 20px 0;
+    }
+
+    /* Card Styling */
+    .unique-accreditations-swiper .card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        max-width: 150px;
+        max-height: 150px;
+        margin: auto;
+    }
+
+    .unique-accreditations-swiper img {
+        object-fit: contain;
+        height: 100px;
+        width: 100%;
+    }
+
+    /* Unique Navigation Buttons */
+    .unique-accreditations-prev,
+    .unique-accreditations-next {
+        color: black;
+    }
+</style>
+<!-- Swiper JS -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize Unique Swiper for Accreditations
+        new Swiper('.unique-accreditations-swiper', {
+            loop: true, // Infinite loop
+            speed: 30000, // Speed for continuous smooth scrolling
+            slidesPerView: 5, // Display five slides at a time
+            spaceBetween: 20, // Space between slides
+            freeMode: true, // Enable free mode for continuous scrolling
+            autoplay: {
+                delay: 0, // No delay for continuous scroll
+                disableOnInteraction: false, // Keep autoplay active after interaction
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 15,
+                },
+                1024: {
+                    slidesPerView: 5,
+                    spaceBetween: 20,
+                },
+            },
+        });
+    });
+</script>
