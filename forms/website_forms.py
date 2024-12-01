@@ -10,22 +10,47 @@ from utils.validators import PhoneNumberValidator
 
 
 
-class ContactForm(FlaskForm):
+class ContactUSForm(FlaskForm):
     """
     Form for contact page
     """
-    name = StringField(label='Name', validators=[DataRequired(), Length(max=64)],
-                       render_kw={"placeholder": "Name",
-                                  "class": "contact-form"})
+    name = StringField(
+        label='Name',
+        validators=[DataRequired(), Length(max=64)],
+        render_kw={"placeholder": "Full Name", "class": "form-control"}
+    )
 
-    email = StringField(label='Email', validators=[DataRequired(), Email(message="You seem to be missing @ or .",
-                                                                         check_deliverability=True)])
-    phone = StringField(label='Phone', validators=[PhoneNumberValidator(message="Please enter a valid phone number")])
+    email = StringField(
+        label='Email',
+        validators=[DataRequired(), Email(message="You seem to be missing @ or .", check_deliverability=True)],
+        render_kw={"placeholder": "Email Address", "class": "form-control"}
+    )
 
+    phone = StringField(
+        label='Phone',
+        validators=[DataRequired(), Length(min=10, max=15, message="Please enter a valid phone number")],
+        render_kw={"placeholder": "Phone Number", "class": "form-control"}
+    )
 
-    message = TextAreaField(label='Message', validators=[DataRequired()],
-                            render_kw={"placeholder": "Enter your message here",
-                                       "class": "col-12"})
+    subject = SelectField(
+        label='Subject',
+        choices=[
+            ('', 'How can we help you?'),  # Placeholder option
+            ('gas_leakage', 'Gas Leakage'),
+            ('plumbing', 'Plumbing'),
+            ('drainage', 'Drainage'),
+        ],
+        validators=[DataRequired(message="Please select an option")],
+        render_kw={"class": "form-control"}
+    )
 
-    submit = SubmitField(label='Send Message', render_kw={"class": "btn btn-dark col-12",
-                                                          "id": "contact_submit_btn"})
+    message = TextAreaField(
+        label='Message',
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Enter your message here", "class": "form-control", "rows": 5}
+    )
+
+    submit = SubmitField(
+        label='Send Message',
+        render_kw={"class": "btn btn-primary px-4 py-2"}
+    )

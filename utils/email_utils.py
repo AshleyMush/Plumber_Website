@@ -48,7 +48,7 @@ def send_admin_email(name, phone, subject, email, message, service='gmail'):
     Sends an email to the dashboard with the contact form details.
     """
     current_year = datetime.now().year
-    email_content = render_template('email/admin_email.html', name=name, phone=phone, email=email, current_year=current_year, message=message)
+    email_content = render_template('email/admin_email.html', name=name, phone=phone, email=email,current_year=current_year, message=message)
 
     msg = MIMEText(email_content, 'html')
     msg['From'] = email
