@@ -11,7 +11,7 @@ CURRENT_YEAR = datetime.now().year
 
 
 
-@website_bp.route('/home', methods=['GET'] )
+@website_bp.route('/', methods=['GET'] )
 def home():
     home = Home.query.first()
     user = User.query.first()
