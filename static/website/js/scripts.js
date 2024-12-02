@@ -19,3 +19,34 @@ document.addEventListener('DOMContentLoaded', function () {
     console.error('Swiper is not defined.');
   }
 });
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize Unique Swiper for Accreditations
+        new Swiper('.unique-accreditations-swiper', {
+            loop: true, // Infinite loop
+            speed: 30000, // Speed for continuous smooth scrolling
+            slidesPerView: 5, // Display five slides at a time
+            spaceBetween: 20, // Space between slides
+            freeMode: true, // Enable free mode for continuous scrolling
+            autoplay: {
+                delay: 0, // No delay for continuous scroll
+                disableOnInteraction: false, // Keep autoplay active after interaction
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 15,
+                },
+                1024: {
+                    slidesPerView: 5,
+                    spaceBetween: 20,
+                },
+            },
+        });
+    });

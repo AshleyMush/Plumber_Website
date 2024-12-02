@@ -10847,3 +10847,29 @@ html {
   min-height: 15rem;
 }
 /* Add this to your frontend-styles.css or relevant CSS file */
+        /* Unique Swiper Container */
+        .unique-accreditations-swiper {
+          padding: 20px 0;
+        }
+    
+        /* Card Styling */
+        .unique-accreditations-swiper .card {
+          border: none;
+          border-radius: 10px;
+          overflow: hidden;
+          max-width: 150px;
+          max-height: 150px;
+          margin: auto;
+        }
+    
+        .unique-accreditations-swiper img {
+          object-fit: contain;
+          height: 100px;
+          width: 100%;
+        }
+    
+        /* Unique Navigation Buttons */
+        .unique-accreditations-prev,
+        .unique-accreditations-next {
+          color: black;
+        }
