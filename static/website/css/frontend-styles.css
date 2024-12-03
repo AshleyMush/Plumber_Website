@@ -10873,3 +10873,11 @@ html {
         .unique-accreditations-next {
           color: black;
         }
+
+        .testimonial-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /* Ensures image fills the dimensions without distortion */
+    border-radius: 50%; /* Makes the image circular */
+    border: 2px solid #ddd; /* Optional: Add a border for aesthetics */
+}

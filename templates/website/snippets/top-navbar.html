@@ -1,9 +1,9 @@
 <!-- Top Header -->
-<header class="py-3 border-bottom bg-light">
-  <div class="container d-flex align-items-center justify-content-between">
+<header class="py-3 border-bottom bg-light top-header">
+  <div class="container d-flex align-items-center justify-content-between justify-content-lg-between" style="height: 80px;">
     <!-- Logo -->
-    <div class="logo-container ">
-      <img src="https://via.placeholder.com/150x50" alt="Logo" class="img-fluid" style="max-height: 50px;">
+    <div class="logo-container mx-auto mx-lg-0">
+      <img src="static/uploads/logos/logo2.png" alt="Logo" class="img-fluid" style="max-height: 115px;">
     </div>
 
     <!-- Review Button (Hidden on Small/Medium Devices) -->
@@ -14,12 +14,30 @@
     </div>
   </div>
 </header>
+
+
 <!-- Top Header -->
 <style>
+/* General Logo Styling */
 .logo-container img {
   max-width: 100%; /* Makes the logo responsive */
-  height: auto; /* Maintains the aspect ratio */
-  max-height: 50px; /* Ensures the logo doesn't exceed 50px in height */
+  height: auto; /* Maintains aspect ratio */
+  max-height: 115px; /* Limits the height of the logo */
+}
+
+/* Top Header Styling */
+.top-header {
+  background-color: #f8f9fa; /* Matches bg-light */
+  border-bottom: 1px solid #dee2e6; /* Matches border-bottom */
+  padding-top: 16px; /* Matches py-3 */
+  padding-bottom: 16px;
+}
+
+/* Center Align When Button is Hidden */
+@media (max-width: 992px) {
+  .top-header .container {
+    justify-content: center; /* Center-align the content */
+  }
 }
 
 

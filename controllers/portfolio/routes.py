@@ -11,7 +11,7 @@ CURRENT_YEAR = datetime.now().year
 
 
 
-@portfolio_bp.route('/', methods=['GET'] )
+@portfolio_bp.route('/portfolio-home', methods=['GET'] )
 def home():
     home = Home.query.first()
     user = User.query.first()
