@@ -43,7 +43,7 @@
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
 
-  /* All the text colours */
+  /* All the text colours  */
   --bs-primary-rgb: #1E3E62;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
@@ -10921,3 +10921,34 @@ a.nav-link{
             background-color: #121212 !important;
             color: #ffffff !important;
         }
+
+
+/* Services card */
+
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* End of services card */
+
+
+/* text underline */
+
+.text-underline {
+  display: inline-block; /* Keep the width of the text only */
+  position: relative; /* Necessary for positioning the underline */
+}
+
+.text-underline::after {
+  content: ''; /* Creates an empty pseudo-element for the underline */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%; /* Matches the width of the text */
+  height: 4px; /* Thickness of the underline */
+  background-color: var(--bs-primary); /* Matches the primary button color */
+}
+
