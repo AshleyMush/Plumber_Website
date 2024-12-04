@@ -51,7 +51,7 @@
                 {% if not home_exists %}
                 <a class="collapse-item" href="{{ url_for('dashboard_bp.add_home_content') }}">
                     Add Home Page
-                    <i class="fa-solid fa-certificate p-3" style="color: #ff0000;"></i>
+                    <i class="fa-solid fa-spinner p-1" style="color: #ff0000;"></i>
                 </a>
                 {% else %}
                 <a class="collapse-item " href="{{ url_for('dashboard_bp.update_home_page') }}">
@@ -60,8 +60,8 @@
 
                 {% if not about_us_exists %}
                 <a class="collapse-item" href="{{ url_for('dashboard_bp.add_home_content') }}">
-                    Add About Us Page Content
-                                        <i class="fa-solid fa-certificate p-3" style="color: #ff0000;"></i>
+                     Add About Us Page 
+                                        <i class="fa-solid fa-spinner p-1" style="color: #ff0000;"></i>
 
                 </a>
                 {% else %}
@@ -107,7 +107,6 @@
     
                 <a class="collapse-item" href="{{url_for('dashboard_bp.get_accreditations')}}">
                     Accreditations</a>
-                <a class="collapse-item" href="{{url_for('dashboard_bp.get_languages')}}">Languages</a>
     
     
             </div>
@@ -117,42 +116,19 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block" />
 
-    <!--Resume Page-->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-            aria-controls="collapseTwo">
-            <i class="fa-solid fa-folder-open"></i>
-            <span>Resume Page</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Modify Page</h6>
-                <a class="collapse-item" href="{{url_for('dashboard_bp.get_experience')}}">
-                    Work Experience</a>
-                <a class="collapse-item" href="{{url_for('dashboard_bp.get_education')}}">Education</a>
-                <a class="collapse-item" href="{{url_for('dashboard_bp.get_skills')}}">Skills</a>
-                <a class="collapse-item" href="{{url_for('dashboard_bp.get_languages')}}">Languages</a>
-            </div>
-        </div>
-    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block" />
 
     <!--Projects Page-->
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{url_for('dashboard_bp.get_projects')}}">
-            <i class="fa-solid fa-folder-open"></i>
-            <span>Modify Project Page</span>
-        </a>
-    </li>
     <hr class="sidebar-divider d-none d-md-block" />
 
 
 
     <li class="nav-item">
-        <a class="nav-link" href="{{url_for('portfolio_bp.home')}}">
+        <a class="nav-link" href="{{url_for('website_bp.home')}}">
 <i class="fa-solid fa-house"></i>            <span>Website Home</span>
         </a>
     </li>

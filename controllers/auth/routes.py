@@ -32,7 +32,7 @@ def login():
 
     # Redirect authenticated users directly to their profile
     if current_user.is_authenticated:
-        return redirect(url_for('dashboard_bp.profile'))
+        return redirect(url_for('dashboard_bp.company_profile'))
 
     form = LoginForm()
 
@@ -46,7 +46,7 @@ def login():
         if user and check_password_hash(user.password, password):
             flash('Logged in successfully', 'success')
             login_user(user, remember=form.remember_me.data)  # Log in dashboard
-            return redirect(url_for('dashboard_bp.profile'))
+            return redirect(url_for('dashboard_bp.company_profile'))
 
         else:
             flash('Invalid email or password', 'danger')
@@ -66,7 +66,7 @@ def logout():
     session.clear()
     logout_user()
 
-    return redirect(url_for('portfolio_bp.home'))
+    return redirect(url_for('website_bp.home'))
 
 
 
@@ -85,7 +85,7 @@ def register():
     else:
 
         flash('Registration is closed.', 'info')
-        return redirect(url_for('portfolio_bp.home'))
+        return redirect(url_for('website_bp.home'))
 
     if form.validate_on_submit() and form.data:
         result = db.session.execute(db.select(User).where(User.email == form.email.data))
@@ -112,10 +112,10 @@ def register():
         # Log in the dashboard
         login_user(new_user)
         if new_user.role == "Admin":
-            return redirect(url_for('dashboard_bp.profile'))
+            return redirect(url_for('dashboard_bp.company_profile'))
         else:
 
-            return redirect(url_for("dashboard_bp.profile"))
+            return redirect(url_for("dashboard_bp.company_profile"))
 
     else:
         if form.errors:

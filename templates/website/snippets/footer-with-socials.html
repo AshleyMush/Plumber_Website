@@ -4,7 +4,19 @@
       <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
         <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
       </a>
-      <span class="mb-3 mb-md-0 text-body-secondary text-white">Developed by <a href="https://www.tanakatech.co.uk/"> ©Tanaka Tech</a></span>
+      <span class="mb-3 mb-md-0 text-body-secondary text-white">Developed by <a href="https://www.tanakatech.co.uk/"> ©Tanaka Tech</a>
+
+                    {% if not current_user.is_authenticated %}
+                    | <a href="{{ url_for('auth_bp.login') }}" class="text-muted"
+                        style="text-decoration: none;">Login</a>
+                    {% else %}
+                    | <a href="{{ url_for('dashboard_bp.profile') }}" class="text-muted"
+                        style="text-decoration: none;">Dashboard</a>
+                    | <a href="{{ url_for('auth_bp.logout') }}" class="text-muted"
+                        style="text-decoration: none;">Logout</a>
+                    {% endif %}
+                </span>
+
     </div>
 
 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">

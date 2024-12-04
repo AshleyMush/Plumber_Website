@@ -6,6 +6,7 @@ from . import dashboard_bp
 from utils.decorators import roles_required
 import os
 from werkzeug.utils import secure_filename
+from forms import UpdateEmailForm, UpdatePhoneForm, ChangePasswordForm
 
 
 
@@ -23,6 +24,9 @@ def company_profile():
     # Load existing instances or initialize empty forms if not found
     company_details = CompanyDetails.query.first()
     socials = Socials.query.first()
+    email_form = UpdateEmailForm()
+    phone_form = UpdatePhoneForm()
+    password_form = ChangePasswordForm()
 
     # Forms with existing data
     company_form = CompanyDetailsForm(obj=company_details)
@@ -32,7 +36,11 @@ def company_profile():
         'dashboard/profile/company-profile.html',
         company_form=company_form,
         socials_form=socials_form,
-        company_details = company_details
+        company_details = company_details,
+        password_form=password_form,
+        email_form=email_form,
+        phone_form=phone_form
+
     )
 
 
