@@ -6651,7 +6651,7 @@ textarea.form-control-lg {
 
 .text-bg-primary {
   color: #fff !important;
-  background-color: RGBA(13, 110, 253, var(--bs-bg-opacity, 1)) !important;
+  background-color:#1E3E62 !important;
 }
 
 .text-bg-secondary {
@@ -10882,7 +10882,7 @@ html {
 
 /* All bootstrap buttons */
 .btn {
-  background-color: #FF6500; /* Button background color */
+  background-color: #E8751A; /* Button background color */
   color: #fff; /* Button text color */
   border: none; /* Removes any border or outline */
 }
