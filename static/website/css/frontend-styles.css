@@ -42,7 +42,9 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
-  --bs-primary-rgb: 13, 110, 253;
+
+  /* All the text colours */
+  --bs-primary-rgb: #1E3E62;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -104,14 +106,6 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-hr {
-  margin: 1rem 0;
-  color: inherit;
-  border: 0;
-  border-top: 1px solid;
-  opacity: 0.25;
-}
-
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
@@ -120,53 +114,54 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 h1, .h1 {
-  font-size: calc(1.375rem + 1.5vw);
+  font-size: calc(1.5rem + 1.5vw); /* Increased base size */
 }
 @media (min-width: 1200px) {
   h1, .h1 {
-    font-size: 2.5rem;
+    font-size: 2.75rem; /* Slightly larger for large screens */
   }
 }
 
 h2, .h2 {
-  font-size: calc(1.325rem + 0.9vw);
+  font-size: calc(1.4rem + 0.9vw); /* Increased base size */
 }
 @media (min-width: 1200px) {
   h2, .h2 {
-    font-size: 2rem;
+    font-size: 2.25rem; /* Slightly larger for large screens */
   }
 }
 
 h3, .h3 {
-  font-size: calc(1.3rem + 0.6vw);
+  font-size: calc(1.35rem + 0.6vw); /* Increased base size */
 }
 @media (min-width: 1200px) {
   h3, .h3 {
-    font-size: 1.75rem;
+    font-size: 1.875rem; /* Slightly larger for large screens */
   }
 }
 
 h4, .h4 {
-  font-size: calc(1.275rem + 0.3vw);
+  font-size: calc(1.3rem + 0.3vw); /* Increased base size */
 }
 @media (min-width: 1200px) {
   h4, .h4 {
-    font-size: 1.5rem;
+    font-size: 1.625rem; /* Slightly larger for large screens */
   }
 }
 
 h5, .h5 {
-  font-size: 1.25rem;
+  font-size: 1.375rem; /* Slightly larger */
 }
 
 h6, .h6 {
-  font-size: 1rem;
+  font-size: 1.125rem; /* Slightly larger */
 }
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem; /* Slightly larger margin for better readability */
 }
+
 
 abbr[title] {
   -webkit-text-decoration: underline dotted;
@@ -6656,7 +6651,7 @@ textarea.form-control-lg {
 
 .text-bg-primary {
   color: #fff !important;
-  background-color: RGBA(13, 110, 253, var(--bs-bg-opacity, 1)) !important;
+  background-color:#1E3E62 !important;
 }
 
 .text-bg-secondary {
@@ -10880,4 +10875,49 @@ html {
     object-fit: cover; /* Ensures image fills the dimensions without distortion */
     border-radius: 50%; /* Makes the image circular */
     border: 2px solid #ddd; /* Optional: Add a border for aesthetics */
+
+
+
 }
+
+/* All bootstrap buttons */
+.btn {
+  background-color: #E8751A; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Removes any border or outline */
+}
+
+.btn:hover {
+  background-color: #000; /* Change background color on hover */
+  color: #fff; /* Maintain text color on hover */
+}
+
+/* navbar links */
+a.nav-link{
+  font-size: 1.2rem;
+  
+}
+
+/* Service card*/
+
+.service-card{
+  color: #1E3E62; 
+
+}
+
+.service-card:hover {
+  background-color: #1E3E62; 
+  
+
+}
+
+
+
+
+
+
+/* Dark Mode */
+        .dark-mode {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+        }
