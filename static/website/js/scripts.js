@@ -50,3 +50,18 @@ document.addEventListener('DOMContentLoaded', function () {
             },
         });
     });
+ // Dark Mode Toggle Functionality
+        document.getElementById('toggle-dark-mode').addEventListener('click', () => {
+            const body = document.getElementById('theme-body');
+            const isDarkMode = body.classList.contains('bg-dark');
+
+            if (isDarkMode) {
+                // Switch to light mode
+                body.classList.remove('bg-dark', 'text-light');
+                body.classList.add('bg-light', 'text-dark');
+            } else {
+                // Switch to dark mode
+                body.classList.remove('bg-light', 'text-dark');
+                body.classList.add('bg-dark', 'text-light');
+            }
+        });
