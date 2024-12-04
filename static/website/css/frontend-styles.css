@@ -10937,18 +10937,30 @@ a.nav-link{
 
 /* text underline */
 
-.text-underline {
-  display: inline-block; /* Keep the width of the text only */
-  position: relative; /* Necessary for positioning the underline */
+.custom-underline {
+  text-decoration: underline; /* Ensure underline */
+  text-decoration-color: #1E3E62; /* Change underline color */
+  text-underline-offset: 4px; /* Adjust the spacing of the underline from the text */
 }
 
-.text-underline::after {
-  content: ''; /* Creates an empty pseudo-element for the underline */
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%; /* Matches the width of the text */
-  height: 4px; /* Thickness of the underline */
-  background-color: var(--bs-primary); /* Matches the primary button color */
+
+/* End of text underline */
+
+/*Services cards */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
+.card:hover {
+  transform: scale(1.05); /* Slight enlargement */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+.card-title{
+    color: #FF6500; /* Title color */
+
+
+}
+
+
+/* End of services cards */
