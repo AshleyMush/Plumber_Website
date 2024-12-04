@@ -98,76 +98,49 @@
 
 {% block content %}
 
-<!--Accreditations-->
-<section id="unique-accreditations" class="py-3">
-    <div class="container text-center">
-        <div class="swiper unique-accreditations-swiper">
-            <div class="swiper-wrapper">
-                <!-- Slide Items -->
-                <div class="swiper-slide">
-                    <div class="card p-3 shadow-sm">
-                        <img src="/static/uploads/accreditations/trust-pilot.png" alt="Accreditation 1" class="img-fluid">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card p-3 shadow-sm">
-                        <img src="/static/uploads/accreditations/Google.png" alt="Accreditation 2" class="img-fluid">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card p-3 shadow-sm">
-                        <img src="/static/uploads/accreditations/cartificate 2.png" alt="Accreditation 3" class="img-fluid">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card p-3 shadow-sm">
-                        <img src="/static/uploads/accreditations/bosch.png" alt="Accreditation 4" class="img-fluid">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card p-3 shadow-sm">
-                        <img src="/static/uploads/accreditations/gas-safe.png"alt="Accreditation 5" class="img-fluid">
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="card p-3 shadow-sm">
-                        <img src="/static/uploads/accreditations/badge.png" alt="Accreditation 6" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-            <!-- Swiper Navigation -->
-           <!-- <div class="swiper-button-prev unique-accreditations-prev"></div>
-            <div class="swiper-button-next unique-accreditations-next"></div>-->
-        </div>
-    </div>
-</section>
+
 
 <!--End of Accreditations-->
 
 
             <!-- Feature section one-->
-            <section class="py-5 bg-light" id="scroll-target">
+            <section class="py-5 bg-dark" id="scroll-target">
                 <div class="container px-5 my-5">
                     <div class="row gx-5 align-items-center">
                         <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHBsdW1iaW5nfGVufDB8fDB8fHwy" alt="..." /></div>
                         <div class="col-lg-6">
-                            <h2 class="fw-bolder">Something About the service</h2>
-                            <p class="lead fw-normal text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est, ut esse a labore aliquam beatae expedita. Blanditiis impedit numquam libero molestiae et fugit cupiditate, quibusdam expedita, maiores eaque quisquam.</p>
+                            <h2 class="fw-bolder text-white">Something About the service</h2>
+                            <p class="lead fw-normal  mb-0 text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est, ut esse a labore aliquam beatae expedita. Blanditiis impedit numquam libero molestiae et fugit cupiditate, quibusdam expedita, maiores eaque quisquam.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
 
-<!--End of Feature section one-->
 
+
+<!--Service Feature 2-->
+
+            <section class="py-5 bg-dark">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://img.freepik.com/free-photo/service-maintenance-worker-repairing_23-2149176718.jpg?t=st=1733185227~exp=1733188827~hmac=5e5b8a6627c3f7dfbb2050b4261c574ffc4e6ab80a82802636c2ef8f74896dc0&w=1380" alt="..." /></div>
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder text-white">Growth &amp; beyond</h2>
+                            <p class="lead fw-normal text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est, ut esse a labore aliquam beatae expedita. Blanditiis impedit numquam libero molestiae et fugit cupiditate, quibusdam expedita, maiores eaque quisquam.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!--End of Feature 2-->
+<!--Other services-->
+{% include 'website/snippets/other-services-card.html' %}
 <!-- Contact Form-->
 {% include '/website/snippets/contact-form-section.html' %}
 
 <!-- End of contact form-->
 
-<!--Other services-->
-{% include 'website/snippets/other-services-card.html' %}
+
 
 
 {% endblock %}

@@ -1,53 +1,55 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="index.html">Ashley's Startup</a>
+        <a class="navbar-brand" href="{{url_for('website_bp.home')}}">Ashley's Startup</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div class="collapse navbar-collapse text-white" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 justify-content-center">
-                <li class="nav-item"><a class="nav-link" href={{url_for('website_bp.home')}}>Home</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownServices" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Services</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownServices">
-                        <li><a class="dropdown-item" href="{{url_for('website_bp.service')}}">Service 1</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="nav-link" href={{url_for('website_bp.about_us')}}>About</a></li>
-                <li class="nav-item"><a class="nav-link" href={{url_for('website_bp.contact')}}>Contact Us</a></li>
-
-                <!-- Todo: Reinstate this in new branch
-                            <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                            <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-                                    <li><a class="dropdown-item" href="blog-home.html">Blog Home</a></li>
-                                    <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                                    <li><a class="dropdown-item" href="portfolio-overview.html">Portfolio Overview</a></li>
-                                    <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
-                                </ul>
-                            </li>
-
-                             -->
+            <li class="nav-item"><a class="nav-link text-white fw-bold" href={{url_for('website_bp.home')}}>Home</a></li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white fw-bold" id="navbarDropdownServices" href="#" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownServices">
+            <li><a class="dropdown-item fw-bold" href="{{url_for('website_bp.service')}}">Service 1</a></li>
             </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link text-white fw-bold" href={{url_for('website_bp.about_us')}}>About</a></li>
+            <li class="nav-item"><a class="nav-link text-white fw-bold" href={{url_for('website_bp.contact')}}>Contact Us</a></li>
 
+            <!-- Todo: Reinstate this in new branch
+                <li class="nav-item"><a class="nav-link text-white fw-bold" href="pricing.html">Pricing</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-bold" href="faq.html">FAQ</a></li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white fw-bold" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                <li><a class="dropdown-item fw-bold" href="blog-home.html">Blog Home</a></li>
+                <li><a class="dropdown-item fw-bold" href="blog-post.html">Blog Post</a></li>
+                </ul>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white fw-bold" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                <li><a class="dropdown-item fw-bold" href="portfolio-overview.html">Portfolio Overview</a></li>
+                <li><a class="dropdown-item fw-bold" href="portfolio-item.html">Portfolio Item</a></li>
+                </ul>
+                </li>
+
+                 -->
+            </ul>
 
 
             <!-- Call Us section on the far right -->
             <div class="col-md-3 d-flex flex-column justify-content-end align-items-center align-items-md-end">
                 <div class="text-center text-md-end">
                     <p class="mb-0 fw-bold text-white" style="font-size: 1.25rem; color: #ffffff;">
-                        <i class="fa-solid fa-phone me-2"></i>
-                        <a href="tel:03300120974" style="color: #ffffff; text-decoration: none;">
-                            Call 012345 123 1234
+                        <a href="tel:03300120974"
+                           style="color: #ffffff; text-decoration: none;">
+                        <i class="fa-solid fa-phone me-2 card-title  "></i>
+
+                          <span class="card-title "> Call  012345 123 1234</span>
                         </a>
                     </p>
                     <p class="mb-0" style="font-size: 0.9rem; color: #ffffff;">
