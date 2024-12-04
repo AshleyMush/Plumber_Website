@@ -73,7 +73,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Company Details</h6>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url_for('dashboard_bp.update_company') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ url_for('dashboard_bp.update_company_details') }}" enctype="multipart/form-data">
                         {{ company_form.hidden_tag() }}
                         
                         <div class="form-group">

@@ -1,15 +1,14 @@
 from . import auth, dashboard_forms, portfolio_forms
 from .auth import RegisterForm, LoginForm
-from .dashboard_forms import ProjectsPageForm, ExperienceForm, EducationForm, SkillsForm, LanguageForm, ProjectsPageForm, ContactForm
-
-
-from .portfolio_forms import SocialMediaInfoForm, UpdateEmailForm,\
-    UpdatePhoneForm, ChangePasswordForm, AboutMeForm
 
 
 
+
+
+from .dashboard.email_form import UpdateEmailForm
+from .dashboard.phone_number_form import UpdatePhoneForm
 from .dashboard_forms import ServicesForm
-
+from.dashboard.password_form import ChangePasswordForm
 from .dashboard.accredications_form import AccreditationForm
 from .dashboard.home_page_form import HomePageContentForm
 from .dashboard.about_us_form import AboutUsForm

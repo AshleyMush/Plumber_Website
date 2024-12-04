@@ -8,7 +8,6 @@ from models import db
 from models.user import User
 from controllers.dashboard import dashboard_bp
 from controllers.auth import auth_bp
-from controllers.portfolio import portfolio_bp
 from controllers.website import website_bp
 from sqlalchemy.exc import SQLAlchemyError
 from flask_migrate import Migrate, upgrade
@@ -56,7 +55,6 @@ def load_user(user_id):
 # Register Blueprints
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(auth_bp)
-app.register_blueprint(portfolio_bp)
 app.register_blueprint(website_bp)
 
 

@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center"
-        href="{{url_for('dashboard_bp.profile')}}">
+        href="{{url_for('dashboard_bp.user_profile')}}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -9,7 +9,7 @@
     </a>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{url_for('dashboard_bp.profile')}}">
+        <a class="nav-link" href="{{url_for('dashboard_bp.user_profile')}}">
             <i class="fa-solid fa-user-large"></i>
             <span>Admin Profile</span>
         </a>
@@ -75,7 +75,6 @@
 
                 <a class="collapse-item" href="{{url_for('dashboard_bp.get_services')}}">
                     Services Page</a>
-                <a class="collapse-item" href="{{url_for('dashboard_bp.get_languages')}}">Languages</a>
             
             
             </div>
