@@ -1,0 +1,61 @@
+<header>
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://img.freepik.com/free-photo/male-plumber-working-fix-problems-client-s-house_23-2150990700.jpg?t=st=1733184418~exp=1733188018~hmac=e7a84c3b34d08a78b36db2eed83095b4fadef31902a0f5da5faba88ec4de4f39&w=1380" class="d-block w-100" alt="First slide"
+             style="height: 60vh; object-fit: cover;">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Example headline.</h1>
+            <p>Some representative placeholder content for the first slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://img.freepik.com/free-photo/sanitary-technician-lying-sink_23-2147772221.jpg?t=st=1733184557~exp=1733188157~hmac=931560009f480ac4b45f6735d4682a06ca5a8f9444358de349b29a6b1952a85f&w=826" class="d-block w-100" alt="Second slide"
+             style="height: 60vh; object-fit: cover;">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://img.freepik.com/free-photo/male-plumber-working-fix-problems-client-s-house_23-2150990696.jpg?uid=R135256346&ga=GA1.1.127954026.1703182652&semt=ais_hybrid" class="d-block w-100" alt="Third slide"
+             style="height: 60vh; object-fit: cover;">
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>One more for good measure.</h1>
+            <p>Some representative placeholder content for the third slide of this carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</header>
+
+
+<script>
+  var myCarousel = document.querySelector('#myCarousel');
+  var carousel = new bootstrap.Carousel(myCarousel, {
+    interval: 3000, // 3 seconds
+    ride: 'carousel' // Auto-start the carousel
+  });
+</script>

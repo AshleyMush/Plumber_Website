@@ -9,7 +9,7 @@
   <meta name="author" content="" />
   <!-- Titles -->
   {% if current_user.is_authenticated %}
-
+  
     {% set profile_title = 'Admin Dashboard' %}
 
   {% endif %}
@@ -93,7 +93,7 @@
       {% if current_user.is_authenticated %}
             {% include '/dashboard/footer.html' %}
 
-
+     
       <!-- End of Footer -->
 
       {% endif %}

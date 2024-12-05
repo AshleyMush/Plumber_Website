@@ -5,7 +5,7 @@ from utils.decorators import  nocache
 from datetime import date
 from utils.email_utils import send_approval_message, send_demotion_message
 from . import dashboard_bp
-from models import db, User, Experience, Education, Skills, Language, Projects, Home
+from models import db, User, Home
 from utils.encryption import check_password_hash, generate_password_hash
 from forms import UpdateEmailForm, UpdatePhoneForm, ChangePasswordForm
 

@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-from .portfolio import Experience, Projects, Skills, Education, Language
 from .user import User
 from .dashboard import Services, CompanyDetails, Socials
 from .home_page import Home

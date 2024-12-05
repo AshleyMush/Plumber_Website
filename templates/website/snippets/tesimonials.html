@@ -1,0 +1,100 @@
+<section id="testimonials" class="testimonials section py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Info Section -->
+      <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+        <h3>Our reviews</h3>
+        <p>
+         Don't just take our word for it, see what our customers have to say about us.
+        </p>
+      </div>
+
+      <!-- Swiper Section -->
+      <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+        <div class="swiper testimonials-swiper">
+          <div class="swiper-wrapper">
+            <!-- Testimonial Item 1 -->
+            <div class="swiper-slide">
+              <div class="testimonial-item bg-white shadow-sm rounded p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="https://via.placeholder.com/80" class="testimonial-img rounded-circle me-3" alt="Saul Goodman">
+                  <div>
+                    <h5>Saul Goodman</h5>
+                    <p class="mb-0 text-muted">Ceo & Founder</p>
+                    <div class="stars">
+                      <i class="bi bi-star-fill text-warning"></i>
+                      <i class="bi bi-star-fill text-warning"></i>
+                      <i class="bi bi-star-fill text-warning"></i>
+                      <i class="bi bi-star-fill text-warning"></i>
+                      <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                  </div>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left text-primary"></i>
+                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id.
+                  <i class="bi bi-quote quote-icon-right text-primary"></i>
+                </p>
+              </div>
+            </div>
+
+            <!-- Testimonial Item 2 -->
+            <div class="swiper-slide">
+              <div class="testimonial-item bg-white shadow-sm rounded p-4">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="https://via.placeholder.com/80" class="testimonial-img rounded-circle me-3" alt="Sara Wilsson">
+                  <div>
+                    <h5>Sara Wilsson</h5>
+                    <p class="mb-0 text-muted">Designer</p>
+                    <div class="stars">
+                      <i class="bi bi-star-fill text-warning"></i>
+                      <i class="bi bi-star-fill text-warning"></i>
+                      <i class="bi bi-star-fill text-warning"></i>
+                      <i class="bi bi-star-fill text-warning"></i>
+                      <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                  </div>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left text-primary"></i>
+                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram.
+                  <i class="bi bi-quote quote-icon-right text-primary"></i>
+                </p>
+              </div>
+            </div>
+
+            <!-- Add more testimonial items as needed -->
+          </div>
+          <!-- Pagination -->
+          <div class="swiper-pagination mt-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+  // Ensure Swiper exists
+  if (typeof Swiper !== 'undefined') {
+    // Testimonials Swiper
+    const testimonialsSwiper = new Swiper('.testimonials-swiper', {
+      loop: true, // Infinite loop
+      speed: 4000, // Smooth transition speed
+      autoplay: {
+        delay: 5000, // Autoplay delay
+        disableOnInteraction: false, // Keep autoplay active after interaction
+      },
+      slidesPerView: 1, // Show one slide at a time
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  } else {
+    console.error('Swiper is not defined.');
+  }
+});
+
+</script>

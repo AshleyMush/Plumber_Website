@@ -41,7 +41,13 @@ class Services(db.Model):
 class CompanyDetails (db.Model):
     __tablename__ = 'CompanyDetails'
     id: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String(2000), nullable=False)
+
+
+    name: Mapped[str] = mapped_column(String(2000), nullable=True)
+    email : Mapped[str] = mapped_column(String(2000), nullable=True)
+
+    phone : Mapped[str] = mapped_column(String(2000), nullable=True)
+
     logo: Mapped[str] = mapped_column(String(2000), nullable=True)
     address: Mapped[str] = mapped_column(String(2000), nullable=True)
     motto: Mapped[str] = mapped_column(String(2000), nullable=True)
