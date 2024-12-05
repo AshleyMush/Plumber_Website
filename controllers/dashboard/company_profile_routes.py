@@ -53,10 +53,11 @@ def update_email():
     This function updates the All dashboard's email address.
     :return:
     """
+    company_details = CompanyDetails.query.first()
     form = UpdateEmailForm()
     if form.validate_on_submit():
         new_email = form.email.data
-        current_user.email = new_email
+        company_details.email = new_email
         db.session.commit()
         flash('Email updated successfully, refresh your browser.', 'success')
     else:
@@ -64,16 +65,18 @@ def update_email():
             for error in errors:
                 flash(f"{getattr(form, field).label.text}: {error}", 'danger')
 
-    return redirect(url_for('dashboard_bp.profile'))
+    return redirect(url_for('dashboard_bp.company_profile'))
 
 
 @dashboard_bp.route('/update-phone-number', methods=['POST'])
 @roles_required('Admin')
 def update_phone_number():
+    company_details = CompanyDetails.query.first()
+
     form = UpdatePhoneForm()
     if form.validate_on_submit():
         phone_number = form.phone_number.data
-        current_user.phone_number = phone_number
+        company_details.phone = phone_number
         db.session.commit()
         flash('Phone number updated successfully, refresh your browser.', 'success')
     else:
@@ -81,12 +84,13 @@ def update_phone_number():
         for field, errors in form.errors.items():
             for error in errors:
                 flash(f"{getattr(form, field).label.text}: {error}", 'danger')
-    return redirect(url_for('dashboard_bp.profile'))
+    return redirect(url_for('dashboard_bp.company_profile'))
 
 
 @dashboard_bp.route('/change-password', methods=['POST'])
 @roles_required('Admin')
 def change_password():
+
     form = ChangePasswordForm()
     if form.validate_on_submit():
         current_password = form.current_password.data
@@ -94,7 +98,7 @@ def change_password():
 
         if not check_password_hash(current_user.password, current_password):
             flash('Current password is incorrect.', 'danger')
-            return redirect(url_for('dashboard_bp.profile'))
+            return redirect(url_for('dashboard_bp.company_profile'))
 
         # Update the dashboard's password
         current_user.password = generate_password_hash(new_password)
@@ -105,7 +109,7 @@ def change_password():
         for field, errors in form.errors.items():
             for error in errors:
                 flash(f"{getattr(form, field).label.text}: {error}", 'danger')
-    return redirect(url_for('dashboard_bp.profile'))
+    return redirect(url_for('dashboard_bp.company_profile'))
 
 
 @dashboard_bp.route('/company-profile/update-company', methods=['POST'])

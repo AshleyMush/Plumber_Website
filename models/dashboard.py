@@ -42,7 +42,7 @@ class CompanyDetails (db.Model):
     __tablename__ = 'CompanyDetails'
     id: Mapped[int] = mapped_column(primary_key=True)
 
-
+# TODO: Add email ,phone and any missing columns to the company_routes.py
     name: Mapped[str] = mapped_column(String(2000), nullable=True)
     email : Mapped[str] = mapped_column(String(2000), nullable=True)
 
@@ -60,6 +60,7 @@ class CompanyDetails (db.Model):
 
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
 
 class Socials (db.Model ):
     __tablename__ = 'Socials'
