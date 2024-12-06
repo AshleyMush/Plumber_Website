@@ -54,8 +54,12 @@ def update_email():
     :return:
     """
     company_details = CompanyDetails.query.first()
+    if company_details is None:
+        company_details = CompanyDetails()
+        db.session.add(company_details)
+
     form = UpdateEmailForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit() and form.email.data:
         new_email = form.email.data
         company_details.email = new_email
         db.session.commit()
@@ -73,8 +77,12 @@ def update_email():
 def update_phone_number():
     company_details = CompanyDetails.query.first()
 
+    if company_details is None:
+        company_details = CompanyDetails()
+        db.session.add(company_details)
+
     form = UpdatePhoneForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit() and form.phone_number.data:
         phone_number = form.phone_number.data
         company_details.phone = phone_number
         db.session.commit()
