@@ -50,7 +50,7 @@
 
 
 
-            <!-- Feature One -->
+            <!-- Services Page -->
              <h2 class="fw-bold mb-4">Services Page</h2>
 
 
@@ -71,6 +71,8 @@
                 {% endif %}
             </div>
 
+<!-- Feature One -->
+
             <div class="container p-3 mb-3 bg-white" >
                 <div class="fs-2 mb-3 fw-bold ">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-layout-sidebar-inset" viewBox="0 0 16 16">
@@ -86,6 +88,8 @@
                     <div class="text-danger small">{{ form.image_one_path.errors[0] }}</div>
                 {% endif %}
             </div>
+
+
             <div class="mb-3">
                 {{ form.feature_heading_one.label(class="form-label") }}
                 <div class="input-group">
@@ -101,6 +105,8 @@
                 {% endif %}              </div>
                 
             </div>
+
+
             <div class="mb-3">
                 {{ form.feature_description_one.label(class="form-label") }}
                 {{ form.feature_description_one(class="form-control", placeholder="Enter feature description one") }}
@@ -120,7 +126,6 @@
 </svg>
               Feature Two
             </div>
-             <h3 class="fw-bold mb-4"></h2>
 
                             <div class="mb-3">
                 {{ form.image_two_path.label(class="form-label") }}
