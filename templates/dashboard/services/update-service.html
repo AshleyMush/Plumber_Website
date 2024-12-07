@@ -44,7 +44,7 @@
                 {% endif %}
                 {% if service.main_image_path %}
                     <p class="text-muted">Current Image: 
-                        <img src="{{ url_for('static', filename=service.main_image_path) }}" alt="Main Image" style="width: 100px;">
+                        <img src="{{ service.main_image_path }}" alt="Main Image" style="width: 100px;">
                 {% endif %}
             </div>
 
@@ -71,7 +71,7 @@
                 {% endif %}
                 {% if service.image_one_path %}
                     <p class="text-muted">Current Image:
-                        <img src="{{ url_for('static', filename=service.image_one_path) }}" alt="Image One" style="width: 100px;">
+                        <img src="{{service.image_one_path}}" alt="Image One" style="width: 100px;">
                 {% endif %}
             </div>
 
@@ -98,7 +98,7 @@
                 {% endif %}
                 {% if service.image_two_path %}
                     <p class="text-muted">Current Image: 
-                        <img src="{{ url_for('static', filename=service.image_two_path) }}" alt="Image Two" style="width: 100px;">
+                        <img src="{{service.image_two_path}}" alt="Image Two" style="width: 100px;">
                 {% endif %}
             </div>
 
@@ -118,10 +118,5 @@
     </form>
 
 
-<p>{{service.image_one_path}}</p>
-<img src="{{service.main_image_path | safe}}" alt="">
-
-  <p>{{service.image_two_path}}</p>
-<p>{{service.main_image_path}}</p>
 </section>
 {% endblock %}

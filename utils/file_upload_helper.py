@@ -1,7 +1,7 @@
 import os
 from werkzeug.utils import secure_filename
 
-def save_file(file, base_folder='static/uploads', subfolder=''):
+def save_file(file, base_folder='/static/uploads', subfolder=''):
     """
     Save the uploaded file to the specified folder and return its relative path.
 
