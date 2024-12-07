@@ -9,8 +9,7 @@ import os
 
 # Configure Upload Folder
 UPLOAD_FOLDER = 'static/uploads/home'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+
 
 
 

@@ -6,25 +6,122 @@
 {% block content %}
 <section class="container">
     <h1 class="fw-light">Update Service</h1>
-    <form action="{{ url_for('dashboard_bp.update_service', service_id=service.id) }}" method="POST">
+<form action="{{ url_for('dashboard_bp.update_service', service_id=service.id) }}" method="POST" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
-        <div class="form-group">
-            <label for="name">{{ form.name.label }}</label>
-            {{ form.name(class="form-control") }}
-        </div>
-        <div class="form-group">
-            <label for="homeImage">{{ form.homeImage.label }}</label>
-            {{ form.homeImage(class="form-control") }}
-        </div>
-        <div class="form-group">
-            <label for="homeDescription">{{ form.homeDescription.label }}</label>
-            {{ form.homeDescription(class="form-control") }}
-        </div>
-        <div class="form-group">
-            <label for="description">{{ form.description.label }}</label>
-            {{ form.description(class="form-control") }}
-        </div>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
+                   <!-- Service Name -->
+            <div class="mb-3">
+                {{ form.name.label(class="form-label") }}
+                {{ form.name(class="form-control", placeholder="Enter service name") }}
+                {% if form.name.errors %}
+                    <div class="text-danger small">{{ form.name.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Home Page Card Text -->
+            <div class="mb-3">
+                {{ form.home_page_card_text.label(class="form-label") }}
+                {{ form.home_page_card_text(class="form-control", placeholder="Enter card text for home page") }}
+                {% if form.home_page_card_text.errors %}
+                    <div class="text-danger small">{{ form.home_page_card_text.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Header Description -->
+            <div class="mb-3">
+                {{ form.header_description.label(class="form-label") }}
+                {{ form.header_description(class="form-control", placeholder="Enter header description") }}
+                {% if form.header_description.errors %}
+                    <div class="text-danger small">{{ form.header_description.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Main Image -->
+            <div class="mb-3">
+                {{ form.main_image_path.label(class="form-label") }}
+                {{ form.main_image_path(class="form-control") }}
+                {% if form.main_image_path.errors %}
+                    <div class="text-danger small">{{ form.main_image_path.errors[0] }}</div>
+                {% endif %}
+                {% if service.main_image_path %}
+                    <p class="text-muted">Current Image: 
+                        <img src="{{ url_for('static', filename=service.main_image_path) }}" alt="Main Image" style="width: 100px;">
+                {% endif %}
+            </div>
+
+            <!-- Feature One -->
+            <div class="mb-3">
+                {{ form.feature_heading_one.label(class="form-label") }}
+                {{ form.feature_heading_one(class="form-control", placeholder="Enter feature heading one") }}
+                {% if form.feature_heading_one.errors %}
+                    <div class="text-danger small">{{ form.feature_heading_one.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.feature_description_one.label(class="form-label") }}
+                {{ form.feature_description_one(class="form-control", placeholder="Enter feature description one") }}
+                {% if form.feature_description_one.errors %}
+                    <div class="text-danger small">{{ form.feature_description_one.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.image_one_path.label(class="form-label") }}
+                {{ form.image_one_path(class="form-control") }}
+                {% if form.image_one_path.errors %}
+                    <div class="text-danger small">{{ form.image_one_path.errors[0] }}</div>
+                {% endif %}
+                {% if service.image_one_path %}
+                    <p class="text-muted">Current Image:
+                        <img src="{{ url_for('static', filename=service.image_one_path) }}" alt="Image One" style="width: 100px;">
+                {% endif %}
+            </div>
+
+            <!-- Feature Two -->
+            <div class="mb-3">
+                {{ form.feature_heading_two.label(class="form-label") }}
+                {{ form.feature_heading_two(class="form-control", placeholder="Enter feature heading two") }}
+                {% if form.feature_heading_two.errors %}
+                    <div class="text-danger small">{{ form.feature_heading_two.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.feature_description_two.label(class="form-label") }}
+                {{ form.feature_description_two(class="form-control", placeholder="Enter feature description two") }}
+                {% if form.feature_description_two.errors %}
+                    <div class="text-danger small">{{ form.feature_description_two.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.image_two_path.label(class="form-label") }}
+                {{ form.image_two_path(class="form-control") }}
+                {% if form.image_two_path.errors %}
+                    <div class="text-danger small">{{ form.image_two_path.errors[0] }}</div>
+                {% endif %}
+                {% if service.image_two_path %}
+                    <p class="text-muted">Current Image: 
+                        <img src="{{ url_for('static', filename=service.image_two_path) }}" alt="Image Two" style="width: 100px;">
+                {% endif %}
+            </div>
+
+            <!-- Content One URL -->
+            <div class="mb-3">
+                {{ form.content_one_url.label(class="form-label") }}
+                {{ form.content_one_url(class="form-control", placeholder="Enter content URL") }}
+                {% if form.content_one_url.errors %}
+                    <div class="text-danger small">{{ form.content_one_url.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Update Service</button>
+            </div>
     </form>
+
+
+<p>{{service.image_one_path}}</p>
+<img src="{{service.main_image_path | safe}}" alt="">
+
+  <p>{{service.image_two_path}}</p>
+<p>{{service.main_image_path}}</p>
 </section>
 {% endblock %}

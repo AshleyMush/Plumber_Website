@@ -18,9 +18,23 @@ class Services(db.Model):
     __tablename__ = 'Services'
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(2000), nullable=False)
-    homeImage: Mapped[str] = mapped_column(String(2000), nullable=True)
-    homeDescription: Mapped[str] = mapped_column(String(2000), nullable=True)
-    description: Mapped[str] = mapped_column(String(2000), nullable=True)
+    home_page_card_text: Mapped[str] = mapped_column(String(2000), nullable=True)
+
+    main_image_path: Mapped[str] = mapped_column(String(2000), nullable=True)
+    image_one_path: Mapped[str] = mapped_column(String(2000), nullable=True)
+    image_two_path: Mapped[str] = mapped_column(String(2000), nullable=True)
+
+    content_one_url: Mapped[str] = mapped_column(String(2000), nullable=True)
+    content_two_url: Mapped[str] = mapped_column(String(2000), nullable=True)
+    content_three_url: Mapped[str] = mapped_column(String(2000), nullable=True)
+
+    header_description: Mapped[str] = mapped_column(String(2000), nullable=True)
+    feature_heading_one: Mapped[str] = mapped_column(String(2000), nullable=True)
+    feature_description_one: Mapped[str] = mapped_column(String(2000), nullable=True)
+    feature_heading_two: Mapped[str] = mapped_column(String(2000), nullable=True)
+    feature_description_two: Mapped[str] = mapped_column(String(2000), nullable=True)
+
+    service_page_ckd_description: Mapped[str] = mapped_column(String(2000), nullable=True)
 
     def __repr__(self):
         return f'<Services {self.name}>'

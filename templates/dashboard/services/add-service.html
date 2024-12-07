@@ -6,6 +6,166 @@
 {% block content %}
 <section class="container">
     <h1 class="fw-light">Add New Service</h1>
-    {{ render_form(form, novalidate=True) }}
+   <form method="POST" enctype="multipart/form-data"action="{{ url_for('dashboard_bp.add_service') }}">
+            {{ form.hidden_tag() }}
+            
+            <div class="container p-3 mb-3 bg-dark text-white" >
+                 <h2 class="fw-bold mb-4">Home Page</h2>
+                <!-- Service Name -->
+                <div class="mb-3">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-control", placeholder="Enter service name") }}
+                    {% if form.name.errors %}
+                        <div class="text-danger small">{{ form.name.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <!-- Main Image -->
+                <div class="mb-3">
+                    {{ form.main_image_path.label(class="form-label") }}
+                    {{ form.main_image_path(class="form-control") }}
+                    {% if form.main_image_path.errors %}
+                        <div class="text-danger small">{{ form.main_image_path.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <!-- Home Page Card Text -->
+                <div class="mb-3">
+                    {{ form.home_page_card_text.label(class="form-label") }}
+
+                    <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-card-heading" viewBox="0 0 16 16">
+  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"></path>
+  <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"></path>
+</svg>
+                </span>
+{{ form.home_page_card_text(class="form-control", placeholder="Enter card text for home page") }}
+                    {% if form.home_page_card_text.errors %}
+                        <div class="text-danger small">{{ form.home_page_card_text.errors[0] }}</div>
+                    {% endif %}              
+                </div>
+                    
+                </div>
+            </div>
+
+
+
+
+            <!-- Feature One -->
+             <h2 class="fw-bold mb-4">Services Page</h2>
+
+
+                        <!-- Service Page Header Description -->
+            <div class="mb-5">
+
+                <div class="fs-2 mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-window" viewBox="0 0 16 16">
+  <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"></path>
+  <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm13 2v2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1M2 14a1 1 0 0 1-1-1V6h14v7a1 1 0 0 1-1 1z"></path>
+</svg>
+                Header Description
+            </div>
+                {{ form.header_description.label(class="form-label") }}
+                {{ form.header_description(class="form-control", placeholder="Enter Service Page header dtext") }}
+                {% if form.header_description.errors %}
+                    <div class="text-danger small">{{ form.header_description.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="container p-3 mb-3 bg-white" >
+                <div class="fs-2 mb-3 fw-bold ">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-layout-sidebar-inset" viewBox="0 0 16 16">
+  <path d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2z"></path>
+  <path d="M3 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path>
+</svg>
+              Feature One
+            </div>
+                         <div class="mb-3">
+                {{ form.image_one_path.label(class="form-label") }}
+                {{ form.image_one_path(class="form-control") }}
+                {% if form.image_one_path.errors %}
+                    <div class="text-danger small">{{ form.image_one_path.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.feature_heading_one.label(class="form-label") }}
+                <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-card-heading" viewBox="0 0 16 16">
+  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"></path>
+  <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"></path>
+</svg>
+                </span>
+{{ form.feature_heading_one(class="form-control", placeholder="Enter feature heading one") }}
+                {% if form.feature_heading_one.errors %}
+                    <div class="text-danger small">{{ form.feature_heading_one.errors[0] }}</div>
+                {% endif %}              </div>
+                
+            </div>
+            <div class="mb-3">
+                {{ form.feature_description_one.label(class="form-label") }}
+                {{ form.feature_description_one(class="form-control", placeholder="Enter feature description one") }}
+                {% if form.feature_description_one.errors %}
+                    <div class="text-danger small">{{ form.feature_description_one.errors[0] }}</div>
+                {% endif %}
+            </div>
+            </div>
+
+            
+
+            <!-- Feature Two -->
+             <div class="fs-2 mb-3 fw-bold">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-layout-sidebar-inset-reverse" viewBox="0 0 16 16">
+  <path d="M2 2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"></path>
+  <path d="M13 4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z"></path>
+</svg>
+              Feature Two
+            </div>
+             <h3 class="fw-bold mb-4"></h2>
+
+                            <div class="mb-3">
+                {{ form.image_two_path.label(class="form-label") }}
+                {{ form.image_two_path(class="form-control") }}
+                {% if form.image_two_path.errors %}
+                    <div class="text-danger small">{{ form.image_two_path.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.feature_heading_two.label(class="form-label") }}
+                {{ form.feature_heading_two(class="form-control", placeholder="Enter feature heading two") }}
+                {% if form.feature_heading_two.errors %}
+                    <div class="text-danger small">{{ form.feature_heading_two.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.feature_description_two.label(class="form-label") }}
+                {{ form.feature_description_two(class="form-control", placeholder="Enter feature description two") }}
+                {% if form.feature_description_two.errors %}
+                    <div class="text-danger small">{{ form.feature_description_two.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+
+            <!-- Content One URL -->
+            <div class="mb-3">
+                {{ form.content_one_url.label(class="form-label") }}
+<div class="input-group">
+                <span class="input-group-text" id="basic-addon1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"></path>
+</svg>
+                </span>
+{{ form.content_one_url(class="form-control", placeholder="Youtube or Image URL Here if applicable") }}
+                {% if form.content_one_url.errors %}
+                    <div class="text-danger small">{{ form.content_one_url.errors[0] }}</div>
+                {% endif %}              </div>
+
+                
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Add Service</button>
+            </div>
+        </form>
 </section>
 {% endblock %}
