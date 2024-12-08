@@ -1,67 +1,60 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Ensure Swiper exists
-  if (typeof Swiper !== 'undefined') {
-    // Testimonials Swiper
-    const testimonialsSwiper = new Swiper('.testimonials-swiper', {
-      loop: true, // Infinite loop
-      speed: 4000, // Smooth transition speed
-      autoplay: {
-        delay: 5000, // Autoplay delay
-        disableOnInteraction: false, // Keep autoplay active after interaction
-      },
-      slidesPerView: 1, // Show one slide at a time
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
-  } else {
-    console.error('Swiper is not defined.');
-  }
-});
+    // Swiper Initialization
+    if (typeof Swiper !== 'undefined') {
+        // Testimonials Swiper
+        new Swiper('.testimonials-swiper', {
+            loop: true,
+            speed: 4000,
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            slidesPerView: 1,
+            pagination: { el: '.swiper-pagination', clickable: true },
+        });
 
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // Initialize Unique Swiper for Accreditations
+        // Accreditations Swiper
         new Swiper('.unique-accreditations-swiper', {
-            loop: true, // Infinite loop
-            speed: 30000, // Speed for continuous smooth scrolling
-            slidesPerView: 5, // Display five slides at a time
-            spaceBetween: 20, // Space between slides
-            freeMode: true, // Enable free mode for continuous scrolling
-            autoplay: {
-                delay: 0, // No delay for continuous scroll
-                disableOnInteraction: false, // Keep autoplay active after interaction
-            },
+            loop: true,
+            speed: 30000,
+            slidesPerView: 5,
+            spaceBetween: 20,
+            freeMode: true,
+            autoplay: { delay: 0, disableOnInteraction: false },
             breakpoints: {
-                320: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
-                768: {
-                    slidesPerView: 3,
-                    spaceBetween: 15,
-                },
-                1024: {
-                    slidesPerView: 5,
-                    spaceBetween: 20,
-                },
+                320: { slidesPerView: 2, spaceBetween: 10 },
+                768: { slidesPerView: 3, spaceBetween: 15 },
+                1024: { slidesPerView: 5, spaceBetween: 20 },
             },
         });
-    });
- // Dark Mode Toggle Functionality
-        document.getElementById('toggle-dark-mode').addEventListener('click', () => {
-            const body = document.getElementById('theme-body');
-            const isDarkMode = body.classList.contains('bg-dark');
+    } else {
+        console.error('Swiper is not defined.');
+    }
 
-            if (isDarkMode) {
-                // Switch to light mode
-                body.classList.remove('bg-dark', 'text-light');
-                body.classList.add('bg-light', 'text-dark');
-            } else {
-                // Switch to dark mode
-                body.classList.remove('bg-light', 'text-dark');
-                body.classList.add('bg-dark', 'text-light');
-            }
+    // Glightbox Initialization
+    if (typeof GLightbox !== 'undefined') {
+        GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            closeButton: true,
+            zoomable: true,
+            keyboardNavigation: true,
         });
+    } else {
+        console.error('Glightbox is not defined.');
+    }
+
+    // Dark Mode Toggle Functionality
+    const toggleDarkMode = document.getElementById('toggle-dark-mode');
+    const body = document.getElementById('theme-body');
+
+    if (toggleDarkMode && body) {
+        toggleDarkMode.addEventListener('click', () => {
+            const isDarkMode = body.classList.contains('bg-dark');
+            body.classList.toggle('bg-dark', !isDarkMode);
+            body.classList.toggle('text-light', !isDarkMode);
+            body.classList.toggle('bg-light', isDarkMode);
+            body.classList.toggle('text-dark', isDarkMode);
+        });
+    } else {
+        console.error('Dark mode toggle or theme body not found.');
+    }
+});

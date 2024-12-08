@@ -22,11 +22,18 @@
     <link href="/static/website/css/frontend-styles.css" rel="stylesheet" />
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- Glightbox CSS  for Gallery-->
+
+    <!-- Include Glightbox CSS -->
+<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+
+
     {% endblock %}
     {% endblock %}
 </head>
 
-<body class="d-flex flex-column h-100 bg-dark "id="theme-body">
+<body class="d-flex flex-column h-100 bg-white "id="theme-body">
     <main class="flex-shrink-0">
         {% block navigation %}
         {% include 'website/snippets/top-navbar-logo-and-text.html' %}
@@ -58,6 +65,13 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="/static/website/js/scripts.js"></script>
+
+    <!-- Glightbox JS -->
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+
+    <script src="{{ url_for('static', filename='website/js/scripts.js') }}"></script>
+
     {% endblock %}
 
     <!-- Floating WhatsApp Icon -->

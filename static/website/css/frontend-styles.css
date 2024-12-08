@@ -44,7 +44,7 @@
   --bs-dark: #212529;
 
   /* All the text colours  */
-  --bs-primary-rgb: #1E3E62;
+  --bs-primary-rgb: #0E2F56;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -10882,7 +10882,7 @@ html {
 
 /* All bootstrap buttons */
 .btn {
-  background-color: #E8751A; /* Button background color */
+  background-color: var(--bs-danger); /* Button background color */
   color: #fff; /* Button text color */
   border: none; /* Removes any border or outline */
 }
@@ -10939,7 +10939,7 @@ a.nav-link{
 
 .custom-underline {
   text-decoration: underline; /* Ensure underline */
-  text-decoration-color: #1E3E62; /* Change underline color */
+  text-decoration-color: var(--bs-danger); /* Change underline color */
   text-underline-offset: 4px; /* Adjust the spacing of the underline from the text */
 }
 
@@ -10957,10 +10957,40 @@ a.nav-link{
 }
 
 .card-title{
-    color: #FF6500; /* Title color */
+    color: var(--bs-danger); /* Title color */
 
 
 }
 
+
+.custom-bg-primary {
+  background-color: #118DF0;
+}
+
+.custom-text-primary {
+  color: #118DF0;
+}
+
+.bg-dark-blue {
+  background-color: var(--bs-primary-rgb);
+}
+
+.text-dark-blue {
+  color: var(--bs-primary-rgb);
+}
+
+
+custom-text-orange {
+  color: #118DF0;
+}
+
+
+.custom-bg-danger {
+      background-color: var(--bs-danger);
+    }
+
+    .custom-text-danger {
+      color: var(--bs-danger);
+    }
 
 /* End of services cards */
