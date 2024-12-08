@@ -11,13 +11,17 @@ ADMIN_EMAIL_ADDRESS = os.environ.get("EMAIL_KEY")
 ADMIN_EMAIL_PW = os.environ.get("PASSWORD_KEY")
 
 
-
 def send_user_response_email(name, email, subject, service='gmail'):
     """
-    Sends a confirmation email to the dashboard.
+    Sends a confirmation email to the user.
     """
+    from email.mime.text import MIMEText
+    import smtplib
+    from flask import render_template, flash
+    from datetime import datetime
+
     current_year = datetime.now().year
-    email_content = render_template('email/user_aknowledgement_email.html', name=name)
+    email_content = render_template('email/user_aknowledgement_email.html', name=name, current_year=current_year)
 
     msg = MIMEText(email_content, 'html')
     msg['From'] = ADMIN_EMAIL_ADDRESS
@@ -28,7 +32,8 @@ def send_user_response_email(name, email, subject, service='gmail'):
     smtp_settings = {
         'gmail': ('smtp.gmail.com', 587),
         'yahoo': ('smtp.mail.yahoo.com', 587),
-        'outlook': ('smtp.office365.com', 587)
+        'outlook': ('smtp.office365.com', 587),
+        'icloud': ('smtp.mail.me.com', 587)  # iCloud SMTP settings
     }
 
     smtp_server, smtp_port = smtp_settings.get(service, smtp_settings['gmail'])
@@ -38,9 +43,9 @@ def send_user_response_email(name, email, subject, service='gmail'):
             connection.starttls()
             connection.login(ADMIN_EMAIL_ADDRESS, ADMIN_EMAIL_PW)
             connection.sendmail(ADMIN_EMAIL_ADDRESS, email, msg.as_string())
+            flash('Confirmation email sent successfully.', 'success')
     except Exception as e:
-        flash('Error sending confirmation email. Please try again later.', 'danger')
-
+        flash(f'Error sending confirmation email: {str(e)}', 'danger')
 
 
 def send_admin_email(name, phone, subject, email, message, service='gmail'):
