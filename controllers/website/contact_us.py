@@ -27,8 +27,8 @@ def contact():
         # Send the email to the admin
         send_admin_email(name=name, phone=phone, email=email,subject =subject, message=message)
 
-        # Send the response email to the dashboard
-        send_user_response_email(name=name, phone=phone, email=email,subject =subject, message=message)
+        # Send the response email to the user
+        send_user_response_email(name=name, email=email,subject =subject)
 
 
         return redirect(url_for('website_bp.contact'))
