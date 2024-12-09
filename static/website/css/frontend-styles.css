@@ -10882,7 +10882,7 @@ html {
 
 /* All bootstrap buttons */
 .btn {
-  background-color: var(--bs-danger); /* Button background color */
+  background-color: #118DF0; /* Button background color */
   color: #fff; /* Button text color */
   border: none; /* Removes any border or outline */
 }
@@ -10939,7 +10939,7 @@ a.nav-link{
 
 .custom-underline {
   text-decoration: underline; /* Ensure underline */
-  text-decoration-color: var(--bs-danger); /* Change underline color */
+  text-decoration-color: #118DF0; /* Change underline color */
   text-underline-offset: 4px; /* Adjust the spacing of the underline from the text */
 }
 
@@ -10957,7 +10957,7 @@ a.nav-link{
 }
 
 .card-title{
-    color: var(--bs-danger); /* Title color */
+    color: #118DF0; /* Title color */
 
 
 }

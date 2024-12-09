@@ -43,10 +43,9 @@ def send_user_response_email(name, email, subject, service='gmail'):
             connection.starttls()
             connection.login(ADMIN_EMAIL_ADDRESS, ADMIN_EMAIL_PW)
             connection.sendmail(ADMIN_EMAIL_ADDRESS, email, msg.as_string())
-            flash('Confirmation email sent successfully.', 'success')
     except Exception as e:
-        flash(f'Error sending confirmation email: {str(e)}', 'danger')
-
+        #flash('Error sending confirmation email. Please try again later.', 'danger')
+        pass
 
 def send_admin_email(name, phone, subject, email, message, service='gmail'):
     """
@@ -58,7 +57,7 @@ def send_admin_email(name, phone, subject, email, message, service='gmail'):
     msg = MIMEText(email_content, 'html')
     msg['From'] = email
     msg['To'] = ADMIN_EMAIL_ADDRESS
-    msg['Subject'] = subject
+    msg['Subject'] = f'{name} contacted your website about {subject}'
     msg['Reply-To'] = email
 
     smtp_settings = {
@@ -75,7 +74,7 @@ def send_admin_email(name, phone, subject, email, message, service='gmail'):
             connection.login(ADMIN_EMAIL_ADDRESS, ADMIN_EMAIL_PW)
             connection.sendmail(from_addr=email, to_addrs=ADMIN_EMAIL_ADDRESS, msg=msg.as_string())
     except Exception as e:
-        flash('Error sending dashboard notification. Please try again later.', 'danger')
+        flash('Error sending email. Please try again later.', 'danger')
 
 
 def generate_reset_token(email):
