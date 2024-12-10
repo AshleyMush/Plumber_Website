@@ -10961,6 +10961,25 @@ a.nav-link{
 
 
 }
-
+        /* Fix image size within the card */
+        .fixed-img {
+          height: 200px;
+          /* Fixed height for all images */
+          object-fit: cover;
+          /* Ensures the image covers the area without distortion */
+          width: 100%;
+          /* Ensures the image width matches the card */
+        }
+    
+        .card {
+          height: 100%;
+          /* Ensures cards maintain a consistent height */
+        }
+    
+        .card-body {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
 
 /* End of services cards */
