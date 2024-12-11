@@ -12,11 +12,12 @@
  */
 :root {
   --bs-blue: #0d6efd;
+  --bs-blue-dark:#1E3E62;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
   --bs-red: #dc3545;
-  --bs-orange: #fd7e14;
+  --bs-orange: #FF6500;
   --bs-yellow: #ffc107;
   --bs-green: #198754;
   --bs-teal: #20c997;
@@ -42,9 +43,10 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
+  
 
   /* All the text colours  */
-  --bs-primary-rgb: #1E3E62;
+  --bs-primary-rgb:#0d6efd;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -10880,7 +10882,7 @@ html {
 
 }
 
-/* All bootstrap buttons */
+/*------------------- All bootstrap buttons */
 .btn {
   background-color: #E8751A; /* Button background color */
   color: #fff; /* Button text color */
@@ -10898,7 +10900,7 @@ a.nav-link{
   
 }
 
-/* Service card*/
+/*-----------------Other  Services card*/
 
 .service-card{
   color: #1E3E62; 
@@ -10923,30 +10925,20 @@ a.nav-link{
         }
 
 
-/* Services card */
-
-.card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-
-/* End of services card */
 
 
 /* text underline */
 
 .custom-underline {
   text-decoration: underline; /* Ensure underline */
-  text-decoration-color: #1E3E62; /* Change underline color */
+  text-decoration-color: var(--bs-primary);/* Change underline color */
   text-underline-offset: 4px; /* Adjust the spacing of the underline from the text */
 }
 
 
 /* End of text underline */
 
-/*Services cards */
+/*--------------------------Services cards */
 .card {
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
@@ -10956,8 +10948,12 @@ a.nav-link{
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
 }
 
+.blue-title{
+    color: var(--bs-blue); /* Title color */
+}
+
 .card-title{
-    color: #FF6500; /* Title color */
+    color: var(--bs-orange); /* Title color */
 
 
 }
@@ -10982,4 +10978,77 @@ a.nav-link{
           justify-content: space-between;
         }
 
+
+        
+                .card-link {
+                  display: block;
+                  text-decoration: none;
+                  color: inherit;
+                }
+        
+        
+
 /* End of services cards */
+
+
+
+
+/* -------------Galllery------- */
+.portfolio-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+  transform: scale(1.05);
+  /* Slight zoom-in effect */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  /* Shadow effect */
+}
+
+
+
+/* Styles for Other Services Section */
+.other-service-card {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.other-service-card:hover {
+  background-color:var(--bs-blue-dark);
+  /* Hover color */
+  color: white;
+  transform: translateY(-5px);
+}
+
+.other-service-icon {
+  font-size: 3rem;
+  color:var(--bs-blue-dark);
+  /* Default icon color */
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.other-service-card:hover .other-service-icon {
+  color: #FF6500;
+  /* Icon color on hover */
+}
+
+.other-service-title {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #343a40;
+  /* Default title color */
+  transition: color 0.3s ease;
+}
+
+.other-service-card:hover .other-service-title {
+  color:var(--bs-orange);
+  /* Title color on hover */
+}
