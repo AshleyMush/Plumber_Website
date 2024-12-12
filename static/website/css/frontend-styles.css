@@ -11059,11 +11059,11 @@ a.nav-link{
 /*-----------------Gallery css */
 
 .portfolio-img {
-  width: 100%;
+width: 100% !important;
   /* Full width of the parent container */
-  height: 300px;
+  height: 300px!important;
   /* Fixed height for all images */
-  object-fit: cover;
+  object-fit: cover !important;
   /* Scale image to cover the container without distortion */
   border-radius: 8px;
   /* Rounded corners for consistency */
@@ -11105,6 +11105,7 @@ h5 {
   margin-top: 10px;
   color: #333;
 }
+
 
 /* End of Gallery css */
 

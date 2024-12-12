@@ -1,5 +1,4 @@
-from . import api_bp
-from flask import jsonify
+from . import website_bp
 from forms import ContactUSForm
 from flask import render_template, flash, url_for, redirect
 from utils.email_utils import send_admin_email, send_user_response_email
@@ -12,17 +11,10 @@ CURRENT_YEAR = datetime.now().year
 
 
 
-@api_bp.route('/home', methods=['GET'] )
-def home():
-    home = Home.query.first()
+@website_bp.route('/gallery', methods=['GET','POST'] )
+def gallery():
+    user = User.query.first()
+    form = ContactUSForm()
 
 
-
-
-
-
-
-    home_dict = home.to_dict()
-
-
-    return jsonify()
+    return render_template('website/gallery.html',user=user,form =form, current_year=CURRENT_YEAR)
