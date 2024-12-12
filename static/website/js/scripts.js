@@ -24,6 +24,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 1024: { slidesPerView: 5, spaceBetween: 20 },
             },
         });
+
+        // Gallery Swiper
+        new Swiper('.gallery-swiper', {
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            breakpoints: {
+                320: { slidesPerView: 1, spaceBetween: 10 },
+                768: { slidesPerView: 2, spaceBetween: 15 },
+                1024: { slidesPerView: 3, spaceBetween: 20 },
+            },
+        });
     } else {
         console.error('Swiper is not defined.');
     }
@@ -56,5 +73,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     } else {
         console.error('Dark mode toggle or theme body not found.');
+    }
+
+    // TwentyTwenty Before-After Slider Initialization
+    const twentytwentyContainers = document.querySelectorAll('.twentytwenty-container');
+
+    if (twentytwentyContainers.length > 0) {
+        twentytwentyContainers.forEach(container => {
+            new TwentyTwenty(container, {
+                default_offset_pct: 0.5, // Starting position of the slider
+                orientation: 'horizontal', // Orientation of the slider
+                before_label: 'Before', // Text for the "before" image
+                after_label: 'After' // Text for the "after" image
+            });
+        });
+    } else {
+        console.error('No TwentyTwenty containers found.');
     }
 });

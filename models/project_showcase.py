@@ -40,6 +40,9 @@ class Jobs_Done(db.Model):
     def __repr__(self):
         return f'<Jobs_Done {self.name}>'
 
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
 class Reviewer(db.Model):
     __tablename__ = 'reviews'
 
@@ -55,3 +58,6 @@ class Reviewer(db.Model):
 
     def __repr__(self):
         return f'<Reviewer {self.name}>'
+
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}

@@ -7,4 +7,4 @@ website_bp = Blueprint(
     static_folder='static',
 )
 
-from . import home, about_us,contact_us, services, review
+from . import home, about_us,contact_us, services, review,gallery

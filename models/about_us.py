@@ -21,4 +21,7 @@ class AboutUsPageContent(db.Model):
     content_url_two: Mapped[str] = mapped_column(String(2000), nullable=True)
     description: Mapped[str] = mapped_column(String(2000), nullable=True)
 
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
 

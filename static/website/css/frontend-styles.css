@@ -11052,3 +11052,60 @@ a.nav-link{
   color:var(--bs-orange);
   /* Title color on hover */
 }
+
+
+/* End of Other Services Section Styles */
+
+/*-----------------Gallery css */
+
+.portfolio-img {
+  width: 100%;
+  /* Full width of the parent container */
+  height: 300px;
+  /* Fixed height for all images */
+  object-fit: cover;
+  /* Scale image to cover the container without distortion */
+  border-radius: 8px;
+  /* Rounded corners for consistency */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth transitions for hover effects */
+}
+
+/* Hover Effect */
+.portfolio-img:hover {
+  transform: scale(1.05);
+  /* Slight zoom on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  /* Add shadow on hover */
+}
+
+
+
+.swiper-slide {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swiper-slide img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+h5 {
+  margin-top: 10px;
+  color: #333;
+}
+
+/* End of Gallery css */
+
+

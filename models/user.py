@@ -27,3 +27,6 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f'<User {self.email}>'
+
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
