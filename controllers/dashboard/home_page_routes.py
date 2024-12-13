@@ -4,14 +4,11 @@ from models import db, Home
 from forms import HomePageContentForm
 from . import dashboard_bp
 from utils.decorators import roles_required
-from werkzeug.utils import secure_filename
+from utils.file_upload_helper import save_file
 import os
 
 # Configure Upload Folder
-UPLOAD_FOLDER = 'static/uploads/home'
-
-
-
+UPLOAD_FOLDER = '/static/uploads/home'
 
 @dashboard_bp.app_context_processor
 def inject_home_content_status():
@@ -33,11 +30,7 @@ def add_home_content():
             for image_field in ['image_one', 'image_two', 'image_three', 'image_four']:
                 image_data = getattr(form, image_field).data
                 if image_data:
-                    filename = secure_filename(image_data.filename)
-                    relative_path = os.path.join('uploads', 'home', filename).replace("\\", "/")
-                    full_path = os.path.join('static', relative_path)
-                    image_data.save(full_path)
-                    uploaded_images[image_field] = relative_path  # Save the relative path for each image
+                    uploaded_images[image_field] = save_file(image_data, base_folder=UPLOAD_FOLDER)
 
             # Add new content to the database
             new_home_content = Home(
@@ -58,12 +51,14 @@ def add_home_content():
             return redirect(url_for('dashboard_bp.update_home_page'))
         except Exception as e:
             db.session.rollback()
-            flash(f'Error: {str(e)}', 'danger')
+            flash(f'Error occurred: {str(e)}', 'danger')
     else:
-        flash('Please correct the errors in the form', 'danger')
+        if form.errors:
+            for field_name, error_list in form.errors.items():
+                for error in error_list:
+                    flash(f"Error in '{field_name}': {error}", 'danger')
 
     return render_template('dashboard/home/add-home-content.html', form=form)
-
 
 @dashboard_bp.route('/update-home-page', methods=['GET', 'POST'])
 @roles_required('Admin')
@@ -101,18 +96,17 @@ def update_home_page():
                 image_data = getattr(form, image_field).data
                 if image_data:
                     # Save the new image
-                    filename = secure_filename(image_data.filename)
-                    relative_path = os.path.join('uploads', 'home', filename).replace("\\", "/")
-                    full_path = os.path.join('static', relative_path)
-                    image_data.save(full_path)
+                    new_image_path = save_file(image_data, base_folder=UPLOAD_FOLDER)
 
                     # Delete old image if it exists
                     old_image_path = getattr(home_content_to_update, image_field)
-                    if old_image_path and os.path.exists(os.path.join('static', old_image_path)):
-                        os.remove(os.path.join('static', old_image_path))
+                    if old_image_path:
+                        full_old_path = os.path.join('static', old_image_path)
+                        if os.path.exists(full_old_path):
+                            os.remove(full_old_path)
 
                     # Update the new image path in the database
-                    setattr(home_content_to_update, image_field, relative_path)
+                    setattr(home_content_to_update, image_field, new_image_path)
 
             db.session.commit()
             flash('Home Page Content updated successfully.', 'success')
