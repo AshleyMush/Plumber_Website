@@ -8,7 +8,7 @@ from utils.file_upload_helper import save_file
 import os
 
 # Configure Upload Folder
-UPLOAD_FOLDER = '/static/uploads/home'
+UPLOAD_FOLDER = 'uploads/home'
 
 @dashboard_bp.app_context_processor
 def inject_home_content_status():

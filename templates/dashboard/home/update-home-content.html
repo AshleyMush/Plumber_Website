@@ -40,19 +40,18 @@
             <textarea class="form-control" rows="3" name="description">{{ home.description }}</textarea>
         </div>
 
-        <!-- Image One -->
-        <div class="form-group">
-            <h3>{{ form.image_one.label(class="form-label") }}</h3>
-            {% if home.image_one %}
-                <p>Current:
-                    <img src="{{ url_for('static', filename=home.image_one) }}" alt="Image One" style="width: 100px;">
-                    {{home.image_one}}
-                </p>
-            {% else %}
-                <p><span>No Image</span></p>
-            {% endif %}
-            {{ form.image_one(class="form-control") }}
-        </div>
+<!-- Image One -->
+<div class="form-group">
+    <h3>{{ form.image_one.label(class="form-label") }}</h3>
+    {% if home.image_one %}
+        <p>Current:</p>
+<img src="{{ url_for('static', filename=home.image_one) }}" alt="Image one" style="width: 100px;">        <p>{{ home.image_one }}</p>
+    {% else %}
+        <p><span>No Image</span></p>
+    {% endif %}
+    {{ form.image_one(class="form-control") }}
+</div>
+
 
         <!-- Image Two -->
         <div class="form-group">

@@ -12,7 +12,7 @@ from forms import ServicesForm
 import os
 
 # Configure Upload Folder
-UPLOAD_FOLDER = '/static/uploads/services'
+UPLOAD_FOLDER = 'uploads/services'
 
 
 
