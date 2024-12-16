@@ -1,8 +1,7 @@
 from . import api_bp
-from forms import ContactUSForm
-from flask import render_template, flash, url_for, redirect
+from flask import  jsonify
 from utils.email_utils import send_admin_email, send_user_response_email
-from models import db, User, Home
+from models import db, User, Socials, CompanyDetails
 import bleach # For sanitizing HTML
 from datetime import datetime
 
@@ -11,31 +10,18 @@ CURRENT_YEAR = datetime.now().year
 
 
 
-@api_bp.route('/contact-us', methods=['GET', 'POST'])
+@api_bp.route('/contact-us', methods=['GET'])
 def contact():
-    form = ContactUSForm()
-    user = User.query.first()
+    socials = Socials.query.first()
+    company_details = CompanyDetails.query.first()
 
-    if form.validate_on_submit():
-        name = bleach.clean(form.name.data)
-        email = bleach.clean(form.email.data)
-        phone = bleach.clean(form.phone.data)
-        subject = bleach.clean(form.subject.data)
-        message = bleach.clean(form.message.data)
+    if socials is None:
+        return jsonify({"Empty": "No socials content yet"}), 404
 
-        flash('Message sent successfully', 'success')
-        # Send the email to the admin
-        send_admin_email(name=name, phone=phone, email=email,subject =subject, message=message)
+    if company_details is None:
+        return jsonify({"Empty": "No company details content yet"}), 404
 
-        # Send the response email to the user
-        send_user_response_email(name=name, email=email,subject =subject)
+    socials_dict = socials.to_dict()
+    company_details_dict = company_details.to_dict()
 
-
-        return redirect(url_for('website_bp.contact'))
-    else:
-        # Form has errors
-        for field, errors in form.errors.items():
-            for error in errors:
-                flash(f'Error in {field}: {error}', 'danger')
-
-    return render_template('website/contact.html', form=form, current_year=CURRENT_YEAR, user=user)
+    return jsonify({"socials": socials_dict, "company_details": company_details_dict}), 200
