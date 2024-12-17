@@ -9,7 +9,7 @@ from . import db
 
 
 class User(db.Model, UserMixin):
-    __tablename__ = "UserDetails"
+    __tablename__ = "User"
     id : Mapped[int] = mapped_column(primary_key=True)
     email : Mapped[str] = mapped_column(String(2000), nullable=True)
     password : Mapped[str] = mapped_column(String(2000), nullable=False)
@@ -24,6 +24,9 @@ class User(db.Model, UserMixin):
     hackerrank_url: Mapped[str] = mapped_column(String(2000), nullable=True)
     role : Mapped[str] = mapped_column(String(1000), nullable=False, default='User') # Roles: 'Admin','Contributor','User'
 
+    # Relationship with Jobs_Done
+    Jobs_Done: Mapped[list["Jobs_Done"]] = relationship('Jobs_Done', back_populates='User',
+                                                        cascade="all, delete-orphan")
 
     def __repr__(self):
         return f'<User {self.email}>'

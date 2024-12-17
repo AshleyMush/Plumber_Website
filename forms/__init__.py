@@ -16,6 +16,7 @@ from .dashboard.company_details_form import CompanyDetailsForm
 from .dashboard.socials_form import SocialsForm
 from.dashboard.services_form import ServicesForm
 from .dashboard.projects_form import ProjectForm
+from.dashboard.jobs_done_form import JobsDoneForm, ReviewerForm
 
 
 from .website_forms.contact_us_form import ContactUSForm

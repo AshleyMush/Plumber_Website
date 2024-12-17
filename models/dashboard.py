@@ -36,6 +36,10 @@ class Services(db.Model):
 
     service_page_ckd_description: Mapped[str] = mapped_column(String(2000), nullable=True)
 
+
+
+
+
     def __repr__(self):
         return f'<Services {self.name}>'
 

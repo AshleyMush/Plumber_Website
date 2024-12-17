@@ -13,7 +13,7 @@
                     <thead>
                         <tr>
                             <th>Service Name</th>
-                            <th>Home Description</th>
+                            <th>Image</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -21,7 +21,10 @@
                         {% for service in services %}
                         <tr>
                             <td>{{ service.name }}</td>
-                            <td>{{ service.homeDescription }}</td>
+                            <td>
+                                                            <img src="{{  service.main_image_path }}" alt="{{  service.name }}" class="img-thumbnail" width="100">
+
+                                </td>
                             <td>
                                 <a href="{{ url_for('dashboard_bp.update_service', service_id=service.id) }}" class="btn btn-secondary btn-sm">Edit</a>
                                 <a href="{{ url_for('dashboard_bp.delete_service', service_id=service.id) }}" class="btn btn-danger btn-sm">Delete</a>

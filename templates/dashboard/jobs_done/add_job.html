@@ -1,0 +1,17 @@
+{% extends '/dashboard/base.html' %}
+{% block title %}Add Job{% endblock %}
+{% block content %}
+<section class="container">
+    <h1>Add New Project</h1>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('dashboard_bp.add_job') }}">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">{{ form.name.label }} {{ form.name(class="form-control") }}</div>
+        <div class="mb-3">{{ form.main_image_path.label }} {{ form.main_image_path(class="form-control") }}</div>
+        <div class="mb-3">{{ form.image_one_path.label }} {{ form.image_one_path(class="form-control") }}</div>
+        <div class="mb-3">{{ form.image_two_path.label }} {{ form.image_two_path(class="form-control") }}</div>
+        <div class="mb-3">{{ form.description.label }} {{ form.description(class="form-control") }}</div>
+        <div class="mb-3">{{ form.location.label }} {{ form.location(class="form-control") }}</div>
+        <button type="submit" class="btn btn-primary">Add Project</button>
+    </form>
+</section>
+{% endblock %}

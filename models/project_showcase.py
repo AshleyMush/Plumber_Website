@@ -1,41 +1,46 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Integer, ForeignKey, Text
 from flask_sqlalchemy import SQLAlchemy
+from . import db
 
-db = SQLAlchemy()
 
-class Service_Provider(db.Model):
-    __tablename__ = 'Service_Provider'
-
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name: Mapped[str] = mapped_column(String(500), nullable=False)
-    email: Mapped[str] = mapped_column(String(1200), unique=True, nullable=False)
-    number: Mapped[str] = mapped_column(String(1200), nullable=True)
-    password: Mapped[str] = mapped_column(String(1200), nullable=False)
-    role: Mapped[str] = mapped_column(String(200), nullable=False)
-
-    # Relationship with Jobs_Done
-    Jobs_Done: Mapped[list["Jobs_Done"]] = relationship('Jobs_Done', back_populates='Service_Provider', cascade="all, delete-orphan")
-
-    def __repr__(self):
-        return f'<Service_Provider {self.name}>'
+# class Service_Provider(db.Model):
+#     __tablename__ = 'Service_Provider'
+#
+#     id: Mapped[int] = mapped_column(Integer, primary_key=True)
+#     name: Mapped[str] = mapped_column(String(500), nullable=False)
+#     email: Mapped[str] = mapped_column(String(1200), unique=True, nullable=False)
+#     number: Mapped[str] = mapped_column(String(1200), nullable=True)
+#     password: Mapped[str] = mapped_column(String(1200), nullable=False)
+#     role: Mapped[str] = mapped_column(String(200), nullable=False)
+#
+#     # Relationship with Jobs_Done
+#     Jobs_Done: Mapped[list["Jobs_Done"]] = relationship('Jobs_Done', back_populates='Service_Provider', cascade="all, delete-orphan")
+#
+#     def __repr__(self):
+#         return f'<Service_Provider {self.name}>'
 
 class Jobs_Done(db.Model):
     __tablename__ = 'Jobs_Done'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(1000), nullable=False)
-    image: Mapped[str] = mapped_column(String(2550), nullable=True)
+    main_image_path: Mapped[str] = mapped_column(String(2000), nullable=True)
+    image_one_path: Mapped[str] = mapped_column(String(2000), nullable=True)
+    image_two_path: Mapped[str] = mapped_column(String(2000), nullable=True)
+
+    description: Mapped[str] = mapped_column(Text, nullable=False)
+
     location: Mapped[str] = mapped_column(String(2550), nullable=False)
 
     # Foreign Key linking to Service_Provider
-    Service_Provider_id: Mapped[int] = mapped_column(Integer, ForeignKey('Service_Provider.id'), nullable=False)
+    User_id: Mapped[int] = mapped_column(Integer, ForeignKey('User.id'), nullable=False)
 
     # Relationship with Reviewer
     reviews: Mapped[list["Reviewer"]] = relationship('Reviewer', back_populates='job', cascade="all, delete-orphan")
 
     # Relationship back to Service_Provider
-    Service_Provider: Mapped["Service_Provider"] = relationship('Service_Provider', back_populates='Jobs_Done')
+    User: Mapped["User"] = relationship('User', back_populates='Jobs_Done')
 
     def __repr__(self):
         return f'<Jobs_Done {self.name}>'

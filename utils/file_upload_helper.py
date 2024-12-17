@@ -1,23 +1,34 @@
 import os
 from werkzeug.utils import secure_filename
 
-def save_file(file, base_folder='/static/uploads', subfolder=''):
+def save_file(file, subfolder=''):
     """
-    Save the uploaded file to the specified folder and return its relative path.
+    Save an uploaded file into the 'static/uploads' directory, optionally into a subfolder.
+    Returns a path starting with '/static/uploads/...', suitable for direct use in an <img> tag.
 
     Args:
         file: The file object from the form.
-        base_folder: The base folder where files should be stored.
-        subfolder: A subfolder within the base folder for organization.
+        subfolder: A subfolder within 'uploads' for organization, e.g. 'jobs_done'.
 
     Returns:
-        str: The relative path to the saved file or None if no file is provided.
+        str: A publicly accessible file path starting with '/static/uploads/...'
+             or None if no file is provided.
     """
-    if file:
-        filename = secure_filename(file.filename)
-        relative_path = os.path.join(base_folder, subfolder, filename).replace("\\", "/")
-        full_path = os.path.join(relative_path)
-        os.makedirs(os.path.dirname(full_path), exist_ok=True)
-        file.save(full_path)
-        return relative_path
-    return None
+    if not file:
+        return None
+
+    filename = secure_filename(file.filename)
+    # Full path to the uploads directory inside static
+    if subfolder:
+        upload_dir = os.path.join('static', 'uploads', subfolder)
+    else:
+        upload_dir = os.path.join('static', 'uploads')
+
+    os.makedirs(upload_dir, exist_ok=True)
+    file_path = os.path.join(upload_dir, filename)
+    file.save(file_path)
+
+    # Create a path accessible from the browser
+    # Since 'file_path' is inside 'static', we can serve it under '/static/'
+    public_path = '/static/' + os.path.relpath(file_path, 'static').replace('\\', '/')
+    return public_path

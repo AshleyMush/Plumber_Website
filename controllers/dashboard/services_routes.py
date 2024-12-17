@@ -1,7 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request, session
 from flask_login import current_user, login_required
-from utils.decorators import roles_required
-from utils.decorators import  nocache
+from utils.decorators import roles_required, nocache
 from datetime import date
 from werkzeug.utils import secure_filename
 from utils.file_upload_helper import save_file
@@ -11,28 +10,21 @@ from . import dashboard_bp
 from forms import ServicesForm
 import os
 
-# Configure Upload Folder
-UPLOAD_FOLDER = 'uploads/services'
-
-
-
-
-
 # ----------------- Services ----------------- #
 
 @dashboard_bp.route('/add-service', methods=['GET', 'POST'])
 @roles_required('Admin')
 def add_service():
     """
-    Adds a new service with multiple file uploads.
+    Adds a new service with multiple file uploads using the updated save_file helper.
     """
     form = ServicesForm()
     if form.validate_on_submit():
         try:
-            # Save all uploaded files
-            main_image_path = save_file(form.main_image_path.data, base_folder=UPLOAD_FOLDER)
-            image_one_path = save_file(form.image_one_path.data, base_folder=UPLOAD_FOLDER)
-            image_two_path = save_file(form.image_two_path.data, base_folder=UPLOAD_FOLDER)
+            # Save all uploaded files to 'static/uploads/services'
+            main_image_path = save_file(form.main_image_path.data, subfolder='services') if form.main_image_path.data else None
+            image_one_path = save_file(form.image_one_path.data, subfolder='services') if form.image_one_path.data else None
+            image_two_path = save_file(form.image_two_path.data, subfolder='services') if form.image_two_path.data else None
 
             # Optional content_one_url
             content_one_url = form.content_one_url.data or None
@@ -49,7 +41,7 @@ def add_service():
                 feature_heading_two=form.feature_heading_two.data,
                 feature_description_two=form.feature_description_two.data,
                 image_two_path=image_two_path,
-                content_one_url=content_one_url  # Optional field
+                content_one_url=content_one_url
             )
 
             # Commit the service to the database
@@ -59,7 +51,7 @@ def add_service():
             return redirect(url_for('dashboard_bp.get_services'))
 
         except Exception as e:
-            db.session.rollback()  # Ensure no partial changes
+            db.session.rollback()
             flash(f'Error occurred: {str(e)}', 'danger')
 
     if form.errors:  # Display validation errors
@@ -74,7 +66,7 @@ def add_service():
 @roles_required('Admin')
 def get_services():
     """
-    This function retrieves all services from the database
+    Retrieve all services from the database.
     """
     services = Services.query.all()
     return render_template('/dashboard/services/services.html', services=services)
@@ -97,9 +89,10 @@ def delete_service(service_id):
 
     for file_path in file_paths:
         if file_path:
-            full_path = os.path.join('static', file_path)
-            if os.path.exists(full_path):
-                os.remove(full_path)
+            # Convert '/static/...path...' to 'static/...path...'
+            old_full_path = file_path.lstrip('/')
+            if os.path.exists(old_full_path):
+                os.remove(old_full_path)
 
     # Delete the service from the database
     db.session.delete(service_to_delete)
@@ -108,18 +101,17 @@ def delete_service(service_id):
     return redirect(url_for('dashboard_bp.get_services'))
 
 
-
 @dashboard_bp.route('/update-service/<int:service_id>', methods=['GET', 'POST'])
 @roles_required('Admin')
 def update_service(service_id):
     """
-    Updates an existing service with new data and file uploads.
+    Updates an existing service with new data and file uploads using the updated save_file helper.
     """
     service_to_update = Services.query.get_or_404(service_id)
     form = ServicesForm(obj=service_to_update)  # Pre-populate with existing data
 
     if form.validate_on_submit():
-        # Update fields if data is provided
+        # Update text fields
         if form.name.data:
             service_to_update.name = form.name.data
         if form.home_page_card_text.data:
@@ -140,27 +132,27 @@ def update_service(service_id):
         # Handle file uploads and remove old files if a new file is uploaded
         if form.main_image_path.data and hasattr(form.main_image_path.data, 'filename'):
             old_main_image = service_to_update.main_image_path
-            service_to_update.main_image_path = save_file(form.main_image_path.data, base_folder=UPLOAD_FOLDER)
+            service_to_update.main_image_path = save_file(form.main_image_path.data, subfolder='services')
             if old_main_image:
-                full_path = os.path.join('static', old_main_image)
-                if os.path.exists(full_path):
-                    os.remove(full_path)
+                old_full_path = old_main_image.lstrip('/')
+                if os.path.exists(old_full_path):
+                    os.remove(old_full_path)
 
         if form.image_one_path.data and hasattr(form.image_one_path.data, 'filename'):
             old_image_one = service_to_update.image_one_path
-            service_to_update.image_one_path = save_file(form.image_one_path.data, base_folder=UPLOAD_FOLDER)
+            service_to_update.image_one_path = save_file(form.image_one_path.data, subfolder='services')
             if old_image_one:
-                full_path = os.path.join('static', old_image_one)
-                if os.path.exists(full_path):
-                    os.remove(full_path)
+                old_full_path = old_image_one.lstrip('/')
+                if os.path.exists(old_full_path):
+                    os.remove(old_full_path)
 
         if form.image_two_path.data and hasattr(form.image_two_path.data, 'filename'):
             old_image_two = service_to_update.image_two_path
-            service_to_update.image_two_path = save_file(form.image_two_path.data, base_folder=UPLOAD_FOLDER)
+            service_to_update.image_two_path = save_file(form.image_two_path.data, subfolder='services')
             if old_image_two:
-                full_path = os.path.join('static', old_image_two)
-                if os.path.exists(full_path):
-                    os.remove(full_path)
+                old_full_path = old_image_two.lstrip('/')
+                if os.path.exists(old_full_path):
+                    os.remove(old_full_path)
 
         # Commit updates to the database
         db.session.commit()
@@ -168,5 +160,3 @@ def update_service(service_id):
         return redirect(url_for('dashboard_bp.get_services'))
 
     return render_template('dashboard/services/update-service.html', form=form, service=service_to_update)
-
-
