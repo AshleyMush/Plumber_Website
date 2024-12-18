@@ -11,4 +11,4 @@ dashboard_bp = Blueprint(
 
 from . import user_profile_routes, services_routes,\
     company_profile_routes, home_page_routes,\
-    accreditation_routes, about_us_routes, project_routes, jobs_done_routes
+    accreditation_routes, about_us_routes, jobs_done_routes

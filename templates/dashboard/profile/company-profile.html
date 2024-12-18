@@ -98,7 +98,7 @@
                         {% if company_details and company_details.logo %}
                         <div class="form-group">
                             <label>Current Logo:</label>
-                            <img src="{{ url_for('static', filename='uploads/company_logos/' + company_details.logo) }}" alt="Company Logo"
+                            <img src="{{ company_details.logo }}" alt="Company Logo"
                                 class="img-fluid" style="max-width: 100px;">
                         </div>
                         {% endif %}

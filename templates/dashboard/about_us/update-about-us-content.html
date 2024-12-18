@@ -38,7 +38,7 @@
         <div class="form-group">
             <h3>{{ form.image_one.label(class="form-label") }}</h3>
             {% if about_us.image_one %}
-                <p>Current: <img src="{{ url_for('static', filename=about_us.image_one) }}" alt="Image One" style="width: 100px;"></p>
+                <p>Current: <img src="{{ about_us.image_one }}" alt="Image One" style="width: 100px;"></p>
 
                 {% else %}
                 <p><span>No Image</span></p>
@@ -48,7 +48,7 @@
         <div class="form-group">
             <h3>{{ form.image_two.label(class="form-label") }}</h3>
             {% if about_us.image_two %}
-                <p>Current: <img src="{{ url_for('static', filename=about_us.image_two) }}" alt="Image Two" style="width: 100px;"></p>
+                <p>Current: <img src="{{ about_us.image_two }}" alt="Image Two" style="width: 100px;"></p>
             {% else %}
                 <p><span>No Image</span></p>
             {% endif %}

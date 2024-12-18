@@ -4,21 +4,13 @@ from models import db, AboutUsPageContent
 from forms import AboutUsForm
 from . import dashboard_bp
 from utils.decorators import roles_required
-from werkzeug.utils import secure_filename
+from utils.file_upload_helper import save_file
 import os
-
-# Configure Upload Folder
-UPLOAD_FOLDER = 'static/uploads/about_us'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
-
 
 @dashboard_bp.app_context_processor
 def inject_home_content_status():
     about_us_exists = AboutUsPageContent.query.count() > 0
     return {'about_us_exists': about_us_exists}
-
 
 
 @dashboard_bp.route('/add-about-us-content', methods=['GET', 'POST'])
@@ -31,24 +23,17 @@ def add_about_us_content():
     form = AboutUsForm()
     if form.validate_on_submit():
         try:
-            # Handle file uploads for images
-            uploaded_images = {}
-            for image_field in ['image_one', 'image_two']:
-                image_data = getattr(form, image_field).data
-                if image_data:
-                    filename = secure_filename(image_data.filename)
-                    relative_path = os.path.join('uploads', 'about_us', filename).replace("\\", "/")
-                    full_path = os.path.join('static', relative_path)
-                    image_data.save(full_path)
-                    uploaded_images[image_field] = relative_path  # Save relative path for each image
+            # Handle file uploads using the helper function
+            image_one_path = save_file(form.image_one.data, subfolder='about_us') if form.image_one.data else None
+            image_two_path = save_file(form.image_two.data, subfolder='about_us') if form.image_two.data else None
 
             # Add new content to the database
             new_about_us_content = AboutUsPageContent(
                 heading=form.heading.data,
                 subheading=form.subheading.data,
                 description=form.description.data,
-                image_one=uploaded_images.get('image_one'),
-                image_two=uploaded_images.get('image_two'),
+                image_one=image_one_path,
+                image_two=image_two_path,
                 content_url_one=form.content_url_one.data,
                 content_url_two=form.content_url_two.data,
             )
@@ -56,9 +41,11 @@ def add_about_us_content():
             db.session.commit()
             flash('About Us Page Content added successfully', 'success')
             return redirect(url_for('dashboard_bp.update_about_us_page'))
+
         except Exception as e:
             db.session.rollback()
             flash(f'Error: {str(e)}', 'danger')
+
     return render_template('dashboard/about_us/add-about-us-content.html', form=form)
 
 
@@ -74,15 +61,10 @@ def update_about_us_page():
         flash("No About Us content found to update. Please add content first.", 'warning')
         return redirect(url_for('dashboard_bp.add_about_us_content'))
 
-    form = AboutUsForm()
+    form = AboutUsForm(obj=about_us_content_to_update)
 
-    # Pre-fill form with existing data on GET requests
+    # Clear file fields on GET request
     if request.method == 'GET':
-        form.heading.data = about_us_content_to_update.heading
-        form.subheading.data = about_us_content_to_update.subheading
-        form.description.data = about_us_content_to_update.description
-        form.content_url_one.data = about_us_content_to_update.content_url_one
-        form.content_url_two.data = about_us_content_to_update.content_url_two
         form.image_one.data = None
         form.image_two.data = None
 
@@ -92,7 +74,6 @@ def update_about_us_page():
             if form.heading.data:
                 about_us_content_to_update.heading = form.heading.data
             if form.subheading.data:
-
                 about_us_content_to_update.subheading = form.subheading.data
             if form.description.data:
                 about_us_content_to_update.description = form.description.data
@@ -102,26 +83,27 @@ def update_about_us_page():
                 about_us_content_to_update.content_url_two = form.content_url_two.data
 
             # Handle file uploads for images
-            for image_field in ['image_one', 'image_two']:
-                image_data = getattr(form, image_field).data
-                if image_data:
-                    # Save the new image
-                    filename = secure_filename(image_data.filename)
-                    relative_path = os.path.join('uploads', 'about_us', filename).replace("\\", "/")
-                    full_path = os.path.join('static', relative_path)
-                    image_data.save(full_path)
+            # If a new image is provided, save it and remove the old one if it exists
+            if form.image_one.data:
+                new_image_one_path = save_file(form.image_one.data, subfolder='about_us')
+                if about_us_content_to_update.image_one:
+                    old_full_path = about_us_content_to_update.image_one.lstrip('/')
+                    if os.path.exists(old_full_path):
+                        os.remove(old_full_path)
+                about_us_content_to_update.image_one = new_image_one_path
 
-                    # Delete old image if it exists
-                    old_image_path = getattr(about_us_content_to_update, image_field)
-                    if old_image_path and os.path.exists(os.path.join('static', old_image_path)):
-                        os.remove(os.path.join('static', old_image_path))
-
-                    # Update the new image path in the database
-                    setattr(about_us_content_to_update, image_field, relative_path)
+            if form.image_two.data:
+                new_image_two_path = save_file(form.image_two.data, subfolder='about_us')
+                if about_us_content_to_update.image_two:
+                    old_full_path = about_us_content_to_update.image_two.lstrip('/')
+                    if os.path.exists(old_full_path):
+                        os.remove(old_full_path)
+                about_us_content_to_update.image_two = new_image_two_path
 
             db.session.commit()
             flash('About Us Page Content updated successfully.', 'success')
             return redirect(url_for('dashboard_bp.update_about_us_page'))
+
         except Exception as e:
             db.session.rollback()
             flash(f'Error: {str(e)}', 'danger')

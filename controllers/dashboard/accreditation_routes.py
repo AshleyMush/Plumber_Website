@@ -4,13 +4,9 @@ from models import db, Accreditation
 from forms import AccreditationForm
 from . import dashboard_bp
 from utils.decorators import roles_required
-from werkzeug.utils import secure_filename
+from utils.file_upload_helper import save_file
 import os
 
-# Configure Upload Folder
-UPLOAD_FOLDER = 'static/uploads/accreditations'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
 
 @dashboard_bp.route('/accreditations', methods=['GET'])
 @roles_required('Admin')
@@ -25,26 +21,18 @@ def get_accreditations():
         accreditations=accreditations
     )
 
+
 @dashboard_bp.route('/accreditation/add', methods=['GET', 'POST'])
 @roles_required('Admin')
 @login_required
 def add_accreditation():
     """
-    Add a new accreditation
+    Add a new accreditation using the save_file helper.
     """
     form = AccreditationForm()
     if form.validate_on_submit():
-        # Handle file upload
-        image_path = None
-        if form.image.data:
-            filename = secure_filename(form.image.data.filename)
-            # Ensure the path uses forward slashes for URLs
-            relative_path = os.path.join('uploads', 'accreditations', filename).replace("\\", "/")
-            full_path = os.path.join('static', relative_path)  # Full path for saving
-            form.image.data.save(full_path)
-
-            # Save the relative path to the database
-            image_path = relative_path
+        # Handle file upload with the helper function
+        image_path = save_file(form.image.data, subfolder='accreditations') if form.image.data else None
 
         # Add to the database
         new_accreditation = Accreditation(
@@ -62,32 +50,32 @@ def add_accreditation():
         form=form
     )
 
-@dashboard_bp.route('/accreditation/update/<int:id>', methods=['GET', 'POST'])
+
+@dashboard_bp.route('/accreditation/update/<int:accreditation_id>', methods=['GET', 'POST'])
 @roles_required('Admin')
 @login_required
-def update_accreditation(id):
+def update_accreditation(accreditation_id):
     """
-    Update an existing accreditation
+    Update an existing accreditation using the save_file helper.
     """
-    accreditation = Accreditation.query.get_or_404(id)
-    form = AccreditationForm(obj=accreditation)  # Pre-fill the form with existing data
+    accreditation = Accreditation.query.get_or_404(accreditation_id)
+    form = AccreditationForm(obj=accreditation)
 
     if form.validate_on_submit():
-        # Update fields only if data is provided
+        # Update text fields if provided
         accreditation.name = form.name.data or accreditation.name
         accreditation.description = form.description.data or accreditation.description
+
         if form.image.data:
-            # Save new image
-            filename = secure_filename(form.image.data.filename)
-            relative_path = os.path.join('uploads', 'accreditations', filename).replace("\\", "/")
-            full_path = os.path.join('static', relative_path)
-            form.image.data.save(full_path)
-
+            # Save the new image
+            new_image_path = save_file(form.image.data, subfolder='accreditations')
             # Delete the old image if it exists
-            if accreditation.image and os.path.exists(os.path.join('static', accreditation.image)):
-                os.remove(os.path.join('static', accreditation.image))
+            if accreditation.image:
+                old_full_path = accreditation.image.lstrip('/')  # Convert '/static/...'
+                if os.path.exists(old_full_path):
+                    os.remove(old_full_path)
 
-            accreditation.image = relative_path  # Update the image path in the database
+            accreditation.image = new_image_path
 
         db.session.commit()
         flash('Accreditation updated successfully.', 'success')
@@ -99,17 +87,22 @@ def update_accreditation(id):
         accreditation=accreditation
     )
 
-@dashboard_bp.route('/accreditation/delete/<int:id>', methods=['DETETE','GET'])
+
+@dashboard_bp.route('/accreditation/delete/<int:accreditation_id>', methods=['DELETE', 'GET'])
 @roles_required('Admin')
 @login_required
-def delete_accreditation(id):
+def delete_accreditation(accreditation_id):
     """
-    Delete an accreditation
+    Delete an accreditation and its associated image using the updated logic.
     """
-    accreditation = Accreditation.query.get_or_404(id)
+    accreditation = Accreditation.query.get_or_404(accreditation_id)
+
     # Delete the associated image file if it exists
-    if accreditation.image and os.path.exists(os.path.join('static', accreditation.image)):
-        os.remove(os.path.join('static', accreditation.image))
+    if accreditation.image:
+        old_full_path = accreditation.image.lstrip('/')  # Convert '/static/...'
+        if os.path.exists(old_full_path):
+            os.remove(old_full_path)
+
     db.session.delete(accreditation)
     db.session.commit()
     flash('Accreditation deleted successfully.', 'info')

@@ -7,9 +7,6 @@ from utils.decorators import roles_required
 from utils.file_upload_helper import save_file
 import os
 
-# Configure Upload Folder
-UPLOAD_FOLDER = 'uploads/home'
-
 @dashboard_bp.app_context_processor
 def inject_home_content_status():
     home_exists = Home.query.count() > 0
@@ -25,12 +22,12 @@ def add_home_content():
     form = HomePageContentForm()
     if form.validate_on_submit():
         try:
-            # Handle file uploads for multiple images
             uploaded_images = {}
             for image_field in ['image_one', 'image_two', 'image_three', 'image_four']:
                 image_data = getattr(form, image_field).data
                 if image_data:
-                    uploaded_images[image_field] = save_file(image_data, base_folder=UPLOAD_FOLDER)
+                    # Save file to 'static/uploads/home'
+                    uploaded_images[image_field] = save_file(image_data, subfolder='home')
 
             # Add new content to the database
             new_home_content = Home(
@@ -79,10 +76,14 @@ def update_home_page():
         form.heading.data = home_content_to_update.heading
         form.subheading.data = home_content_to_update.subheading
         form.description.data = home_content_to_update.description
+        # Clear file fields
         form.image_one.data = None
         form.image_two.data = None
         form.image_three.data = None
         form.image_four.data = None
+        form.content_url_one.data = home_content_to_update.content_url_one
+        form.content_url_two.data = home_content_to_update.content_url_two
+        form.content_url_three.data = home_content_to_update.content_url_three
 
     if form.validate_on_submit():
         try:
@@ -90,27 +91,31 @@ def update_home_page():
             home_content_to_update.heading = form.heading.data
             home_content_to_update.subheading = form.subheading.data
             home_content_to_update.description = form.description.data
+            home_content_to_update.content_url_one = form.content_url_one.data
+            home_content_to_update.content_url_two = form.content_url_two.data
+            home_content_to_update.content_url_three = form.content_url_three.data
 
             # Handle file uploads for multiple images
             for image_field in ['image_one', 'image_two', 'image_three', 'image_four']:
                 image_data = getattr(form, image_field).data
                 if image_data:
-                    # Save the new image
-                    new_image_path = save_file(image_data, base_folder=UPLOAD_FOLDER)
+                    # Save new image
+                    new_image_path = save_file(image_data, subfolder='home')
 
                     # Delete old image if it exists
                     old_image_path = getattr(home_content_to_update, image_field)
                     if old_image_path:
-                        full_old_path = os.path.join('static', old_image_path)
-                        if os.path.exists(full_old_path):
-                            os.remove(full_old_path)
+                        old_full_path = old_image_path.lstrip('/')
+                        if os.path.exists(old_full_path):
+                            os.remove(old_full_path)
 
-                    # Update the new image path in the database
+                    # Update with new image path
                     setattr(home_content_to_update, image_field, new_image_path)
 
             db.session.commit()
             flash('Home Page Content updated successfully.', 'success')
             return redirect(url_for('dashboard_bp.update_home_page'))
+
         except Exception as e:
             db.session.rollback()
             flash(f'Error: {str(e)}', 'danger')
