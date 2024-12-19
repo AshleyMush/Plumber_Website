@@ -12,15 +12,24 @@ from utils.validators import PhoneNumberValidator
 
 
 class HomePageContentForm(FlaskForm):
-    heading = StringField('Heading for the homepage', validators=[DataRequired()])
-    subheading  = StringField('Subheading for the homepage')
+    heading = StringField('Main Heading ', validators=[DataRequired()])
+    subheading  = StringField('Main Subheading ', validators=[DataRequired()])
     description = TextAreaField('Call to action description', validators=[Optional()])
     image_one = FileField('Upload image one', validators=[Optional(),
                                                             FileAllowed(['jpg', 'jpeg', 'png', 'gif', 'mp4'],
                                                                         'Only image or video files are allowed.')])
+    heading_two = StringField('Heading two', validators=[Optional()])
+    subheading_two = StringField('Subheading two', validators=[Optional()])
+    description_two = TextAreaField('Call to action description', validators=[Optional()])
+
     image_two = FileField('Upload image two', validators=[Optional(),
                                                             FileAllowed(['jpg', 'jpeg', 'png', 'gif', 'mp4'],
                                                                         'Only image or video files are allowed.')])
+
+    heading_three = StringField('Heading three', validators=[Optional()])
+    subheading_three = StringField('Subheading three', validators=[Optional()])
+    description_three = TextAreaField('Call to action description', validators=[Optional()])
+
     image_three = FileField('Upload image three', validators=[Optional(),
                                                               FileAllowed(['jpg', 'jpeg', 'png', 'gif', 'mp4'],
                                                                           'Only image or video files are allowed.')])

@@ -15,6 +15,17 @@ class Home(db.Model):
     heading: Mapped[str] = mapped_column(String(2000), nullable=False)
     subheading: Mapped[str] = mapped_column(String(2000), nullable=False)
     description: Mapped[str] = mapped_column(String(2000), nullable=True)
+
+
+    heading_two: Mapped[str] = mapped_column(String(2000), nullable=True)
+    subheading_two: Mapped[str] = mapped_column(String(2000), nullable=True)
+    description_two: Mapped[str] = mapped_column(String(2000), nullable=True)
+
+    heading_three: Mapped[str] = mapped_column(String(2000), nullable=True)
+    subheading_three: Mapped[str] = mapped_column(String(2000), nullable=True)
+    description_three: Mapped[str] = mapped_column(String(2000), nullable=True)
+
+
     image_one: Mapped[str] = mapped_column(String(2000), nullable=True)
     image_two: Mapped[str] = mapped_column(String(2000), nullable=True)
     image_three: Mapped[str] = mapped_column(String(2000), nullable=True)

@@ -1,22 +1,284 @@
 {% extends '/dashboard/base.html' %}
 {% from 'bootstrap4/form.html' import render_form %}
 
-
 {% block title %}Add Home Content{% endblock %}
 
 {% block content %}
-
 <section class="py-2 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Add Home Page Content</h1>
+            <h1 class="fw-light">Add Home Content</h1>
         </div>
     </div>
 </section>
 
 
-{{ render_form(form, novalidate=True)}}
-        <button type="button" class="btn btn-info" onclick="window.history.back()">Cancel</button>
+
+<!-- Carousel-->
+
+<header>
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>First slide</title>
+                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#555" dy=".3em">First
+                        slide</text>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>{{ form.heading.label(class="form-label") }}</h1>
+                        <p>{{ form.subheading.label(class="form-label") }}</p>
+                        <p><button type="button" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-card-image" viewBox="0 0 16 16">
+                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"></path>
+                                    <path
+                                        d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z">
+                                    </path>
+                                </svg>
+                                Image One
+                            </button></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Second slide</title>
+                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#555" dy=".3em">Second
+                        slide</text>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>{{ form.heading_two.label(class="form-label") }}</h1>
+                        <p>{{ form.subheading_two.label(class="form-label") }}</p>
+                        <p><button type="button" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-card-image" viewBox="0 0 16 16">
+                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"></path>
+                                    <path
+                                        d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z">
+                                    </path>
+                                </svg>
+                                Image Two
+                            </button></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Third slide</title>
+                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#555" dy=".3em">Third
+                        slide</text>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption text-end">
+                                <h1>{{ form.heading_three.label(class="form-label") }}</h1>
+                                <p>{{ form.subheading_three.label(class="form-label") }}</p>
+                                <p><button type="button" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image"
+                                            viewBox="0 0 16 16">
+                                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"></path>
+                                            <path
+                                                d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z">
+                                            </path>
+                                        </svg>
+                                        Image Three
+                                    </button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</header>
 
 
+
+
+<!-- End of Carousel-->
+
+
+
+<form action="{{ url_for('dashboard_bp.add_home_content') }}" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <div class="bg-dark text-white p-4 rounded">
+        <div class="container mt-4">
+
+            <div class="form-group">
+                <h3>{{ form.image_one.label(class="form-label") }}</h3>
+
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-cloud-upload-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0m-.5 14.5V11h1v3.5a.5.5 0 0 1-1 0">
+                            </path>
+                        </svg>
+                    </span>
+                    {{ form.image_one(class="form-control") }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <h3>{{ form.heading.label(class="form-label") }}</h3>
+                {{ form.heading(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <h3>{{ form.subheading.label(class="form-label") }}</h3>
+                {{ form.subheading(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <h3>{{ form.description.label(class="form-label") }}</h3>
+                <textarea class="form-control" rows="3" name="description"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light text-black p-4 rounded">
+        <div class="container mt-4">
+
+            <div class="form-group">
+                <h3>{{ form.image_two.label(class="form-label") }}</h3>
+
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-cloud-upload-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0m-.5 14.5V11h1v3.5a.5.5 0 0 1-1 0">
+                            </path>
+                        </svg>
+                    </span>
+                    {{ form.image_two(class="form-control") }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <h3>{{ form.heading_two.label(class="form-label") }}</h3>
+                {{ form.heading_two(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <h3>{{ form.subheading_two.label(class="form-label") }}</h3>
+                {{ form.subheading_two(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <h3>{{ form.description_two.label(class="form-label") }}</h3>
+                <textarea class="form-control" rows="3" name="description_two"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-dark text-white p-4 rounded">
+        <div class="container mt-4">
+            <div class="form-group">
+                <h3>{{ form.image_three.label(class="form-label") }}</h3>
+
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-cloud-upload-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0m-.5 14.5V11h1v3.5a.5.5 0 0 1-1 0">
+                            </path>
+                        </svg>
+                    </span>
+                    {{ form.image_three(class="form-control") }}
+                </div>
+            </div>
+            <div class="form-group">
+                <h3>{{ form.heading_three.label(class="form-label") }}</h3>
+                {{ form.heading_three(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <h3>{{ form.subheading_three.label(class="form-label") }}</h3>
+                {{ form.subheading_three(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <h3>{{ form.description_three.label(class="form-label") }}</h3>
+                <textarea class="form-control" rows="3" name="description_three"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light text-black p-4 rounded">
+        <div class="container mt-4">
+            <div class="form-group">
+                <h3>{{ form.content_url_one.label(class="form-label") }}</h3>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-images" viewBox="0 0 16 16">
+                            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"></path>
+                            <path
+                                d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z">
+                            </path>
+                        </svg>
+                    </span>
+                    {{ form.content_url_one(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3>{{ form.content_url_two.label(class="form-label") }}</h3>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-images" viewBox="0 0 16 16">
+                            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"></path>
+                            <path
+                                d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z">
+                            </path>
+                        </svg>
+                    </span>
+                    {{ form.content_url_two(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3>{{ form.content_url_three.label(class="form-label") }}</h3>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-images" viewBox="0 0 16 16">
+                            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"></path>
+                            <path
+                                d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z">
+                            </path>
+                        </svg>
+                    </span>
+                    {{ form.content_url_three(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+            <button type="button" class="btn btn-info" onclick="window.history.back()">Cancel</button>
+        </div>
+    </div>
+</form>
 {% endblock %}
