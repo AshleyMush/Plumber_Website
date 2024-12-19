@@ -28,7 +28,7 @@ def user_profile():
     phone_form.phone_number.data = current_user.phone_number
 
 
-    return render_template('dashboard/profile.html', email_form=email_form, phone_form=phone_form,
+    return render_template('dashboard/profile/user-profile.html', email_form=email_form, phone_form=phone_form,
                            password_form=password_form)
 
 
