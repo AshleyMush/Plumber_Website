@@ -38,7 +38,17 @@
         <div class="form-group">
             <h3>{{ form.image_one.label(class="form-label") }}</h3>
             {% if about_us.image_one %}
-                <p>Current: <img src="{{ about_us.image_one }}" alt="Image One" style="width: 100px;"></p>
+
+            <div class="form-group">
+    <label for="currentLogo" class="form-label">Current Image:</label>
+    <div class="card shadow-sm mt-2" style="max-width: 200px;">
+        <div class="card-body d-flex justify-content-center align-items-center p-3">
+            <img src="{{ about_us.image_one }}" alt="No image has been uploaded yet/ Error loading image."
+                 class="img-fluid" style="max-height: 100px; object-fit: contain;">
+        </div>
+    </div>
+</div>
+
 
                 {% else %}
                 <p><span>No Image</span></p>
@@ -48,7 +58,16 @@
         <div class="form-group">
             <h3>{{ form.image_two.label(class="form-label") }}</h3>
             {% if about_us.image_two %}
-                <p>Current: <img src="{{ about_us.image_two }}" alt="Image Two" style="width: 100px;"></p>
+
+               <div class="form-group">
+    <label for="currentLogo" class="form-label">Current Image:</label>
+    <div class="card shadow-sm mt-2" style="max-width: 200px;">
+        <div class="card-body d-flex justify-content-center align-items-center p-3">
+            <img src="{{ about_us.image_two }}" alt="No image has been uploaded yet/ Error loading image."
+                 class="img-fluid" style="max-height: 100px; object-fit: contain;">
+        </div>
+    </div>
+</div>
             {% else %}
                 <p><span>No Image</span></p>
             {% endif %}
@@ -70,6 +89,11 @@
 
                 <div class="form-group">
             {{ form.submit(class="btn btn-primary") }}
+                                            <div class="mt-2">
+                                <button type="button" class="btn btn-info" onclick="window.history.back()">Cancel</button>
+
+
+                        </div>
         </div>
         
     </div>

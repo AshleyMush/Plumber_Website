@@ -39,7 +39,7 @@ def update_company_details():
         # Handle logo upload using save_file helper
         if company_form.logo.data:
             # Save the new logo and get its web-accessible path
-            new_logo_path = save_file(company_form.logo.data, subfolder='company_logos')
+            new_logo_path = save_file(company_form.logo.data, subfolder='logos')
 
             # If there's an old logo, remove it
             if company_details.logo:

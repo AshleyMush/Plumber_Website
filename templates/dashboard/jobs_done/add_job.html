@@ -7,11 +7,18 @@
         {{ form.hidden_tag() }}
         <div class="mb-3">{{ form.name.label }} {{ form.name(class="form-control") }}</div>
         <div class="mb-3">{{ form.main_image_path.label }} {{ form.main_image_path(class="form-control") }}</div>
+
+        <!-- Snippet for more images -->
+        <!--
         <div class="mb-3">{{ form.image_one_path.label }} {{ form.image_one_path(class="form-control") }}</div>
         <div class="mb-3">{{ form.image_two_path.label }} {{ form.image_two_path(class="form-control") }}</div>
+        -->
+        <!-- End of snippet -->
         <div class="mb-3">{{ form.description.label }} {{ form.description(class="form-control") }}</div>
         <div class="mb-3">{{ form.location.label }} {{ form.location(class="form-control") }}</div>
         <button type="submit" class="btn btn-primary">Add Project</button>
+                <button type="button" class="btn btn-info" onclick="window.history.back()">Cancel</button>
+
     </form>
 </section>
 {% endblock %}

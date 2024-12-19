@@ -31,9 +31,21 @@
                 {% endif %}
 
                 {% if service.main_image_path %}
+
+                <div class="form-group">
+                            <label for="currentLogo" class="form-label mt-2">Current Image:</label>
+                            <div class="card shadow-sm mt-2" style="max-width: 200px;">
+                                <div class="card-body d-flex justify-content-center align-items-center p-3">
+                                    <img src="{{ service.main_image_path }}" alt="No image has been uploaded yet/ Error loading image."
+                                        class="img-fluid" style="max-height: 100px; object-fit: contain;">
+                                </div>
+                            </div>
+
+                        </div>
+
+
                 
-                    <p class="text-white">Current Image: 
-                        <img src="{{ service.main_image_path }}" alt="Main Image" style="width: 100px;">
+
                 {% endif %}
             </div>
 
@@ -103,8 +115,20 @@
                     <div class="text-danger small">{{ form.image_one_path.errors[0] }}</div>
                 {% endif %}
                 {% if service.image_one_path %}
-                    <p class="text-muted">Current Image:
-                        <img src="{{service.image_one_path}}" alt="Image One" style="width: 100px;">
+
+                             <div class="form-group">
+                            <label for="currentLogo" class="form-label mt-2">Current Image:</label>
+                            <div class="card shadow-sm mt-2" style="max-width: 200px;">
+                                <div class="card-body d-flex justify-content-center align-items-center p-3">
+                                    <img src="{{ service.image_one_path }}" alt="No image has been uploaded yet/ Error loading image."
+                                        class="img-fluid" style="max-height: 100px; object-fit: contain;">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
                 {% endif %}
             </div>
 
@@ -175,8 +199,21 @@
                     <div class="text-danger small">{{ form.image_two_path.errors[0] }}</div>
                 {% endif %}
                 {% if service.image_two_path %}
-                    <p class="text-muted">Current Image: 
-                        <img src="{{service.image_two_path}}" alt="Image Two" style="width: 100px;">
+
+                                      <div class="form-group">
+                            <label for="currentLogo" class="form-label mt-2">Current Image:</label>
+                            <div class="card shadow-sm mt-2" style="max-width: 200px;">
+                                <div class="card-body d-flex justify-content-center align-items-center p-3">
+                                    <img src="{{ service.image_two_path }}" alt="No image has been uploaded yet/ Error loading image."
+                                        class="img-fluid" style="max-height: 100px; object-fit: contain;">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
                 {% endif %}
             </div>
 
@@ -225,6 +262,11 @@
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">Update Service</button>
             </div>
+
+    <div class="d-flex justify-content-end m-2">
+        <button type="button" class="btn btn-info" onclick="window.history.back()">Cancel</button>
+    </div>
+
     </form>
 
 

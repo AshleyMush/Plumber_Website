@@ -8,11 +8,11 @@ from flask_wtf.file import FileAllowed
 class JobsDoneForm(FlaskForm):
     name = StringField('Project Name', validators=[DataRequired()])
     main_image_path = FileField(
-        'Main Image/ After Image',
+        'Main Image',
         validators=[Optional(), FileAllowed(['jpg', 'jpeg', 'png', 'gif'], 'Images only!')]
     )
-    image_one_path = FileField('Before Image (optional)', validators=[Optional(), FileAllowed(['jpg', 'jpeg', 'png'])])
-    image_two_path = FileField('Additional Image (optional)', validators=[Optional(), FileAllowed(['jpg', 'jpeg', 'png'])])
+    image_one_path = FileField('Before Image', validators=[Optional(), FileAllowed(['jpg', 'jpeg', 'png'])])
+    image_two_path = FileField('After Image ', validators=[Optional(), FileAllowed(['jpg', 'jpeg', 'png'])])
     location = StringField('Location', validators=[Optional()])
 
     description = CKEditorField('Project Description (optional)', validators=[Optional()])

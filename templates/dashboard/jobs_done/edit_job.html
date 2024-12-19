@@ -10,26 +10,66 @@
             {{ form.main_image_path.label }} 
             {{ form.main_image_path(class="form-control") }}
             {% if job.main_image_path %}
-                <p>Current Image: <img src="{{ url_for('static', filename=job.main_image_path) }}" width="100"></p>
+
+            <div class="form-group">
+                            <label for="currentLogo" class="form-label mt-2">Current image</label>
+                            <div class="card shadow-sm mt-2" style="max-width: 200px;">
+                                <div class="card-body d-flex justify-content-center align-items-center p-3">
+                                   <img src="{{ job.main_image_path }}" alt="No image has been uploaded yet/ Error loading image."
+                                        class="img-fluid" style="max-height: 100px; object-fit: contain;">
+                                </div>
+                            </div>
+
+                        </div>
+
             {% endif %}
         </div>
+
+        <!--
         <div class="mb-3">
             {{ form.image_one_path.label }} 
             {{ form.image_one_path(class="form-control") }}
             {% if job.image_one_path %}
-                <p>Before Image: <img src="{{ url_for('static', filename=job.image_one_path) }}" width="100"></p>
+
+            <div class="form-group">
+                            <label for="currentLogo" class="form-label mt-2">Before Image:</label>
+                            <div class="card shadow-sm mt-2" style="max-width: 200px;">
+                                <div class="card-body d-flex justify-content-center align-items-center p-3">
+                                   <img src="{{ job.image_one_path }}" alt="No image has been uploaded yet/ Error loading image."
+                                        class="img-fluid" style="max-height: 100px; object-fit: contain;">
+                                </div>
+                            </div>
+
+                        </div>
             {% endif %}
         </div>
         <div class="mb-3">
             {{ form.image_two_path.label }} 
             {{ form.image_two_path(class="form-control") }}
             {% if job.image_two_path %}
+
+
+            <div class="form-group">
+                            <label for="currentLogo" class="form-label mt-2">After Image (optional):</label>
+                            <div class="card shadow-sm mt-2" style="max-width: 200px;">
+                                <div class="card-body d-flex justify-content-center align-items-center p-3">
+                                   <img src="{{ job.image_two_path }}" alt="No image has been uploaded yet/ Error loading image."
+                                        class="img-fluid" style="max-height: 100px; object-fit: contain;">
+                                </div>
+                            </div>
+
+                        </div>
+
                 <p>After Image: <img src="{{ url_for('static', filename=job.image_two_path) }}" width="100"></p>
             {% endif %}
         </div>
+
+        -->
+
         <div class="mb-3">{{ form.description.label }} {{ form.description(class="form-control") }}</div>
         <div class="mb-3">{{ form.location.label }} {{ form.location(class="form-control") }}</div>
         <button type="submit" class="btn btn-primary">Update Project</button>
+        <button type="button" class="btn btn-info" onclick="window.history.back()">Cancel</button>
     </form>
 </section>
 {% endblock %}
