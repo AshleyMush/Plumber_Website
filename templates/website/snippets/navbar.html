@@ -12,7 +12,16 @@
             <a class="nav-link dropdown-toggle text-white fw-bold" id="navbarDropdownServices" href="#" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">Services</a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownServices">
-            <li><a class="dropdown-item fw-bold" href="{{url_for('website_bp.service')}}">Service 1</a></li>
+            <li>
+                {% if not services %}
+                <a class="dropdown-item fw-bold" href="{{url_for('website_bp.get_placeholder_service')}}">Example Service </a>
+                {% else %}
+                {% for service in services %}
+<a class="dropdown-item fw-bold" href="{{ url_for('website_bp.get_service', service_id=service.id) }}">{{service.name}}</a>
+
+               {% endfor %}
+                {% endif %}
+            </li>
             </ul>
             </li>
                 <li class="nav-item"><a class="nav-link text-white fw-bold" href={{url_for('website_bp.about_us')}}>About</a></li>
