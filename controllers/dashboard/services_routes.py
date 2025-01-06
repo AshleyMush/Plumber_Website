@@ -16,12 +16,21 @@ import os
 @roles_required('Admin')
 def add_service():
     """
-    Adds a new service with multiple file uploads using the updated save_file helper.
+    Adds a new service with multiple file uploads, ensuring no more than 6 services exist.
     """
     form = ServicesForm()
+
+    # Check the current number of services in the database
+    max_services = 6
+    total_services = Services.query.count()
+
+    if total_services >= max_services:
+        flash(f'You cannot add more than {max_services} services.', 'danger')
+        return redirect(url_for('dashboard_bp.get_services'))
+
     if form.validate_on_submit():
         try:
-            # Save all uploaded files to 'static/uploads/services'
+            # Save all uploaded files
             main_image_path = save_file(form.main_image_path.data, subfolder='services') if form.main_image_path.data else None
             image_one_path = save_file(form.image_one_path.data, subfolder='services') if form.image_one_path.data else None
             image_two_path = save_file(form.image_two_path.data, subfolder='services') if form.image_two_path.data else None
@@ -63,14 +72,26 @@ def add_service():
     return render_template('dashboard/services/add-service.html', form=form)
 
 
+
 @dashboard_bp.route('/services', methods=['GET'])
 @roles_required('Admin')
 def get_services():
     """
-    Retrieve all services from the database.
+    This function retrieves all services from the database and calculates progress.
     """
     services = Services.query.all()
-    return render_template('/dashboard/services/services.html', services=services)
+    total_services = len(services)
+    max_services = 6  # Define the maximum number of services
+    progress_percentage = min(int((total_services / max_services) * 100), 100)  # Cap at 100%
+    progress_color = get_progress_color(progress_percentage)  # Get the color based on progress
+
+    return render_template(
+        '/dashboard/services/services.html',
+        services=services,
+        progress_percentage=progress_percentage,
+        progress_color=progress_color
+    )
+
 
 
 @dashboard_bp.route('/delete-service/<int:service_id>', methods=['GET', 'DELETE'])
@@ -163,3 +184,16 @@ def update_service(service_id):
         return redirect(url_for('dashboard_bp.get_services'))
 
     return render_template('dashboard/services/update-service.html', form=form, service=service_to_update)
+
+
+def get_progress_color(percentage):
+    """
+    Determine the color class for the progress bar based on the percentage.
+    """
+    if percentage >= 75:
+        return 'bg-success'  # Green
+    elif 50 <= percentage < 75:
+        return 'bg-warning'  # Yellow
+    else:
+        return 'bg-danger'  # Red
+

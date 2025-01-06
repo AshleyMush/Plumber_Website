@@ -17,6 +17,8 @@
   <title>{% block title %}{{ profile_title }}{% endblock %}</title>
   <!-- End of Titles -->
 
+
+  {% block head %}
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon"
   href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm1-15h-2v4H7v2h4v4h2v-4h4v-2h-4z'/></svg>" />
@@ -35,6 +37,7 @@
 
   <!-- Custom styles for this template-->
   <link href="/static/admin dashboard static/Admin dashboard startboostrap/css/sb-admin-2.min.css" rel="stylesheet" />
+{% endblock %}
 </head>
 
 <body id="page-top">

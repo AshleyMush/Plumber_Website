@@ -133,7 +133,7 @@
   <!-- Cards -->
   <div class="row text-center ">
     <!-- Card 1 -->
-      {% for service in services[:5] %}
+      {% for service in services %}
     <div class="col-md-4 mb-4 ">
       <a href="{{ url_for('website_bp.get_service', service_id=service.id) }}" class="card-link">
         <div class="card border-0 bg-dark text-white">
