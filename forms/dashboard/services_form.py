@@ -11,7 +11,9 @@ from flask_ckeditor import CKEditorField
 
 class ServicesForm(FlaskForm):
     name =StringField('Name of the service you provide', validators=[DataRequired()])
-    main_image_path = FileField(
+    icon_class = StringField('Icon Class (Bootstrap or Font Awesome)', validators=[Optional()])
+
+    main_image_path: FileField = FileField(
         'Upload  Service Page and Home Page Main Image',
         validators=[Optional(), FileAllowed(['jpg', 'jpeg', 'png', 'gif'], 'Only image files are allowed.')]
     )

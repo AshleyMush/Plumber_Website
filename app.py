@@ -12,6 +12,8 @@ from controllers.api import api_bp
 from controllers.website import website_bp
 from sqlalchemy.exc import SQLAlchemyError
 from flask_migrate import Migrate, upgrade
+from sqlalchemy import create_engine, inspect
+
 
 # Initialize Flask application
 app = Flask(__name__)
@@ -27,6 +29,9 @@ app.config['SECRET_KEY'] = os.environ.get("SECRET_APP_KEY", "default_secret_key"
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     "DATABASE_URI", f"sqlite:///{os.path.join(instance_path, 'ServicesWebsite.db')}"
 )
+
+
+
 
 
 # @app.before_first_request

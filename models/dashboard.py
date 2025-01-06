@@ -35,6 +35,8 @@ class Services(db.Model):
     feature_description_two: Mapped[str] = mapped_column(String(2000), nullable=True)
 
     service_page_ckd_description: Mapped[str] = mapped_column(String(2000), nullable=True)
+    icon_class : Mapped[str] = mapped_column(String(250))  # For both Bootstrap and Font Awesome classes
+
 
 
 

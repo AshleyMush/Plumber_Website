@@ -13,41 +13,12 @@
 {% endblock %}
 {% block content %}
 
-{% if not services %}
+
 
 {% include '/website/snippets/services-section.html' %}
 
-{% else %}
-<section class="container my-5 bg-dark text-white " id="services_section">
-  <!-- Heading -->
-  <div class="text-center mb-4">
-    <h2 class="custom-underline">Our Services</h2>
-    <p>We offer a wide range of services</p>
-  </div>
-  <!-- Cards -->
-  <div class="row text-center ">
-    <!-- Card 1 -->
-      {% for service in services %}
-    <div class="col-md-4 mb-4 ">
-        <a href="{{ url_for('website_bp.get_service', service_id=service.id) }}" class="card-link">
-        <div class="card border-0 bg-dark text-white">
-          <img
-            src="{{service.main_image_path}}"
-            alt="Service Image" class="card-img-top fixed-img">
-          <div class="card-body">
-            <h5 class="card-title fw-bold ">{{service.name}}</h5>
-            <p class="card-text">
-              {{service.home_page_card_text}}
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-      {% endfor %}
 
 
-</section>
-{% endif %}
 
 
 {% include '/website/snippets/choose-us-with-testimonials.html' %}

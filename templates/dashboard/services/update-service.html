@@ -78,6 +78,25 @@
              <!-- Services Page -->
              <h2 class="fw-bold mb-4">Services Page</h2>
 
+           <!-- Other services Icon -->
+
+        <div class="card shadow-sm other-service-card text-center">
+            <div class="card-body other-service-icon">
+                <div class="other-service-icon other-service-icon">
+                    <i class="{{ service.icon_class }}"></i>
+                </div>
+                <span class="other-service-title">{{ service.name }}</span>
+            </div>
+        </div>
+       <div class="mb-3">
+    {{ form.icon_class.label(class="form-label") }}
+    {{ form.icon_class(class="form-control", placeholder="e.g., fa-solid fa-bath or bi-bootstrap-icon") }}
+    {% if form.icon_class.errors %}
+        <div class="text-danger small">{{ form.icon_class.errors[0] }}</div>
+    {% endif %}
+</div>
+
+
 
                      <!-- Service Page Header Description -->
             <div class="mb-5">

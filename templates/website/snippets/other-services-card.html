@@ -1,4 +1,5 @@
-
+{% if not services %}
+<!--If db is empty-->
 
 
 <section class="py-5 bg-light">
@@ -63,4 +64,30 @@
   </div>
 </section>
 
+{% else %}
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Other Services</h2>
 
+      {% for service in services[:5] %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      <!-- Card 1 -->
+      <div class="col">
+        <a href="{{ url_for('website_bp.get_service', service_id=service.id) }}" class="other-service-card">
+          <div class="other-service-icon">
+            <div class="other-service-icon">
+              <i class="{{ service.icon_class | safe or 'fa-solid fa-circle-question' }}"></i>
+            </div>
+
+          </div>
+          <span class="other-service-title"> {{service.name}}</span>
+        </a>
+
+      </div>
+
+      {% endfor %}
+
+</section>
+
+
+{% endif %}

@@ -11,15 +11,19 @@ class Jobs_Done(db.Model):
     image: Mapped[str] = mapped_column(String(2550), nullable=True)
     location: Mapped[str] = mapped_column(String(2550), nullable=False)
 
-    service_provider_id: Mapped[int] = mapped_column(Integer, ForeignKey('User.id'), nullable=False)
+    # Explicitly name the foreign key constraint
+    service_provider_id: Mapped[int] = mapped_column(
+        Integer,
+        ForeignKey('User.id', name='fk_jobs_done_service_provider'),
+        nullable=False
+    )
 
-    # Use string references
+    # Define relationships with back references
     reviews: Mapped[list["Reviewer"]] = relationship(
         "Reviewer",
         back_populates="job",
         cascade="all, delete-orphan"
     )
-
     user: Mapped["User"] = relationship("User", back_populates="jobs_done")
 
     def __repr__(self):
@@ -28,6 +32,7 @@ class Jobs_Done(db.Model):
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
+
 class Reviewer(db.Model):
     __tablename__ = 'reviews'
 
@@ -35,7 +40,11 @@ class Reviewer(db.Model):
     name: Mapped[str] = mapped_column(String(2000), nullable=False)
     review: Mapped[str] = mapped_column(Text, nullable=False)
 
-    job_id: Mapped[int] = mapped_column(Integer, ForeignKey('Jobs_Done.id'), nullable=False)
+    job_id: Mapped[int] = mapped_column(
+        Integer,
+        ForeignKey('Jobs_Done.id', name='fk_reviews_job_id'),
+        nullable=False
+    )
 
     job: Mapped["Jobs_Done"] = relationship("Jobs_Done", back_populates="reviews")
 

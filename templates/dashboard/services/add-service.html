@@ -53,6 +53,16 @@
             <!-- Services Page -->
              <h2 class="fw-bold mb-4">Services Page</h2>
 
+       <!-- Other services Icon -->
+       <div class="mb-3">
+    {{ form.icon_class.label(class="form-label") }}
+    {{ form.icon_class(class="form-control", placeholder="e.g., fa-solid fa-bath or bi-bootstrap-icon") }}
+    {% if form.icon_class.errors %}
+        <div class="text-danger small">{{ form.icon_class.errors[0] }}</div>
+    {% endif %}
+</div>
+
+
 
                         <!-- Service Page Header Description -->
             <div class="mb-5">

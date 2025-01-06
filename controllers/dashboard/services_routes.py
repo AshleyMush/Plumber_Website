@@ -35,6 +35,7 @@ def add_service():
                 main_image_path=main_image_path,
                 home_page_card_text=form.home_page_card_text.data,
                 header_description=form.header_description.data,
+                icon_class=form.icon_class.data,
                 feature_heading_one=form.feature_heading_one.data,
                 feature_description_one=form.feature_description_one.data,
                 image_one_path=image_one_path,
@@ -118,6 +119,8 @@ def update_service(service_id):
             service_to_update.home_page_card_text = form.home_page_card_text.data
         if form.header_description.data:
             service_to_update.header_description = form.header_description.data
+        if form.icon_class.data:
+            service_to_update.icon_class = form.icon_class.data
         if form.feature_heading_one.data:
             service_to_update.feature_heading_one = form.feature_heading_one.data
         if form.feature_description_one.data:
