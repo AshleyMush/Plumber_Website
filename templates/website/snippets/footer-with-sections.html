@@ -16,22 +16,35 @@
     <div class="col mb-3">
       <h5 class="text-white fw-bold"> Our Services</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white ">Plumbing & Central Heating</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Bathroom Installation</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Underfloor Heating</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Electrical Installation</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Roofing Services</a></li>
+        {% if services %}
+        {% for service in services %}
+
+
+        <li class="nav-item mb-2"><a href="{{ url_for('website_bp.get_service', service_id=service.id) }}" class="nav-link p-0 text-white ">{{service.name}}</a></li>
+
+        {% endfor %}
+        {% else %}
+
+        {% for i in range(6) %}
+        <li class="nav-item mb-2"><a href="{{ url_for('website_bp.get_placeholder_service') }}"class="nav-link p-0 text-white ">Example Service</a></li>
+        {% endfor %}
+        {% endif %}
+
+
+
+
       </ul>
     </div>
 
     <div class="col mb-3">
-      <h5 class="text-white fw-bold">Section</h5>
+      <h5 class="text-white fw-bold">Explore</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+              <li class="nav-item mb-2"><a href="{{url_for('website_bp.contact')}}" class="nav-link p-0 text-white">Request a
+                  Quote</a></li>
+
+      <li class="nav-item mb-2"><a href="{{url_for('website_bp.home')}}" class="nav-link p-0 text-white">Home</a></li>
+      <li class="nav-item mb-2"><a href="{{url_for('website_bp.about_us')}}" class="nav-link p-0 text-white">About US</a></li>
+      <li class="nav-item mb-2"><a href="{{url_for('website_bp.gallery')}}" class="nav-link p-0 text-white">Our Work</a></li>
       </ul>
     </div>
 

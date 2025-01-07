@@ -2,8 +2,16 @@
 {% block title %}Services{% endblock %}
 {% block header %}
 
+<!--Promintent Work in Progress Banner-->
+{% if not service %}
+<div class="alert alert-warning text-center" role="alert">
+    <strong>Notice:</strong> This page is currently under construction. Some features may not be available yet.
+</div>
+{% endif %}
+<!--End of Work in Progress Banner-->
+
 <div class="container-fluid px-5 py-5"
-    style="background-image: url({{service.main_image_path if service.main_image_path else 'https://via.placeholder.com/150'}});
+    style="background-image: url({{service.main_image_path if service else 'https://via.placeholder.com/150'}});
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;">
@@ -11,8 +19,8 @@
 
     <div class="row align-items-center g-lg-5 py-5 text-white">
       <div class="col-lg-7 text-center text-lg-start">
-        <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3 text-white">{{service.name if service.name else 'Place Holder service'}}</h1>
-        <p class="col-lg-10 fs-4">{{service.header_description if service.header_description else 'Lorem ipsum odor amet, consectetuer adipiscing elit. Penatibus turpis habitasse augue elementum consectetur.'}}</p>
+        <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3 text-white">{{service.name if service else 'Place Holder service'}}</h1>
+        <p class="col-lg-10 fs-4">{{service.header_description if service else 'Lorem ipsum odor amet, consectetuer adipiscing elit. Penatibus turpis habitasse augue elementum consectetur.'}}</p>
       </div>
 
 
@@ -107,10 +115,10 @@
             <section class="py-5 bg-dark" id="scroll-target">
                 <div class="container px-5 my-5">
                     <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="{{ service.image_one_path if service.image_one_path else 'https://via.placeholder.com/500/FFFFFF/000000'}}" alt="Placeholder Image" /></div>
+                        <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="{{ service.image_one_path if service else 'https://via.placeholder.com/500/FFFFFF/000000'}}" alt="Placeholder Image" /></div>
                         <div class="col-lg-6">
-                            <h2 class="fw-bolder text-white">{{service.feature_heading_one if service.feature_heading_one else 'Example Heading'}}</h2>
-                            <p class="lead fw-normal  mb-0 text-white">{{service.feature_description_one if service.feature_description_one else 'Example Description Dictum libero aliquam orci vulputate venenatis. Aenean vivamus sociosqu facilisis integer porta ipsum leo molestie.
+                            <h2 class="fw-bolder text-white">{{service.feature_heading_one if service else 'Example Heading'}}</h2>
+                            <p class="lead fw-normal  mb-0 text-white">{{service.feature_description_one if service else 'Example Description Dictum libero aliquam orci vulputate venenatis. Aenean vivamus sociosqu facilisis integer porta ipsum leo molestie.
                             Potenti enim vivamus leo nisi, porttitor sem mattis. Massa libero finibus leo maximus ornare scelerisque mattis. Aliquam
                             viverra senectus dis quam nisl varius.'}}</p>
                         </div>
@@ -126,14 +134,21 @@
             <section class="py-5 bg-dark">
                 <div class="container px-5 my-5">
                     <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="{{ service.image_two_path if service.image_two_path else 'https://via.placeholder.com/500/FFFFFF/000000'}}" alt="..." /></div>
+                        <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="{{ service.image_two_path if service else 'https://via.placeholder.com/500/FFFFFF/000000'}}" alt="..." /></div>
                         <div class="col-lg-6">
-                            <h2 class="fw-bolder text-white">{{service.feature_heading_two if service.feature_heading_two else 'Example Heading'}}</h2>
-                            <p class="lead fw-normal text-white mb-0">{{service.feature_description_two if service.feature_description_two else 'Example Description Lorem ipsum odor amet, consectetuer adipiscing elit. Penatibus turpis habitasse augue elementum consectetur.'}}</p>
+                            <h2 class="fw-bolder text-white">{{service.feature_heading_two if service  else 'Example Heading'}}</h2>
+                            <p class="lead fw-normal text-white mb-0">{{service.feature_description_two if service else 'Example Description Lorem ipsum odor amet, consectetuer adipiscing elit. Penatibus turpis habitasse augue elementum consectetur.'}}</p>
                         </div>
                     </div>
                 </div>
             </section>
+
+{% if not service %}
+<div class="alert alert-warning text-center" role="alert">
+    <strong>Notice:</strong> This page is currently under construction. Some features may not be available yet.
+</div>
+{% endif %}
+<!--End of Work in Progress Banner-->
 <!--End of Feature 2-->
 <!--Other services-->
 {% include 'website/snippets/other-services-card.html' %}

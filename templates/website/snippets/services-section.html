@@ -8,6 +8,15 @@
     <h2 class="custom-underline">Our Services</h2>
     <p>We offer a wide range of services</p>
   </div>
+
+{% if not service %}
+<div class="alert alert-warning text-center" role="alert">
+  <strong>Notice:</strong> This section is currently under construction. Some features may not be available yet, the images and text are placeholders.
+</div>
+{% endif %}
+<!--End of Work in Progress Banner-->
+
+
   <!-- Cards -->
   <div class="row text-center ">
     <!-- Card 1 -->
