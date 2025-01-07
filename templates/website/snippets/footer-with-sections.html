@@ -1,32 +1,52 @@
 <div class="container bg-dark text-white">
   <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5">
     <div class="col mb-3">
-      <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none text-white">
-      <img src="{{ url_for('static', filename='uploads/logos/logo.PNG') }}" alt="Logo" class="img-fluid" style="max-height: 115px;">
-      <h1 class="ms-3" style="font-size: 2rem;">
-        <span style="color: var(--primary-color);">Ashey's</span> 
-        <span style="color: orange;">Company</span>
-      </h1>
+      <a href="#" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none text-white">
+        <img src="{{ company.logo if company else 'static/uploads/logos/logo.PNG' }}" alt="Logo" class="img-fluid"
+          style="max-height: 115px;">
+        <h1 class="ms-3" style="font-size: 2rem;">
+          <span style="color:white;">Ashey's</span>
+          <span class="card-title">Company</span>
+        </h1>
       </a>
-      <p class="text-white">© Copyright {{ current_year }} Ashey's Company, Ltd </p>
+      <p class="text-white">© Copyright {{ current_year }} {{company.name if company else "Ashley's Company Ltd"}}</p>
     </div>
 
     <div class="col mb-3"></div>
 
+
     <div class="col mb-3">
-      <h5 class="text-white fw-bold"> Our Services</h5>
+      <h5 class="card-title fw-bold">Explore</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="{{url_for('website_bp.contact')}}" class="nav-link p-0 text-white">Request a
+            Quote</a></li>
+    
+        <li class="nav-item mb-2"><a href="{{url_for('website_bp.home')}}" class="nav-link p-0 text-white">Home</a></li>
+        <li class="nav-item mb-2"><a href="{{url_for('website_bp.about_us')}}" class="nav-link p-0 text-white">About
+            US</a></li>
+        <li class="nav-item mb-2"><a href="{{url_for('website_bp.gallery')}}" class="nav-link p-0 text-white">Our
+            Work</a></li>
+      </ul>
+    </div>
+
+
+
+    <div class="col mb-3">
+      <h5 class="card-title fw-bold"> Our Services</h5>
       <ul class="nav flex-column">
         {% if services %}
         {% for service in services %}
 
 
-        <li class="nav-item mb-2"><a href="{{ url_for('website_bp.get_service', service_id=service.id) }}" class="nav-link p-0 text-white ">{{service.name}}</a></li>
+        <li class="nav-item mb-2"><a href="{{ url_for('website_bp.get_service', service_id=service.id) }}"
+            class="nav-link p-0 text-white ">{{service.name}}</a></li>
 
         {% endfor %}
         {% else %}
 
         {% for i in range(6) %}
-        <li class="nav-item mb-2"><a href="{{ url_for('website_bp.get_placeholder_service') }}"class="nav-link p-0 text-white ">Example Service</a></li>
+        <li class="nav-item mb-2"><a href="{{ url_for('website_bp.get_placeholder_service') }}"
+            class="nav-link p-0 text-white ">Example Service</a></li>
         {% endfor %}
         {% endif %}
 
@@ -36,26 +56,17 @@
       </ul>
     </div>
 
-    <div class="col mb-3">
-      <h5 class="text-white fw-bold">Explore</h5>
-      <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="{{url_for('website_bp.contact')}}" class="nav-link p-0 text-white">Request a
-                  Quote</a></li>
 
-      <li class="nav-item mb-2"><a href="{{url_for('website_bp.home')}}" class="nav-link p-0 text-white">Home</a></li>
-      <li class="nav-item mb-2"><a href="{{url_for('website_bp.about_us')}}" class="nav-link p-0 text-white">About US</a></li>
-      <li class="nav-item mb-2"><a href="{{url_for('website_bp.gallery')}}" class="nav-link p-0 text-white">Our Work</a></li>
-      </ul>
-    </div>
 
     <div class="col mb-3">
-      <h5 class="text-white fw-bold">Get in touch</h5>
+      <h5 class="card-title fw-bold">Opening Hours</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Opening Hours:</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+        <li class="nav-item mb-2"><span class="nav-link p-0 text-white">Monday-Friday <br> {{company.openingHours if
+            company else '8:00-16:00'}}</span></li>
+        <li class="nav-item mb-2"><span class="nav-link p-0 text-white">Saturday-Sunday <br> {{company.weekendHours if
+            company
+            else '24/7 emergency services'}}</span></li>
+       
       </ul>
     </div>
   </footer>

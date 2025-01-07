@@ -2,7 +2,7 @@ from . import website_bp
 from forms import ContactUSForm
 from flask import render_template, flash, url_for, redirect
 from utils.email_utils import send_admin_email, send_user_response_email
-from models import db, User, Home
+from models import db, User, Home, CompanyDetails, Socials
 import bleach # For sanitizing HTML
 from datetime import datetime
 
@@ -15,6 +15,8 @@ CURRENT_YEAR = datetime.now().year
 def contact():
     form = ContactUSForm()
     user = User.query.first()
+    company = CompanyDetails.query.first()
+    socials = Socials.query.first()
 
     if form.validate_on_submit():
         name = bleach.clean(form.name.data)
@@ -38,4 +40,4 @@ def contact():
             for error in errors:
                 flash(f'Error in {field}: {error}', 'danger')
 
-    return render_template('website/contact.html', form=form, current_year=CURRENT_YEAR, user=user)
+    return render_template('website/contact.html', form=form, current_year=CURRENT_YEAR, user=user, company=company, socials=socials)

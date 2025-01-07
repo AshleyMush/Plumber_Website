@@ -1,11 +1,12 @@
 <div class="call-float">
-    <a href="tel:YOUR_PHONE_NUMBER" aria-label="Call us now">
+    <a href="tel:{{ company.phone if company else '077777777' }}" aria-label="Call us now">
         <div class="tooltip-container">
             <div class="speech-bubble">Call us now</div>
             <i class="fa fa-phone call-icon"></i>
         </div>
     </a>
 </div>
+
 
 <style>
     .call-float {

@@ -20,23 +20,18 @@
     </div>
 
 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+
     <li class="ms-3">
-        <a class="text-body-primary" href="#">
+        <a class="text-body-primary" href="{{socials.facebook if socials else '#'}}">
             <i class="bi bi-facebook icon-size"></i>
         </a>
     </li>
     <li class="ms-3">
-        <a class="text-body-primary" href="#">
+        <a class="text-body-primary" href="{{socials.instagram if socials else '#'}}">
             <i class="bi bi-instagram icon-size"></i>
         </a>
     </li>
-    <li class="ms-3">
-        <a class="text-body-secondary" href="#">
-            <svg class="bi icon-size" width="24" height="24">
-                <use xlink:href="#facebook"></use>
-            </svg>
-        </a>
-    </li>
+
 </ul>
 
   </footer>
