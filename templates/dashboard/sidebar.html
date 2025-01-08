@@ -55,10 +55,10 @@
                 </a>
                 {% else %}
                 <a class="collapse-item " href="{{ url_for('dashboard_bp.update_home_page') }}">
-                    Home Page</a>
+                    Modify Home Page</a>
                 {% endif %}
 
-                {% if not about_us_exists %}
+                {% if not about_exists %}
                 <a class="collapse-item" href="{{ url_for('dashboard_bp.add_about_us_content') }}">
                      Add About Us Page 
                                         <i class="fa-solid fa-spinner p-1" style="color: #ff0000;"></i>
@@ -66,7 +66,7 @@
                 </a>
                 {% else %}
                 <a class="collapse-item" href="{{ url_for('dashboard_bp.update_about_us_page') }}">
-                    About Us Page
+                    Modify About Us Page
                 </a>
                 {% endif %}
 

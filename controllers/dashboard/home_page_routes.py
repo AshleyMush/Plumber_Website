@@ -19,6 +19,11 @@ def add_home_content():
     """
     Add home page content to the database with image uploading capabilities.
     """
+    if Home.query.first():
+        flash('The home page has already been set up, you can only modify it.', 'info')
+
+        return redirect(url_for('dashboard_bp.update_home_page'))
+
     form = HomePageContentForm()
     if form.validate_on_submit():
         try:

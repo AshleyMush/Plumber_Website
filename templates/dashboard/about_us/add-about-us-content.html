@@ -1,25 +1,207 @@
 {% extends '/dashboard/base.html' %}
 {% from 'bootstrap4/form.html' import render_form %}
 
-
 {% block title %}Add About Us Content{% endblock %}
 
 {% block content %}
+<section class="container">
+    <h1 class="fw-light">Add About Us Content</h1>
 
-<section class="py-2 text-center container">
-    <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Add About Us Page Content</h1>
-        </div>
-    </div>
-</section>
+                <!-- Header-->
+            <header class="py-5" style="background-image: url({{about.image_one if about else 'https://via.placeholder.com/150'}});
+                        background-size: cover;
+                        background-position: center;
+                        background-repeat: no-repeat;">>
 
+                <div class="container px-5">
 
-{{ render_form(form, novalidate=True)}}
-                        <div class="mt-2">
-                                <button type="button" class="btn btn-info" onclick="window.history.back()">Cancel</button>
-
-
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-xxl-6">
+                            <div class="text-center my-5">
+                                <h1 class="fw-bolder mb-3 text-white">{{about.heading if sabout else 'This is the heading'}}
+                                </h1>
+                                <a class="btn btn-primary btn-lg" href="#scroll-target">Read our story</a>
+                            </div>
                         </div>
+                    </div>
+                </div>
 
+            </header>
+    <!--End of header -->
+
+
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('dashboard_bp.add_about_us_content') }}">
+        {{ form.hidden_tag() }}
+
+
+        <div class="bg-dark text-white p-4 rounded">
+                <!-- Main Image -->
+        <div class="mb-3">
+            <h3>{{ form.main_image_path.label(class="form-label") }}</h3>
+
+                            <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-cloud-upload-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0m-.5 14.5V11h1v3.5a.5.5 0 0 1-1 0">
+                            </path>
+                        </svg>
+                    </span>
+            {{ form.main_image_path(class="form-control") }}
+                                </div>
+            {% if form.main_image_path.errors %}
+            <div class="text-danger small">{{ form.main_image_path.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Heading -->
+        <div class="mb-3">
+            {{ form.heading.label(class="form-label") }}
+            {{ form.heading(class="form-control", placeholder="Enter page heading") }}
+            {% if form.heading.errors %}
+            <div class="text-danger small">{{ form.heading.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Subheading -->
+        <div class="mb-3">
+            {{ form.subheading.label(class="form-label") }}
+            {{ form.subheading(class="form-control", placeholder="Enter subheading") }}
+            {% if form.subheading.errors %}
+            <div class="text-danger small">{{ form.subheading.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+
+        </div>
+
+
+
+              <!-- Feature One -->
+        <div class="container p-3 mb-3 bg-white">
+            <div class="fs-2 mb-3 fw-bold">
+                <i class="bi bi-layout-sidebar-inset"></i> Feature One
+            </div>
+
+            <div class="mb-3">
+                {{ form.image_one_path.label(class="form-label") }}
+                {{ form.image_one_path(class="form-control") }}
+                {% if form.image_one_path.errors %}
+                <div class="text-danger small">{{ form.image_one_path.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.feature_one_heading.label(class="form-label") }}
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-card-heading"></i>
+                    </span>
+                    {{ form.feature_one_heading(class="form-control", placeholder="Enter feature one heading") }}
+                </div>
+                {% if form.feature_one_heading.errors %}
+                <div class="text-danger small">{{ form.feature_one_heading.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.feature_one_description.label(class="form-label") }}
+                {{ form.feature_one_description(class="form-control", placeholder="Enter feature one description") }}
+                {% if form.feature_one_description.errors %}
+                <div class="text-danger small">{{ form.feature_one_description.errors[0] }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Feature Two -->
+        <div class="container p-3 mb-3 bg-white">
+            <div class="fs-2 mb-3 fw-bold">
+                <i class="bi bi-layout-sidebar-inset-reverse"></i> Feature Two
+            </div>
+
+            <div class="mb-3">
+                {{ form.image_two_path.label(class="form-label") }}
+                {{ form.image_two_path(class="form-control") }}
+                {% if form.image_two_path.errors %}
+                <div class="text-danger small">{{ form.image_two_path.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.feature_two_heading.label(class="form-label") }}
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-card-heading"></i>
+                    </span>
+                    {{ form.feature_two_heading(class="form-control", placeholder="Enter feature two heading") }}
+                </div>
+                {% if form.feature_two_heading.errors %}
+                <div class="text-danger small">{{ form.feature_two_heading.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.feature_two_description.label(class="form-label") }}
+                {{ form.feature_two_description(class="form-control", placeholder="Enter feature two description") }}
+                {% if form.feature_two_description.errors %}
+                <div class="text-danger small">{{ form.feature_two_description.errors[0] }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Content URLs -->
+        <div class="container p-3 mb-3 bg-white">
+            <div class="fs-2 mb-3 fw-bold">
+                <i class="bi bi-youtube"></i> Video or Image URLs
+            </div>
+
+            <div class="mb-3">
+                {{ form.content_one_url.label(class="form-label") }}
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-link-45deg"></i>
+                    </span>
+                    {{ form.content_one_url(class="form-control", placeholder="Enter URL for content one") }}
+                </div>
+                {% if form.content_one_url.errors %}
+                <div class="text-danger small">{{ form.content_one_url.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.content_two_url.label(class="form-label") }}
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-link-45deg"></i>
+                    </span>
+                    {{ form.content_two_url(class="form-control", placeholder="Enter URL for content two") }}
+                </div>
+                {% if form.content_two_url.errors %}
+                <div class="text-danger small">{{ form.content_two_url.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.content_three_url.label(class="form-label") }}
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-link-45deg"></i>
+                    </span>
+                    {{ form.content_three_url(class="form-control", placeholder="Enter URL for content three") }}
+                </div>
+                {% if form.content_three_url.errors %}
+                <div class="text-danger small">{{ form.content_three_url.errors[0] }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-info ms-2" onclick="window.history.back()">Cancel</button>
+        </div>on type="button" class="btn btn-info ms-2" onclick="window.history.back()">Cancel</button>
+        </div>
+    </form>
+</section>
 {% endblock %}

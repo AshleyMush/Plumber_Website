@@ -17,4 +17,5 @@ def about_us():
     about= AboutUsPageContent.query.first()
     services = Services.query.all()
 
+
     return render_template('website/about.html', current_year=CURRENT_YEAR, company=company, socials=socials, about=about, services=services)
