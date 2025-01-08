@@ -7,39 +7,44 @@
 <section class="container">
     <h1 class="fw-light">Update About Us Content</h1>
 
-                <!-- Header-->
-            <header class="py-5" style="background-image: url({{about.image_one if about else 'https://via.placeholder.com/150'}});
-                        background-size: cover;
-                        background-position: center;
-                        background-repeat: no-repeat;">>
+    <!-- Header-->
 
-                <div class="container px-5">
 
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8 col-xxl-6">
-                            <div class="text-center my-5">
-                                <h1 class="fw-bolder mb-3 text-white">{{about.heading if sabout else 'This is the heading'}}
-                                </h1>
-                                <a class="btn btn-primary btn-lg" href="#scroll-target">Read our story</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid px-5 py-5 text-white position-relative" style="background-image: url({{ about_us.main_image_path if about_us else 'https://via.placeholder.com/150' }}); 
+           background-size: cover; 
+           background-position: center; 
+           background-repeat: no-repeat; 
+           height: 600px;">
+    <!-- Dark overlay for better text readability -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 dimmed" style="background-color: rgba(0, 0, 0, 0.2); z-index: 0;">
+    </div>
 
-            </header>
+    <div class="row align-items-end justify-content-center g-lg-5 h-100 position-relative" style="z-index: 1;padding-bottom: 10px; ">
+        <div class="col-lg-8 col-xxl-6 text-center">
+            <h1 class="display-4 fw-bold lh-1 mb-3 text-white">
+                {{ about_us.heading if about_us else 'This is the heading' }}
+            </h1>
+            <a class="btn btn-primary btn-lg" href="#scroll-target">Read our story</a>
+        </div>
+    </div>
+</div>
+
+
+
+
     <!--End of header -->
 
 
-    <form method="POST" enctype="multipart/form-data" action="{{ url_for('dashboard_bp.add_about_us_content') }}">
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('dashboard_bp.update_about_us_page') }}">
         {{ form.hidden_tag() }}
 
 
         <div class="bg-dark text-white p-4 rounded">
-                <!-- Main Image -->
-        <div class="mb-3">
-            <h3>{{ form.main_image_path.label(class="form-label") }}</h3>
+            <!-- Main Image -->
+            <div class="mb-3">
+                <h3>{{ form.main_image_path.label(class="form-label") }}</h3>
 
-                            <div class="input-group">
+                <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-cloud-upload-fill" viewBox="0 0 16 16">
@@ -48,52 +53,52 @@
                             </path>
                         </svg>
                     </span>
-            {{ form.main_image_path(class="form-control") }}
-                                </div>
-            {% if form.main_image_path.errors %}
-            <div class="text-danger small">{{ form.main_image_path.errors[0] }}</div>
-            {% endif %}
+                    {{ form.main_image_path(class="form-control") }}
+                </div>
+                {% if form.main_image_path.errors %}
+                <div class="text-danger small">{{ form.main_image_path.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Heading -->
+            <div class="mb-3">
+                {{ form.heading.label(class="form-label") }}
+                {{ form.heading(class="form-control", placeholder="Enter page heading") }}
+                {% if form.heading.errors %}
+                <div class="text-danger small">{{ form.heading.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Subheading -->
+            <div class="mb-3">
+                {{ form.subheading.label(class="form-label") }}
+                {{ form.subheading(class="form-control", placeholder="Enter subheading") }}
+                {% if form.subheading.errors %}
+                <div class="text-danger small">{{ form.subheading.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+
         </div>
 
-        <!-- Heading -->
-        <div class="mb-3">
-            {{ form.heading.label(class="form-label") }}
-            {{ form.heading(class="form-control", placeholder="Enter page heading") }}
-            {% if form.heading.errors %}
-            <div class="text-danger small">{{ form.heading.errors[0] }}</div>
-            {% endif %}
-        </div>
 
-        <!-- Subheading -->
-        <div class="mb-3">
-            {{ form.subheading.label(class="form-label") }}
-            {{ form.subheading(class="form-control", placeholder="Enter subheading") }}
-            {% if form.subheading.errors %}
-            <div class="text-danger small">{{ form.subheading.errors[0] }}</div>
-            {% endif %}
-        </div>
-
-
-        </div>
-
-
-<!--Feature One-->
+        <!--Feature One-->
         <div class="container p-3 mb-3 bg-white rounded">
             <h3>Feature One</h3>
-<div class="form-group">
-    <label for="currentLogo" class="form-label">Current Logo:</label>
-    <div class="card shadow-sm mt-2" style="max-width: 200px">
-        <div class="card-body d-flex justify-content-center align-items-center p-3">
-            {% if about_us.image_one_path %}
-            <img src="{{ about_us.image_one_path }}" alt="About Us logo" class="img-fluid"
-                style="max-height: 100px; object-fit: contain" />
-            {% else %}
-            <img src="https://via.placeholder.com/200x100?text=No+Image+Uploaded" alt="Placeholder Image"
-                class="img-fluid" style="max-height: 100px; object-fit: contain" />
-            {% endif %}
-        </div>
-    </div>
-</div>
+            <div class="form-group">
+                <label for="currentLogo" class="form-label">Current Logo:</label>
+                <div class="card shadow-sm mt-2" style="max-width: 200px">
+                    <div class="card-body d-flex justify-content-center align-items-center p-3">
+                        {% if about_us.image_one_path %}
+                        <img src="{{ about_us.image_one_path }}" alt="About Us logo" class="img-fluid"
+                            style="max-height: 100px; object-fit: contain" />
+                        {% else %}
+                        <img src="https://via.placeholder.com/200x100?text=No+Image+Uploaded" alt="Placeholder Image"
+                            class="img-fluid" style="max-height: 100px; object-fit: contain" />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
 
             <div class="mb-3">
                 {{ form.image_one_path.label(class="form-label") }}
@@ -128,20 +133,20 @@
         <!-- Feature Two -->
         <div class="container p-3 mb-3 bg-white rounded">
             <h3>Feature Two</h3>
-<div class="form-group">
-    <label for="currentLogo" class="form-label">Current Logo:</label>
-    <div class="card shadow-sm mt-2" style="max-width: 200px">
-        <div class="card-body d-flex justify-content-center align-items-center p-3">
-            {% if about_us.image_two_path %}
-            <img src="{{ about_us.image_two_path }}" alt="About Us logo" class="img-fluid"
-                style="max-height: 100px; object-fit: contain" />
-            {% else %}
-            <img src="https://via.placeholder.com/200x100?text=No+Image+Uploaded" alt="Placeholder Image"
-                class="img-fluid" style="max-height: 100px; object-fit: contain" />
-            {% endif %}
-        </div>
-    </div>
-</div>
+            <div class="form-group">
+                <label for="currentLogo" class="form-label">Current Logo:</label>
+                <div class="card shadow-sm mt-2" style="max-width: 200px">
+                    <div class="card-body d-flex justify-content-center align-items-center p-3">
+                        {% if about_us.image_two_path %}
+                        <img src="{{ about_us.image_two_path }}" alt="About Us logo" class="img-fluid"
+                            style="max-height: 100px; object-fit: contain" />
+                        {% else %}
+                        <img src="https://via.placeholder.com/200x100?text=No+Image+Uploaded" alt="Placeholder Image"
+                            class="img-fluid" style="max-height: 100px; object-fit: contain" />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
 
 
 

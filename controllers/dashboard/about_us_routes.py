@@ -67,12 +67,12 @@ def update_about_us_page():
     """
     Updates About Us page content and manages file uploads.
     """
-    content = AboutUsPageContent.query.first()
-    if not content:
+    about_us = AboutUsPageContent.query.first()
+    if not about_us:
         flash('No content found. Please add content first.', 'warning')
         return redirect(url_for('dashboard_bp.add_about_us_content'))
 
-    form = AboutUsForm(obj=content)
+    form = AboutUsForm(obj=about_us)
 
     # Clear file fields on GET request
     if request.method == 'GET':
@@ -83,32 +83,36 @@ def update_about_us_page():
     if form.validate_on_submit():
         try:
             # Update fields
-            content.heading = form.heading.data
-            content.subheading = form.subheading.data
-            content.content_one_url = form.content_one_url.data
-            content.content_two_url = form.content_two_url.data
-            content.content_three_url = form.content_three_url.data
-            content.feature_one_heading = form.feature_one_heading.data
-            content.feature_one_description = form.feature_one_description.data
-            content.feature_two_heading = form.feature_two_heading.data
-            content.feature_two_description = form.feature_two_description.data
+            about_us.heading = form.heading.data
+            about_us.subheading = form.subheading.data
+            about_us.content_one_url = form.content_one_url.data
+            about_us.content_two_url = form.content_two_url.data
+            about_us.content_three_url = form.content_three_url.data
+            about_us.feature_one_heading = form.feature_one_heading.data
+            about_us.feature_one_description = form.feature_one_description.data
+            about_us.feature_two_heading = form.feature_two_heading.data
+            about_us.feature_two_description = form.feature_two_description.data
 
             # Manage file uploads
             if form.main_image_path.data:
-                old_path = content.main_image_path
-                content.main_image_path = save_file(form.main_image_path.data, subfolder='about_us')
+                old_path = about_us.main_image_path
+                about_us.main_image_path = save_file(form.main_image_path.data, subfolder='about_us')
                 if old_path:
                     os.remove(old_path.lstrip('/'))  # Remove old file
 
             if form.image_one_path.data:
-                old_path = content.image_one_path
-                content.image_one_path = save_file(form.image_one_path.data, subfolder='about_us')
-                if old_path:
-                    os.remove(old_path.lstrip('/'))
+                try:
+                    print("Processing Image One Path...")
+                    old_path = about_us.image_one_path
+                    about_us.image_one_path = save_file(form.image_one_path.data, subfolder='about_us')
+                    if old_path and os.path.exists(old_path.lstrip('/')):
+                        os.remove(old_path.lstrip('/'))
+                except Exception as e:
+                    print(f"Error uploading image_one_path: {str(e)}")
 
             if form.image_two_path.data:
-                old_path = content.image_two_path
-                content.image_two_path = save_file(form.image_two_path.data, subfolder='about_us')
+                old_path = about_us.image_two_path
+                about_us.image_two_path = save_file(form.image_two_path.data, subfolder='about_us')
                 if old_path:
                     os.remove(old_path.lstrip('/'))
 
@@ -119,4 +123,4 @@ def update_about_us_page():
             db.session.rollback()
             flash(f'Error: {str(e)}', 'danger')
 
-    return render_template('dashboard/about_us/update-about-us-content.html', form=form, about_us=content)
+    return render_template('dashboard/about_us/update-about-us-content.html', form=form, about_us=about_us)

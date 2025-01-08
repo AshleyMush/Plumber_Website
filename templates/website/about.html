@@ -5,25 +5,28 @@
 {% block header %}
 
             <!-- Header-->
-            <header class="py-5" style="background-image: url({{about.image_one if about else 'https://via.placeholder.com/150'}});
-                        background-size: cover;
-                        background-position: center;
-                        background-repeat: no-repeat;">>
-                        
-                <div class="container px-5">
-                    
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8 col-xxl-6">
-                            <div class="text-center my-5">
-                                <h1 class="fw-bolder mb-3 text-white">{{about.heading if sabout else 'Our mission is to make building websites easier for everyone.'}}
-                                </h1>
-                                <a class="btn btn-primary btn-lg" href="#scroll-target">Read our story</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </header>
+<div class="container-fluid px-5 py-5 text-white position-relative" style="background-image: url({{ about.main_image_path if about else 'https://via.placeholder.com/150' }});
+           background-size: cover;
+           background-position: center;
+           background-repeat: no-repeat;
+           height: 600px;">
+
+        <div class="bg-overlay"></div>
+
+    <!-- Dark overlay for better text readability -->
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="; z-index: 0;">
+    </div>
+
+    <div class="row align-items-end justify-content-center g-lg-5 h-100 position-relative" style="z-index: 1;padding-bottom: 50px; ">
+        <div class="col-lg-8 col-xxl-6 text-center">
+            <h1 class="display-4 fw-bold lh-1 mb-3 text-white">
+                {{ about.heading if about else 'This is the heading' }}
+            </h1>
+            <a class="btn btn-primary btn-lg" href="#scroll-target">Read our story</a>
+        </div>
+    </div>
+</div>
+
             <!-- Work in Progress Banner-->
                         {% if not about %}
                         <div class="alert alert-warning text-center" role="alert">
@@ -50,13 +53,14 @@
     <div class="container px-5 my-5">
         <div class="row gx-5 align-items-center">
             <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0"
-                    src="https://img.freepik.com/free-photo/delivery-man-with-his-van-ai-generated_268835-8276.jpg?t=st=1733188644~exp=1733192244~hmac=681c13137395f44176394dd4207e09eeacc2c856dc43f505eed5d445b3eade12&w=1380"
+                    src=" {{ about.image_one_path if about else 'https://img.freepik.com/free-photo/delivery-man-with-his-van-ai-generated_268835-8276.jpg?t=st=1733188644~exp=1733192244~hmac=681c13137395f44176394dd4207e09eeacc2c856dc43f505eed5d445b3eade12&w=1380'}}"
                     alt="..." /></div>
             <div class="col-lg-6">
-                <h2 class="fw-bolder">Our founding</h2>
-                <p class="lead fw-normal text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
+                <h2 class="fw-bolder">{{ about.feature_one_heading if about else 'Our Founding'}}</h2>
+                <p class="lead fw-normal text-muted mb-0">{{about.feature_two_heading if about else 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Iusto
                     est, ut esse a labore aliquam beatae expedita. Blanditiis impedit numquam libero molestiae et fugit
-                    cupiditate, quibusdam expedita, maiores eaque quisquam.</p>
+                    cupiditate, quibusdam expedita, maiores eaque quisquam.'}}</p>
             </div>
         </div>
     </div>
@@ -68,13 +72,15 @@
     <div class="container px-5 my-5">
         <div class="row gx-5 align-items-center">
             <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0"
-                    src="https://img.freepik.com/free-photo/service-maintenance-worker-repairing_23-2149176718.jpg?t=st=1733185227~exp=1733188827~hmac=5e5b8a6627c3f7dfbb2050b4261c574ffc4e6ab80a82802636c2ef8f74896dc0&w=1380"
+                    src="{{ about.image_two_path if about else 'https://img.freepik.com/free-photo/service-maintenance-worker-repairing_23-2149176718.jpg?t=st=1733185227~exp=1733188827~hmac=5e5b8a6627c3f7dfbb2050b4261c574ffc4e6ab80a82802636c2ef8f74896dc0&w=1380' }}"
                     alt="..." /></div>
             <div class="col-lg-6">
-                <h2 class="fw-bolder">Our Mission</h2>
-                <p class="lead fw-normal text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
+                <h2 class="fw-bolder">{{ about.feature_two_heading if about else 'Our Mission'}}</h2>
+                <p class="lead fw-normal text-muted mb-0">{{about.feature_two_description if about else'Lorem ipsum dolor
+                    sit
+                    amet consectetur adipisicing elit. Iusto
                     est, ut esse a labore aliquam beatae expedita. Blanditiis impedit numquam libero molestiae et fugit
-                    cupiditate, quibusdam expedita, maiores eaque quisquam.</p>
+                    cupiditate, quibusdam expedita, maiores eaque quisquam.'}}</p>
             </div>
         </div>
     </div>
