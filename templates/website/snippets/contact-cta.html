@@ -1,24 +1,31 @@
-<section id="cta" class="py-5 text-center text-white" style="background: url('https://img.freepik.com/free-photo/closeup-office-wired-telephone_53876-64737.jpg?t=st=1733186473~exp=1733190073~hmac=6a4f1a053177406d8c5f3bb8b22e5f4efce39fd02a1c60057dea858483e58775&w=1380') center center/cover no-repeat;">
-  <div class="container">
+<section id="cta" class="py-5 text-center text-white position-relative">
+  <!-- Background Image -->
+  <img src="static/uploads/contact_us/A -person-calling-a-phone.jpg" alt="Contact Us"
+    class="position-absolute top-0 start-0 w-100 h-100" style="object-fit: cover; z-index: -1;">
+
+  <!-- Overlay for text readability -->
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark" style="opacity: 0.3; z-index: 0;"></div>
+
+  <div class="container position-relative" style="z-index: 1;">
     <!-- Call to Action Content -->
     <div class="py-4">
-      <h2 class="fw-bold ">Get in Touch with Us</h2>
-      <p class="lead">We’re here to help. Contact us via phone, WhatsApp, or email.</p>
+      <h2 class="fw-bold text-white">Get in Touch with Us</h2>
+      <p class="lead fw-semibold text-white" style="font-size: 1.25rem;">
+        We’re here to help. Contact us via phone, WhatsApp, or email.
+      </p>
     </div>
     <!-- Buttons -->
     <div class="d-flex justify-content-center gap-3">
-      <a href="tel:+123456789" class="btn btn-primary btn-lg">
+      <a href="tel:{{ company.phone if company else '077777777' }}" class="btn btn-primary btn-lg">
         <i class="bi bi-telephone-fill me-2"></i>Phone
       </a>
-      <a href="https://wa.me/123456789" class="btn btn-success btn-lg" target="_blank">
+      <a href="https://wa.me/{{ socials.whatsapp if socials else '077777777' }}" class="btn btn-success btn-lg"
+        target="_blank">
         <i class="bi bi-whatsapp me-2"></i>WhatsApp
       </a>
-      <a href="mailto:example@example.com" class="btn btn-danger btn-lg">
+      <a href="mailto:{{company.email if company else 'example@example.com'}}" class="btn btn-danger btn-lg">
         <i class="bi bi-envelope-fill me-2"></i>Email
       </a>
     </div>
   </div>
 </section>
-
-<!-- Optional Bootstrap Icons CDN -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
