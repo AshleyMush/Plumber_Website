@@ -27,6 +27,8 @@ def update_company_details():
             company_details.name = company_form.name.data
         if company_form.address.data:
             company_details.address = company_form.address.data
+        if company_form.map_snippet.data:
+            company_details.map_snippet = company_form.map_snippet.data
         if company_form.motto.data:
             company_details.motto = company_form.motto.data
         if company_form.about.data:

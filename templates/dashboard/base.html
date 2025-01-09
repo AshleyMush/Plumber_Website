@@ -237,17 +237,20 @@
     document.addEventListener('DOMContentLoaded', () => {
         const showLocationCheckbox = document.getElementById('showLocationCheckbox');
         const addressField = document.getElementById('addressField');
+        const mapSnippetField = document.getElementById('mapSnippetField');
 
-        // Toggle address field visibility based on checkbox
-        const toggleAddressField = () => {
-            addressField.style.display = showLocationCheckbox.checked ? 'block' : 'none';
+        // Function to toggle visibility of address and map snippet fields
+        const toggleLocationFields = () => {
+            const display = showLocationCheckbox.checked ? 'block' : 'none';
+            addressField.style.display = display;
+            mapSnippetField.style.display = display;
         };
 
         // Add event listener for checkbox
-        showLocationCheckbox.addEventListener('change', toggleAddressField);
+        showLocationCheckbox.addEventListener('change', toggleLocationFields);
 
         // Initial toggle based on checkbox state
-        toggleAddressField();
+        toggleLocationFields();
     });
 </script>
 

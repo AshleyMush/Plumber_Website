@@ -76,6 +76,7 @@ class CompanyDetails (db.Model):
     weekendHours: Mapped[str] = mapped_column(String(2000), nullable=True)
 
     show_location: Mapped[bool] = mapped_column(Boolean, default=False)
+    map_snippet: Mapped[str] = mapped_column(String(2000), nullable=True)
 
     def __repr__(self):
         return f'<CompanyDetails{self.title}>'

@@ -5,6 +5,10 @@
             <div class="col-lg-4">
                <!-- <h2 class="fw-bold">Contact Us</h2>-->
                 <div class="mt-4">
+
+                    
+                    {% if company and company.show_location %}
+
                     <!-- Location -->
                     <div class="d-flex align-items-center mb-3">
                         <div class="icon-container me-3 text-primary">
@@ -12,9 +16,16 @@
                         </div>
                         <div>
                             <h5 class="mb-1 card-title">Location</h5>
-                            <p class="mb-0">A108 Adam Street, New York, NY 535022</p>
+                            <p class="mb-0">{{company.address}}</p>
                         </div>
+
+
                     </div>
+                    {% endif %}
+
+
+
+
                     <!-- Call Us -->
                     <div class="d-flex align-items-center mb-3">
                         <div class="icon-container me-3 text-primary">

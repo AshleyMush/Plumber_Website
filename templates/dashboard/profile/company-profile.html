@@ -64,7 +64,8 @@
                                     </svg>
                                 </span>
                                 {{ phone_form.phone_number(class="form-control",
-                                id="phoneInput", value=company_details.phone, readonly=True, placeholder="e.g, +447123123") }}
+                                id="phoneInput", value=company_details.phone, readonly=True, placeholder="e.g,
+                                +447123123") }}
                             </div>
                         </div>
                         <button type="button" class="btn btn-primary mt-2" id="editPhoneButton">
@@ -79,7 +80,7 @@
                 </div>
             </div>
 
-              <!-- Social Media Links Form -->
+            <!-- Social Media Links Form -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Social Media Links</h6>
@@ -119,7 +120,7 @@
                             </div>
                         </div>
 
-                         <!-- Facebook -->
+                        <!-- Facebook -->
                         <div class="form-group">
                             {{ socials_form.facebook.label(class="form-label") }}<span class="text-danger">*</span>
                             <div class="input-group">
@@ -238,14 +239,16 @@
                             company_form.about(class="form-control") }}
                         </div>
                         <div class="form-group">
-                            {{ company_form.openingHours.label(class="form-label") }}<span class="text-danger">*</span> {{
-                            company_form.openingHours(class="form-control", placeholder="e.g, 09:00-16:00 or 27/7 emergency") }}
+                            {{ company_form.openingHours.label(class="form-label") }}<span class="text-danger">*</span>
+                            {{
+                            company_form.openingHours(class="form-control", placeholder="e.g, 09:00-16:00 or 27/7
+                            emergency") }}
                         </div>
 
 
-                        <div class="form-check form-group p-3 border rounded bg-light">
+<div class="form-check form-group p-3 border rounded bg-light">
     <div class="d-flex align-items-center">
-        <i class="fa-solid fa-location-dot fa-lg text-primary me-2"></i>
+        <i class=" fa-lg text-primary me-4"></i>
         <div>
             {{ company_form.show_location(class="form-check-input", id="showLocationCheckbox") }}
             <label for="showLocationCheckbox" class="form-check-label">
@@ -255,17 +258,32 @@
     </div>
 </div>
 
-<div class="form-group mt-3 p-3 border rounded bg-white" id="addressField" style="display: {{ 'block' if company_form.show_location.data else 'none' }};">
+<!-- Address Section -->
+<div class="form-group mt-3 p-3 border rounded bg-white" id="addressField"
+    style="display: {{ 'block' if company_form.show_location.data else 'none' }};">
     <label for="addressInput" class="form-label d-flex align-items-center">
         <i class="fa-solid fa-map-marker-alt fa-lg text-primary me-2"></i>
         {{ company_form.address.label.text }}
     </label>
-    {{ company_form.address(class="form-control", id="addressInput") }}
+    {{ company_form.address(class="form-control", id="addressInput", placeholder="e.g A108 Adam Street, New York, NY
+    535022") }}
 </div>
+
+<!-- Google Map Snippet Section -->
+<div class="form-group mt-3 p-3 border rounded bg-white" id="mapSnippetField"
+    style="display: {{ 'block' if company_form.show_location.data else 'none' }};">
+    <label for="mapSnippetInput" class="form-label d-flex align-items-center">
+        <i class="fa-solid fa-map fa-lg text-primary me-2"></i>
+        Google Map URL Snippet
+    </label>
+    {{ company_form.map_snippet(class="form-control", id="mapSnippetInput", placeholder="e.g, https://www.google.com/maps/embed?pb=!1m18..") }}
+</div>
+
+
 
                         <div class="form-group">
                             {{ company_form.weekendHours.label(class="form-label") }} {{
-                            company_form.weekendHours(class="form-control", placeholder=" e.g, 09:00-16:00, 27/7 emergency OR Closed") }}
+                            company_form.weekendHours(class="form-control", placeholder=" e.g, 09:00-16:00, 24/7emergency or Closed") }}
                         </div>
                         {{ company_form.submit(class="btn btn-success mt-2") }}
                     </form>
