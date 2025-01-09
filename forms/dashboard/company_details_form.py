@@ -23,4 +23,9 @@ class CompanyDetailsForm(FlaskForm):
     about = TextAreaField('About', validators=[Optional()])
     openingHours = StringField('Opening Hours', validators=[Optional()])
     weekendHours = StringField('Weekend Hours', validators=[Optional()])
+    show_location = BooleanField('Tick to Show Company Address and Map on Website (Default: No)', validators=[Optional()])
     submit = SubmitField('Save Changes')
+
+    def validate_address(self, field):
+        if self.show_location.data and not field.data:
+            raise ValidationError('Address is required when "Show Location" is checked.')

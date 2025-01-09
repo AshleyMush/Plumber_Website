@@ -219,6 +219,8 @@
 
 
 
+
+
 </script>
 
 <script>
@@ -226,6 +228,26 @@
     var carousel = new bootstrap.Carousel(myCarousel, {
         interval: 3000, // 3 seconds
         ride: 'carousel' // Auto-start the carousel
+    });
+</script>
+
+
+    <!-- Toggle address field based on checkbox for show location and map in company details -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const showLocationCheckbox = document.getElementById('showLocationCheckbox');
+        const addressField = document.getElementById('addressField');
+
+        // Toggle address field visibility based on checkbox
+        const toggleAddressField = () => {
+            addressField.style.display = showLocationCheckbox.checked ? 'block' : 'none';
+        };
+
+        // Add event listener for checkbox
+        showLocationCheckbox.addEventListener('change', toggleAddressField);
+
+        // Initial toggle based on checkbox state
+        toggleAddressField();
     });
 </script>
 

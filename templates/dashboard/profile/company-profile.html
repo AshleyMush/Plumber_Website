@@ -228,10 +228,7 @@
                             company_form.logo(class="form-control") }}
                         </div>
 
-                        <div class="form-group">
-                            {{ company_form.address.label(class="form-label") }} {{
-                            company_form.address(class="form-control") }}
-                        </div>
+
                         <div class="form-group">
                             {{ company_form.motto.label(class="form-label") }} {{
                             company_form.motto(class="form-control") }}
@@ -244,6 +241,28 @@
                             {{ company_form.openingHours.label(class="form-label") }}<span class="text-danger">*</span> {{
                             company_form.openingHours(class="form-control", placeholder="e.g, 09:00-16:00 or 27/7 emergency") }}
                         </div>
+
+
+                        <div class="form-check form-group p-3 border rounded bg-light">
+    <div class="d-flex align-items-center">
+        <i class="fa-solid fa-location-dot fa-lg text-primary me-2"></i>
+        <div>
+            {{ company_form.show_location(class="form-check-input", id="showLocationCheckbox") }}
+            <label for="showLocationCheckbox" class="form-check-label">
+                {{ company_form.show_location.label.text }}
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="form-group mt-3 p-3 border rounded bg-white" id="addressField" style="display: {{ 'block' if company_form.show_location.data else 'none' }};">
+    <label for="addressInput" class="form-label d-flex align-items-center">
+        <i class="fa-solid fa-map-marker-alt fa-lg text-primary me-2"></i>
+        {{ company_form.address.label.text }}
+    </label>
+    {{ company_form.address(class="form-control", id="addressInput") }}
+</div>
+
                         <div class="form-group">
                             {{ company_form.weekendHours.label(class="form-label") }} {{
                             company_form.weekendHours(class="form-control", placeholder=" e.g, 09:00-16:00, 27/7 emergency OR Closed") }}

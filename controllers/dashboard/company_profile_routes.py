@@ -50,8 +50,11 @@ def update_company_details():
             # Update the logo field to the new path
             company_details.logo = new_logo_path
 
+        # Update the show_location field
+        company_details.show_location = company_form.show_location.data
+
         db.session.commit()
-        flash('Company details updated successfully, including the logo.', 'success')
+        flash('Company details updated successfully.', 'success')
     else:
         # Display form validation errors
         for field, errors in company_form.errors.items():
