@@ -54,11 +54,11 @@
             <div class="col-md-3 d-flex flex-column justify-content-end align-items-center align-items-md-end">
                 <div class="text-center text-md-end">
                     <p class="mb-0 fw-bold text-white" style="font-size: 1.25rem; color: #ffffff;">
-                        <a href="tel:03300120974"
+                        <a href="tel:{{ company.phone if company else '077777777' }}"
                            style="color: #ffffff; text-decoration: none;">
                         <i class="fa-solid fa-phone me-2 card-title  "></i>
 
-                          <span class="card-title "> Call  012345 123 1234</span>
+                          <span class="card-title "> Call {{ company.phone if company else '077777777' }}</span>
                         </a>
                     </p>
                     <p class="mb-0" style="font-size: 0.9rem; color: #ffffff;">

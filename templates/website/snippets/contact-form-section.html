@@ -11,7 +11,7 @@
                             <i class="fa-solid fa-location-dot fa-2x"></i>
                         </div>
                         <div>
-                            <h5 class="mb-1">Location</h5>
+                            <h5 class="mb-1 card-title">Location</h5>
                             <p class="mb-0">A108 Adam Street, New York, NY 535022</p>
                         </div>
                     </div>
@@ -21,8 +21,9 @@
                             <i class="fa-solid fa-phone fa-2x"></i>
                         </div>
                         <div>
-                            <h5 class="mb-1">Call Us</h5>
-                            <p class="mb-0">+1 5589 55488 55</p>
+                            <h5 class="mb-1 card-title">Call Us</h5>
+                            
+                            <p class="mb-0">{{ company.phone if company else '077777777' }}</p>
                         </div>
                     </div>
                     <!-- Opening Hours -->
@@ -31,8 +32,12 @@
                             <i class="fa-solid fa-calendar-days fa-2x"></i>
                         </div>
                         <div>
-                            <h5 class="mb-1">Opening Hours</h5>
-                            <p class="mb-0">Mon - Fri: 9:00 AM - 5:00 PM</p>
+                            <h5 class="mb-1 card-title">Opening Hours</h5>
+                            <p class="mb-0">Mon - Fri: {{company.openingHours if
+                            company else '8:00-16:00'}}</p>
+                            <p class="mb-0">Saturday - Sunday: {{company.weekendHours if
+                            company
+                            else '24/7 emergency services'}}</p>
                         </div>
                     </div>
                 </div>
