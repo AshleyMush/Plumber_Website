@@ -102,6 +102,7 @@ def update_about_us_page():
 
             if form.image_one_path.data:
                 try:
+
                     print("Processing Image One Path...")
                     old_path = about_us.image_one_path
                     about_us.image_one_path = save_file(form.image_one_path.data, subfolder='about_us')

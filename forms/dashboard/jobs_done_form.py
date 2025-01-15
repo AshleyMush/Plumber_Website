@@ -6,14 +6,12 @@ from wtforms.validators import DataRequired, Optional
 from flask_wtf.file import FileAllowed
 
 class JobsDoneForm(FlaskForm):
-    name = StringField('Project Name', validators=[DataRequired()])
+    name = StringField('Project Name' ,validators=[DataRequired()])
     main_image_path = FileField(
-        'Main Image',
+        'Upload Project Image',
         validators=[Optional(), FileAllowed(['jpg', 'jpeg', 'png', 'gif'], 'Images only!')]
     )
-    image_one_path = FileField('Before Image', validators=[Optional(), FileAllowed(['jpg', 'jpeg', 'png'])])
-    image_two_path = FileField('After Image ', validators=[Optional(), FileAllowed(['jpg', 'jpeg', 'png'])])
-    location = StringField('Location', validators=[Optional()])
+    location = StringField('Location of Project', validators=[Optional()])
 
     description = CKEditorField('Project Description (optional)', validators=[Optional()])
     submit = SubmitField('Save Project')

@@ -22,3 +22,10 @@ def gallery():
 
 
     return render_template('website/gallery.html',user=user,form =form, current_year=CURRENT_YEAR, company=company, socials=socials, jobs=jobs, services=services)
+
+
+@website_bp.route('/get-project/<int:job_id>', methods=['GET'])
+def get_project(job_id):
+    job = Jobs_Done.query.get_or_404(job_id)
+    jobs = Jobs_Done.query.all()
+    return render_template('website/get_project.html', job=job, current_year=CURRENT_YEAR)
