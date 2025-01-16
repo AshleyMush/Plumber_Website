@@ -11123,3 +11123,10 @@ h5 {
 
 
 /* End of background overlay */
+/* Target the iframe directly */
+
+.glightbox .gslide-media img {
+  max-width: 100%;
+  height: auto !important;
+  object-fit: contain;
+}

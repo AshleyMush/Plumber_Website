@@ -56,6 +56,7 @@ new Swiper('.gallery-swiper', {
             closeButton: true,
             zoomable: true,
             keyboardNavigation: true,
+            
         });
     } else {
         console.error('Glightbox is not defined.');
