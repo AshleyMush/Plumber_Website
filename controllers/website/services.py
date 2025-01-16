@@ -24,7 +24,9 @@ def get_placeholder_service():
 @website_bp.route('/service/<int:service_id>', methods=['GET','POST'] )
 def get_service(service_id):
     services = Services.query.all()
+    company = CompanyDetails.query.first()
+    socials = Socials.query.first()
 
     service = Services.query.get(service_id)
     form = ContactUSForm()
-    return render_template('website/service.html', form=form, services=services,service=service,current_year=CURRENT_YEAR,form_class="p-4 p-md-5 border rounded-3 bg-body-tertiary")
+    return render_template('website/service.html', form=form, services=services,service=service,current_year=CURRENT_YEAR,form_class="p-4 p-md-5 border rounded-3 bg-body-tertiary", company=company, socials=socials)

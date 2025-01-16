@@ -25,36 +25,36 @@
             <div class="swiper-slide">
                 <img src="https://images.unsplash.com/photo-1542013936693-884638332954?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGx1bWJpbmd8ZW58MHx8MHx8fDA%3D"
                     class="img-fluid rounded portfolio-img" alt="Placeholder 2">
-                                <h5 class="text-center mt-2 card-title">Water Purifier Repair</h5>
-                                <h6 class="text-center mt-2 text-white">Dorset</h6>
+                <h5 class="text-center mt-2 card-title">Water Purifier Repair</h5>
+                <h6 class="text-center mt-2 text-white">Dorset</h6>
             </div>
             <!-- Image 3 -->
             <div class="swiper-slide">
                 <img src="https://images.unsplash.com/photo-1728975728593-b128b77fa813?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     class="img-fluid rounded portfolio-img" alt="Placeholder 3">
-                            <h5 class="text-center mt-2 card-title">Tap Installation</h5>
-                            <h6 class="text-center mt-2 text-white">Aylesbury</h6>
+                <h5 class="text-center mt-2 card-title">Tap Installation</h5>
+                <h6 class="text-center mt-2 text-white">Aylesbury</h6>
             </div>
             <!-- Image 4 -->
             <div class="swiper-slide">
                 <img src="https://img.freepik.com/free-photo/high-angle-beautiful-roof-wooden-house_23-2149343706.jpg?t=st=1734042606~exp=1734046206~hmac=be44b57e03d45d5205b1d08d540b6b01ea536b2323ead7b0cf850b95d2a89f95&w=1060"
                     class="img-fluid rounded portfolio-img" alt="Placeholder 4">
-                                <h5 class="text-center mt-2 card-title">Roofing</h5>
-                                <h6 class="text-center mt-2 text-white">London</h6>
+                <h5 class="text-center mt-2 card-title">Roofing</h5>
+                <h6 class="text-center mt-2 text-white">London</h6>
             </div>
             <!-- Image 5 -->
             <div class="swiper-slide">
                 <img src="https://img.freepik.com/free-photo/close-up-electric-car-charging_23-2149146254.jpg?t=st=1734042768~exp=1734046368~hmac=d1ac9b021bf359b2c936710d2fdffc8ca6e44825e75934594165e36ab853d1cf"
                     class="img-fluid rounded portfolio-img" alt="Placeholder 5">
-                                <h5 class="text-center mt-2 card-title">EV charging installation</h5>
-                                <h6 class="text-center mt-2 text-white">Northampton</h6>
+                <h5 class="text-center mt-2 card-title">EVv charging installation</h5>
+                <h6 class="text-center mt-2 text-white">Northampton</h6>
             </div>
             <!-- Image 6 -->
             <div class="swiper-slide">
                 <img src="https://img.freepik.com/free-photo/close-up-man-using-rotary-switch_23-2149308989.jpg?t=st=1734042903~exp=1734046503~hmac=e48775ec90326013fe2b743af980811cb9d43734347a3614e826bd5cd4c79015&w=1380"
                     class="img-fluid rounded portfolio-img" alt="Placeholder 6">
-                                <h5 class="text-center mt-2 card-title">Boiler repair and heating installation</h5>
-                                <h6 class="text-center mt-2 text-white">Slough</h6>
+                <h5 class="text-center mt-2 card-title">Boiler repair and heating installation</h5>
+                <h6 class="text-center mt-2 text-white">Slough</h6>
             </div>
         </div>
         <!-- Swiper Navigation -->
@@ -70,35 +70,31 @@
 </section>
 
 {% else %}
-
 <section class="container py-5">
     <h2 class="text-center mb-4 text-white">Our Work</h2>
-    <!-- Work in Progress Banner-->
 
-    <!--End of Work in Progress Banner-->
+    <!-- Swiper Container -->
     <div class="swiper gallery-swiper">
-
         <div class="swiper-wrapper">
-            <!-- Image 1 -->
-            {% for job in jobs %}       
+            <!-- Dynamically Rendered Slides -->
+            {% for job in jobs %}
             <div class="swiper-slide">
-                <img src="{{ job.image }}"
-                    class="rounded portfolio-img" alt="Placeholder 1">
-                <h5 class="text-center mt-2 card-title">{{job.name}}</h5>
-                <h6 class="text-center mt-2 text-white">{{job.location}}</h6>
+                <img src="{{ job.image }}" class="rounded portfolio-img"
+                    alt="{{ job.name if job.name else 'Placeholder' }}">
+                <h5 class="text-center mt-2 card-title">{{ job.name }}</h5>
+                <h6 class="text-center mt-2 text-white">{{ job.location }}</h6>
             </div>
             {% endfor %}
-
         </div>
-        <!-- Swiper Navigation -->
-        <!--<div class="swiper-pagination"></div>-->
 
+        <!-- Swiper Navigation -->
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
-
     </div>
+
+    <!-- Link to Full Gallery -->
     <div class="text-center mt-4">
-        <a href="{{url_for('website_bp.gallery')}}" class="btn btn-primary">See All Our Work</a>
+        <a href="{{ url_for('website_bp.gallery') }}" class="btn btn-primary">See All Our Work</a>
     </div>
 </section>
 
