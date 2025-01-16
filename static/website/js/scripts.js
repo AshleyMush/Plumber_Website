@@ -26,41 +26,87 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Gallery Swiper
-        // Swiper Initialization for Gallery
-new Swiper('.gallery-swiper', {
-  loop: true,
-  slidesPerView: 3,
-  spaceBetween: 20,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  pagination: { el: '.swiper-pagination', clickable: true },
-  breakpoints: {
-    320: { slidesPerView: 1, spaceBetween: 10 },
-    768: { slidesPerView: 2, spaceBetween: 15 },
-    1024: { slidesPerView: 3, spaceBetween: 20 },
-  },
-});
-
+        new Swiper('.gallery-swiper', {
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            breakpoints: {
+                320: { slidesPerView: 1, spaceBetween: 10 },
+                768: { slidesPerView: 2, spaceBetween: 15 },
+                1024: { slidesPerView: 3, spaceBetween: 20 },
+            },
+        });
     } else {
         console.error('Swiper is not defined.');
     }
 
-    // Glightbox Initialization
-    if (typeof GLightbox !== 'undefined') {
-        GLightbox({
-            selector: '.glightbox',
-            touchNavigation: true,
-            loop: true,
-            closeButton: true,
-            zoomable: true,
-            keyboardNavigation: true,
-            
+    // Custom Gallery Modal Functionality
+    const galleryImages = document.querySelectorAll('.gallery-image'); // Select all gallery images
+    const modal = document.getElementById('gallery-modal');
+    const modalImage = document.getElementById('modal-image');
+    const closeModal = document.getElementById('close-modal');
+    const nextImage = document.getElementById('next-image');
+    const prevImage = document.getElementById('prev-image');
+
+    let currentIndex = 0;
+
+    // Open Modal
+    galleryImages.forEach((image, index) => {
+        image.addEventListener('click', () => {
+            currentIndex = index;
+            updateModalImage();
+            modal.classList.add('active'); // Show modal
         });
-    } else {
-        console.error('Glightbox is not defined.');
+    });
+
+    // Close Modal
+    closeModal.addEventListener('click', () => {
+        modal.classList.remove('active'); // Hide modal
+    });
+
+    // Show Next Image
+    nextImage.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % galleryImages.length; // Loop to the first image
+        updateModalImage();
+    });
+
+    // Show Previous Image
+    prevImage.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length; // Loop to the last image
+        updateModalImage();
+    });
+
+    // Update Modal Image
+    function updateModalImage() {
+        const image = galleryImages[currentIndex];
+        modalImage.src = image.src; // Update modal image source
+        modalImage.alt = image.alt; // Update modal image alt text
     }
+
+    // Close Modal on Outside Click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active'); // Hide modal
+        }
+    });
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                modal.classList.remove('active'); // Close modal on Escape
+            } else if (e.key === 'ArrowRight') {
+                nextImage.click(); // Navigate to the next image
+            } else if (e.key === 'ArrowLeft') {
+                prevImage.click(); // Navigate to the previous image
+            }
+        }
+    });
 
     // Dark Mode Toggle Functionality
     const toggleDarkMode = document.getElementById('toggle-dark-mode');
