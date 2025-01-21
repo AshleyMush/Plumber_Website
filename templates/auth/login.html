@@ -25,13 +25,14 @@
 
                     <div class="col-lg-6">
                         <div class="p-5">
+                            
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                             </div>
 
                             <!-- Flask-WTF Form -->
                             <form method="POST" class="user" action="{{ url_for('auth_bp.login') }}">
-                                {{ form.hidden_tag() }} <!-- CSRF Protection -->
+                                {{ form.hidden_tag() }}
 
                                 <div class="form-group">
                                     <!-- Email Field -->
@@ -47,7 +48,7 @@
 
                                 <!-- Remember Me -->
 
-                             <div class="form-group">
+                                <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
                                         {{ form.remember_me(class="custom-control-input", id="customCheck") }}
                                         <label class="custom-control-label" for="customCheck">Remember Me</label>
@@ -73,11 +74,11 @@
                             <div class="text-center">
                                 <a class="small" href="{{ url_for('auth_bp.forgot_password') }}">Forgot Password?</a>
                             </div>
-{% if hide_registration == False %}
-<div class="text-center">
-    <a class="small" href="{{ url_for('auth_bp.register') }}">Create an Account!</a>
-</div>
-{% endif %}
+                            {% if hide_registration == False %}
+                            <div class="text-center">
+                                <a class="small" href="{{ url_for('auth_bp.register') }}">Create an Account!</a>
+                            </div>
+                            {% endif %}
 
                         </div>
                     </div>
