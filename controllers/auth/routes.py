@@ -13,18 +13,6 @@ import os
 
 
 
-@auth_bp.route('/test-email')
-def test_email():
-    try:
-        send_password_reset_email('tanaka.mush"gmail.com')
-        return "Test email sent successfully!"
-    except Exception as e:
-        return f"Error sending test email: {e}", 500
-
-
-
-
-
 @auth_bp.route('/login', methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
