@@ -91,6 +91,9 @@ def register():
 
 @auth_bp.route('/forgot-password', methods=["GET", "POST"])
 def forgot_password():
+    #TODO: REMOVE ME
+    current_app.logger.info("Forgot password email triggered.")
+
     form = ForgotPasswordForm()
     if form.validate_on_submit():
         email = form.email.data

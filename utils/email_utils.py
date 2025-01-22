@@ -101,11 +101,17 @@ def send_password_reset_email(email, service='gmail'):
     """
     Sends a password reset email to the user.
     """
+    #TODO: REMOVE ME
+
+    current_app.logger.info("Password reset email sending process started.")
+
     # Fetch configuration values
     ADMIN_EMAIL_ADDRESS = os.environ.get('ADMIN_EMAIL_ADDRESS')
     ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
     SECRET_KEY = os.environ.get('SECRET_APP_KEY')
     PASSWORD_RESET_SALT = os.environ.get('PASSWORD_RESET_SALT')
+
+    #TODO: REMOVE ME
 
     # Log the configuration status
     current_app.logger.info(f"ADMIN_EMAIL_ADDRESS: {ADMIN_EMAIL_ADDRESS}")
@@ -114,6 +120,8 @@ def send_password_reset_email(email, service='gmail'):
 
     # Ensure required configuration exists
     if not all([ADMIN_EMAIL_ADDRESS, ADMIN_EMAIL_PW, SECRET_KEY, PASSWORD_RESET_SALT]):
+        # TODO: REMOVE ME
+
         current_app.logger.error('Missing email configuration.')
         flash('Email service is not configured properly. Please contact support.', 'danger')
         return
@@ -122,8 +130,12 @@ def send_password_reset_email(email, service='gmail'):
     try:
         serializer = URLSafeTimedSerializer(SECRET_KEY)
         token = serializer.dumps(email, salt=PASSWORD_RESET_SALT)
+        # TODO: REMOVE ME
+
         current_app.logger.info("Token generated successfully.")
     except Exception as e:
+        # TODO: REMOVE ME
+
         current_app.logger.error(f"Error generating token: {e}")
         flash('Error generating reset token. Please try again later.', 'danger')
         return
@@ -131,8 +143,12 @@ def send_password_reset_email(email, service='gmail'):
     # Construct reset URL
     try:
         reset_url = url_for('auth_bp.reset_password', token=token, _external=True)
+        # TODO: REMOVE ME
+
         current_app.logger.info(f"Reset URL generated: {reset_url}")
     except Exception as e:
+        # TODO: REMOVE ME
+
         current_app.logger.error(f"Error generating reset URL: {e}")
         flash('Error generating reset URL. Please try again later.', 'danger')
         return
@@ -140,8 +156,12 @@ def send_password_reset_email(email, service='gmail'):
     # Render email content
     try:
         email_content = render_template('email/password_reset_email.html', reset_url=reset_url)
+        # TODO: REMOVE ME
+
         current_app.logger.info("Email content rendered successfully.")
     except Exception as e:
+        # TODO: REMOVE ME
+
         current_app.logger.error(f"Error rendering email content: {e}")
         flash('Error rendering email content. Please try again later.', 'danger')
         return
