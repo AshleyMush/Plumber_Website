@@ -6,7 +6,10 @@ from email.mime.text import MIMEText
 import os
 from datetime import datetime
 
-
+ADMIN_EMAIL_ADDRESS = os.environ.get('ADMIN_EMAIL_ADDRESS')
+ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
+SECRET_KEY = os.environ.get('SECRET_APP_KEY')
+PASSWORD_RESET_SALT = os.environ.get('PASSWORD_RESET_SALT')
 
 
 
@@ -14,9 +17,9 @@ def send_user_response_email(name, email, subject, service='gmail'):
     """
     Sends a confirmation email to the user.
     """
-    ADMIN_EMAIL_ADDRESS = current_app.config.get('ADMIN_EMAIL_ADDRESS')
-
-    ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
+    # ADMIN_EMAIL_ADDRESS = current_app.config.get('ADMIN_EMAIL_ADDRESS')
+    #
+    # ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
 
 
     from email.mime.text import MIMEText
@@ -57,9 +60,9 @@ def send_admin_email(name, phone, subject, email, message, service='gmail'):
     Sends an email to the dashboard with the contact form details.
     """
 
-    ADMIN_EMAIL_ADDRESS = current_app.config.get('ADMIN_EMAIL_ADDRESS')
-
-    ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
+    # ADMIN_EMAIL_ADDRESS = current_app.config.get('ADMIN_EMAIL_ADDRESS')
+    #
+    # ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
 
     current_year = datetime.now().year
     email_content = render_template('email/admin_email.html', name=name, phone=phone, email=email,current_year=current_year, message=message)
@@ -91,8 +94,8 @@ def generate_reset_token(email):
     """
     This function generates a password reset token using SECRET_KEY.
     """
-    SECRET_KEY = os.environ.get('SECRET_APP_KEY')
-    PASSWORD_RESET_SALT = os.environ.get('PASSWORD_RESET_SALT')
+    # SECRET_KEY = os.environ.get('SECRET_APP_KEY')
+    # PASSWORD_RESET_SALT = os.environ.get('PASSWORD_RESET_SALT')
     serializer = URLSafeTimedSerializer(SECRET_KEY)
     return serializer.dumps(email, salt=PASSWORD_RESET_SALT)
 
@@ -106,10 +109,10 @@ def send_password_reset_email(email, service='gmail'):
     current_app.logger.info("Password reset email sending process started.")
 
     # Fetch configuration values
-    ADMIN_EMAIL_ADDRESS = os.environ.get('ADMIN_EMAIL_ADDRESS')
-    ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
-    SECRET_KEY = os.environ.get('SECRET_APP_KEY')
-    PASSWORD_RESET_SALT = os.environ.get('PASSWORD_RESET_SALT')
+    # ADMIN_EMAIL_ADDRESS = os.environ.get('ADMIN_EMAIL_ADDRESS')
+    # ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
+    # SECRET_KEY = os.environ.get('SECRET_APP_KEY')
+    # PASSWORD_RESET_SALT = os.environ.get('PASSWORD_RESET_SALT')
 
     #TODO: REMOVE ME
 
@@ -206,9 +209,9 @@ def send_approval_message(name, email, subject, service='gmail'):
     """
     Sends a confirmation email to the dashboard.
     """
-    ADMIN_EMAIL_ADDRESS = current_app.config.get('ADMIN_EMAIL_ADDRESS')
-
-    ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
+    # ADMIN_EMAIL_ADDRESS = os.environ.get('ADMIN_EMAIL_ADDRESS')
+    #
+    # ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
     current_year = datetime.now().year
     email_content = render_template('email/contributor_approval_email.html',current_year=current_year, name=name)
 
@@ -239,9 +242,9 @@ def send_demotion_message(name, email, subject, service='gmail'):
     """
     Sends a confirmation email to the dashboard.
     """
-    ADMIN_EMAIL_ADDRESS = current_app.config.get('ADMIN_EMAIL_ADDRESS')
-
-    ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
+    # ADMIN_EMAIL_ADDRESS = current_app.config.get('ADMIN_EMAIL_ADDRESS')
+    #
+    # ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
 
     current_year = datetime.now().year
 
