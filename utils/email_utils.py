@@ -101,7 +101,6 @@ def send_password_reset_email(email, service='gmail'):
     """
     Sends a password reset email to the user.
     """
-
     # Fetch configuration values
     ADMIN_EMAIL_ADDRESS = os.environ.get('ADMIN_EMAIL_ADDRESS')
     ADMIN_EMAIL_PW = os.environ.get('ADMIN_EMAIL_PW')
@@ -179,6 +178,7 @@ def send_password_reset_email(email, service='gmail'):
     except Exception as e:
         current_app.logger.error(f"Unexpected error sending email: {e}")
         flash('Error sending password reset email. Please try again later.', 'danger')
+
 
 
 
