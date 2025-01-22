@@ -108,7 +108,10 @@ def send_password_reset_email(email, service='gmail'):
     SECRET_KEY = os.environ.get('SECRET_APP_KEY')
     PASSWORD_RESET_SALT = os.environ.get('PASSWORD_RESET_SALT')
 
-
+    # Log the configuration status
+    current_app.logger.info(f"ADMIN_EMAIL_ADDRESS: {ADMIN_EMAIL_ADDRESS}")
+    current_app.logger.info(f"SECRET_KEY: {'Set' if SECRET_KEY else 'Not Set'}")
+    current_app.logger.info(f"PASSWORD_RESET_SALT: {'Set' if PASSWORD_RESET_SALT else 'Not Set'}")
 
     # Ensure required configuration exists
     if not all([ADMIN_EMAIL_ADDRESS, ADMIN_EMAIL_PW, SECRET_KEY, PASSWORD_RESET_SALT]):
@@ -120,6 +123,7 @@ def send_password_reset_email(email, service='gmail'):
     try:
         serializer = URLSafeTimedSerializer(SECRET_KEY)
         token = serializer.dumps(email, salt=PASSWORD_RESET_SALT)
+        current_app.logger.info("Token generated successfully.")
     except Exception as e:
         current_app.logger.error(f"Error generating token: {e}")
         flash('Error generating reset token. Please try again later.', 'danger')
@@ -128,8 +132,10 @@ def send_password_reset_email(email, service='gmail'):
     # Construct reset URL
     try:
         reset_url = url_for('auth_bp.reset_password', token=token, _external=True)
+        current_app.logger.info(f"Reset URL generated: {reset_url}")
     except Exception as e:
-        flash('We are having some technical difficulties. Please try again later or contact support.', 'danger')
+        current_app.logger.error(f"Error generating reset URL: {e}")
+        flash('Error generating reset URL. Please try again later.', 'danger')
         return
 
     # Render email content
