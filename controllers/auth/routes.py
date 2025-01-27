@@ -113,11 +113,17 @@ def reset_password(token):
 
     try:
         # Decode token to get email
-        email = serializer.loads(token, salt=os.environ.get('PASSWORD_RESET_SALT')  , max_age=3600)
+        email = serializer.loads(
+            token,
+             salt=os.environ.get('PASSWORD_RESET_SALT'),
+             max_age=3600
+        )
 
     except SignatureExpired:
         flash('The password reset link has expired.', 'danger')
         return redirect(url_for('auth_bp.forgot_password'))
+
+
     except BadSignature:
         flash('Invalid password reset link.', 'danger')
         return redirect(url_for('auth_bp.forgot_password'))
