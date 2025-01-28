@@ -13,10 +13,13 @@ from controllers.website import website_bp
 from sqlalchemy.exc import SQLAlchemyError
 from flask_migrate import Migrate, upgrade
 from sqlalchemy import create_engine, inspect
+import logging
 
 
 # Initialize Flask application
 app = Flask(__name__)
+app.logger.setLevel(logging.INFO)
+
 
 # Define the base directory and ensure the instance folder exists
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
@@ -82,5 +85,6 @@ with app.app_context():
 
 
 # Run the Application
+#Todo remove debug true
 if __name__ == "__main__":
     app.run(debug=True, port=5002)
