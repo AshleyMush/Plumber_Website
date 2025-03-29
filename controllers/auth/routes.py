@@ -15,11 +15,25 @@ import os
 
 @auth_bp.route('/login', methods=["GET", "POST"])
 def login():
+    """
+    This function handles the login process.
+
+    If a dashboard is already authenticated, redirect them to their profile.
+    If the form is valid on submission, check the dashboard's credentials.
+    If the credentials are valid, log the dashboard in and redirect based on their role.
+    If the credentials are invalid, flash an error message and render the login form again.
+    """
+
+    # Check if any users exist in the database to control registration visibility
+    hide_registration = User.query.count() > 0
+
+    # Redirect authenticated users directly to their profile
     if current_user.is_authenticated:
         return redirect(url_for('dashboard_bp.company_profile'))
 
     form = LoginForm()
 
+    # If the form is submitted and valid, check credentials
     if form.validate_on_submit():
         email = form.email.data
         password = form.password.data
@@ -27,13 +41,15 @@ def login():
         user = result.scalar()
 
         if user and check_password_hash(user.password, password):
-            login_user(user, remember=form.remember_me.data)
             flash('Logged in successfully', 'success')
+            login_user(user, remember=form.remember_me.data)  # Log in dashboard
             return redirect(url_for('dashboard_bp.company_profile'))
-        else:
-            flash('Invalid Email or Password. Please try again.', 'danger')
 
-    return render_template("/auth/login.html", form=form)
+        else:
+            flash('Invalid email or password', 'danger')
+
+    # Render login form, passing hide_registration to the template
+    return render_template("/auth/login.html", form=form, hide_registration=hide_registration)
 
 
 
@@ -67,10 +83,8 @@ def register():
         return redirect(url_for('auth_bp.login'))
 
     if form.validate_on_submit():
-        # Generic response, regardless of email existence
         flash('Registration successful. Please log in.', 'success')
 
-        # If email doesn't exist, register the user
         result = db.session.execute(db.select(User).where(User.email == form.email.data))
         user = result.scalar()
         if not user:
@@ -91,7 +105,6 @@ def register():
 
 @auth_bp.route('/forgot-password', methods=["GET", "POST"])
 def forgot_password():
-    #TODO: REMOVE ME
     current_app.logger.info("Forgot password email triggered.")
 
     form = ForgotPasswordForm()

@@ -16,6 +16,8 @@ from . import db
 
 class Services(db.Model):
     __tablename__ = 'Services'
+    __table_args__ = {'schema': 'plumber_website'}
+
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(2000), nullable=False)
     home_page_card_text: Mapped[str] = mapped_column(String(2000), nullable=True)

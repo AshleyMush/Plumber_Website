@@ -11,6 +11,8 @@ from . import db
 
 class Home(db.Model):
     __tablename__ = 'HomePage'
+    __table_args__ = {'schema': 'plumber_website'}
+
     id: Mapped[int] = mapped_column(primary_key=True)
     heading: Mapped[str] = mapped_column(String(2000), nullable=False)
     subheading: Mapped[str] = mapped_column(String(2000), nullable=False)

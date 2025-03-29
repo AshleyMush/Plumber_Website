@@ -5,6 +5,8 @@ from . import db
 
 class Jobs_Done(db.Model):
     __tablename__ = 'Jobs_Done'
+    __table_args__ = {'schema': 'plumber_website'}
+
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(1000), nullable=False)
@@ -35,6 +37,8 @@ class Jobs_Done(db.Model):
 
 class Reviewer(db.Model):
     __tablename__ = 'reviews'
+    __table_args__ = {'schema': 'plumber_website'}
+
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(2000), nullable=False)

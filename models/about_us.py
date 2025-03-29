@@ -12,6 +12,8 @@ from . import db
 
 class AboutUsPageContent(db.Model):
     __tablename__ = 'AboutUsContent'
+    __table_args__ = {'schema': 'plumber_website'}
+
     id: Mapped[int] = mapped_column(primary_key=True)
     heading: Mapped[str] = mapped_column(String(2000), nullable=False)
     subheading: Mapped[str] = mapped_column(String(2000), nullable=False)

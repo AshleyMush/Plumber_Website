@@ -12,6 +12,8 @@ from . import db
 
 class Accreditation(db.Model):
     __tablename__ = 'Accreditation'
+    __table_args__ = {'schema': 'plumber_website'}
+
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(2000), nullable=False)
     image: Mapped[str] = mapped_column(String(2000), nullable=True)
