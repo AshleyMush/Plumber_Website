@@ -8,7 +8,7 @@ class UpdatePhoneForm(FlaskForm):
     phone_number = StringField(
         'Phone Number',
         validators=[
-            DataRequired(message="Phone number is required."),
+            DataRequired(message="Phone number is required. "),
             PhoneNumberValidator  # Use the custom validator
         ]
     )
