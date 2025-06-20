@@ -5,7 +5,7 @@ from sqlalchemy import String, Integer
 from . import db
 
 class User(db.Model, UserMixin):
-    __tablename__ = "User"
+    __tablename__ = "users"
     id: Mapped[int] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(String(2000), nullable=True)
     password: Mapped[str] = mapped_column(String(2000), nullable=False)

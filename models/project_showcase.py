@@ -14,7 +14,7 @@ class Jobs_Done(db.Model):
     # Explicitly name the foreign key constraint
     service_provider_id: Mapped[int] = mapped_column(
         Integer,
-        ForeignKey('User.id', name='fk_jobs_done_service_provider'),
+        ForeignKey('users.id', name='fk_jobs_done_service_provider'),
         nullable=False
     )
 
