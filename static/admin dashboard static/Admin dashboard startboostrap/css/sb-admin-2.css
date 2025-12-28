@@ -11288,3 +11288,7 @@ body.sidebar-toggled footer.sticky-footer {
   border-radius: 3px;
   margin-left: 5px;
 }
+
+.logo {
+    mix-blend-mode: difference !important;
+}

@@ -5,7 +5,7 @@ from utils.email_utils import send_admin_email, send_user_response_email
 from models import db, User, Home, Services
 import bleach # For sanitizing HTML
 from datetime import datetime
-
+from models import CompanyDetails
 
 CURRENT_YEAR = datetime.now().year
 
@@ -14,10 +14,11 @@ CURRENT_YEAR = datetime.now().year
 @website_bp.route('/', methods=['GET'] )
 def home():
     home = Home.query.first()
+    company_details = CompanyDetails.query.first()
     user = User.query.first()
     form = ContactUSForm()
     services = Services.query.all()
 
 
 
-    return render_template('website/index.html',user=user, services=services,home=home,form =form, current_year=CURRENT_YEAR)
+    return render_template('website/index.html',user=user, services=services,home=home,form =form, current_year=CURRENT_YEAR, company_details=company_details)

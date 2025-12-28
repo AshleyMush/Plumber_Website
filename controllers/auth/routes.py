@@ -27,8 +27,7 @@ def login():
     If the credentials are invalid, flash an error message and render the login form again.
     """
 
-    # Check if any users exist in the database to control registration visibility
-    hide_registration = User.query.count() > 0
+
 
     # Redirect authenticated users directly to their profile
     if current_user.is_authenticated:
@@ -52,7 +51,7 @@ def login():
             flash('Invalid email or password', 'danger')
 
     # Render login form, passing hide_registration to the template
-    return render_template("/auth/login.html", form=form, hide_registration=hide_registration)
+    return render_template("/auth/login.html", form=form)
 
 
 #

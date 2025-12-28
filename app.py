@@ -25,7 +25,7 @@ if not os.path.exists(instance_path):
 # Configure the database URI to point to the instance folder
 app.config['SECRET_KEY'] = os.environ.get("SECRET_APP_KEY", "default_secret_key")
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-    "DATABASE_URI", f"sqlite:///{os.path.join(instance_path, 'ServicesWebsite.db')}"
+    "DATABASE_URI", f"sqlite:///{os.path.join(instance_path, 'Zimbos.db')}"
 )
 
 
@@ -67,6 +67,12 @@ migrate = Migrate(app, db)
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('dashboard/404.html'), 404
+
+@app.context_processor
+def inject_current_year():
+    """Inject the current year into all templates."""
+    from datetime import datetime
+    return {'current_year': datetime.now().year}
 
 # Automatically create the database tables if they don't exist
 with app.app_context():

@@ -3,11 +3,20 @@
   <div class="container d-flex align-items-center justify-content-start" style="height: 80px;">
     <!-- Logo -->
     <div class="logo-container">
-<img src="{{ url_for('static', filename='uploads/logos/logo.PNG') }}" alt="Logo" class="img-fluid" style="max-height: 115px;">
+<img src="{{ url_for('static', filename='uploads/logos/Zimbos_logo.webp') }}" alt="Logo" class="img-fluid" style="max-height: 115px;">
     </div>
     <h1 class="ms-3 mb-0" style="font-size: 2rem;">
-      <span style="color: var(--primary-color);">Ashey's</span> 
-      <span style="color: orange;">Company</span>
+        {% if company_details %}
+        <h1>{{ company_details.name }}</h1>
+
+
+        {% else %}
+
+
+          <span style="color: var(--primary-color);">Zimbos </span>
+
+        {% endif %}
+
     </h1>
 
     <!-- Review Button (Hidden on Small/Medium Devices) -->

@@ -4,13 +4,15 @@
       <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
         <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
       </a>
-      <span class="mb-3 mb-md-0 text-body-secondary text-white">Developed by <a href="https://www.tanakatech.co.uk/"> ©Tanaka Tech</a>
+              <span class="mb-3 mb-md-0 text-body-secondary text-white"> All rights reserved |
+
+     <!-- <span class="mb-3 mb-md-0 text-body-secondary text-white">Developed by <a href="https://www.tanakatech.co.uk/"> ©Tanaka Tech</a>-->
 
                     {% if not current_user.is_authenticated %}
-                    | <a href="{{ url_for('auth_bp.login') }}" class="text-muted"
+                    <a href="{{ url_for('auth_bp.login') }}" class="text-muted"
                         style="text-decoration: none;">Login</a>
                     {% else %}
-                    | <a href="{{ url_for('dashboard_bp.user_profile') }}" class="text-muted"
+                     <a href="{{ url_for('dashboard_bp.user_profile') }}" class="text-muted"
                         style="text-decoration: none;">Dashboard</a>
                     | <a href="{{ url_for('auth_bp.logout') }}" class="text-muted"
                         style="text-decoration: none;">Logout</a>
@@ -21,20 +23,20 @@
 
 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
     <li class="ms-3">
-        <a class="text-body-primary" href="#">
+        <a class="text-body-primary" href="https://www.facebook.com/share/g/14Ku4fbvCMV/?mibextid=wwXIfr">
             <i class="bi bi-facebook icon-size"></i>
         </a>
     </li>
     <li class="ms-3">
-        <a class="text-body-primary" href="#">
+        <a class="text-body-primary" href="https://www.instagram.com/zimbosinsta?igsh=MXAzOHd5eXB2azJ2cg%3D%3D&utm_source=qr">
             <i class="bi bi-instagram icon-size"></i>
         </a>
     </li>
+
+
     <li class="ms-3">
-        <a class="text-body-secondary" href="#">
-            <svg class="bi icon-size" width="24" height="24">
-                <use xlink:href="#facebook"></use>
-            </svg>
+        <a class="text-body-primary" href="https://www.tiktok.com/@zimbostiktok?_r=1&_t=ZN-92VeWle9f8g">
+            <i class="bi bi-tiktok icon-size"></i>
         </a>
     </li>
 </ul>
